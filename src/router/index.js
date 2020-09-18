@@ -4,23 +4,22 @@ import Router from 'vue-router'
 // components
 import Full from '@/container/Full'
 
-// dashboard views
+// vistas para dashboard
 const DashboardOne = () => import('Views/dashboard/DashboardOne')
 const DashboardTwo = () => import('Views/dashboard/DashboardTwo')
 const CRM = () => import('Views/dashboard/CRM')
 const Crypto = () => import('Views/dashboard/Crypto')
 
-
-//CRM
-const Projects = () => import('Views/crm/Projects')
-const ProjectDetails = () => import('Views/crm/ProjectDetails')
-
-// users views
+// vistas de usuarios
 const UserProfile = () => import('Views/users/UserProfile')
 const UsersList = () => import('Views/users/UsersList')
 const UsersManage = () => import('Views/users/UsersManage')
 
-// session views
+// vista de contenidos
+const ContentsList = () => import('Views/contents/ContentsList')
+const ContentsManage = () => import('Views/contents/ContentsManage')
+
+// vista de sesiones
 const Login = () => import('Views/session/Login')
 const SignUp = () => import('Views/session/SignUp')
 const LockScreen = () => import('Views/session/LockScreen')
@@ -80,7 +79,7 @@ export default new Router({
 						breadcrumb: 'message.dashboardCrypto'
 					}
 				},
-
+                //Rutas para usuarios
                 {
 					name: "Users list",
 					path: '/users/consult',
@@ -104,7 +103,7 @@ export default new Router({
                 },
 
                 {
-					name: "Users actualizar",
+					name: "Users update",
 					path: '/users/update/:id',
 					component: UsersManage,
 					meta: {
@@ -113,47 +112,54 @@ export default new Router({
 						breadcrumb: 'message.usersUpdateUser'
 					}
                 },
-                
-				{
-					name: "Projects",
-					path: '/crm/projects',
-					component: Projects,
-					meta: {
-						requiresAuth: true,
-						title: 'message.projects',
-						breadcrumb: 'message.crmProjects'
-					}
-				},
-				{
-					name: "Project Details",
-					path: '/crm/projectDetails/:id',
-					component: ProjectDetails,
-					meta: {
-						requiresAuth: true,
-						title: 'message.projectDetails',
-						breadcrumb: 'message.crmProjectDetails'
-					}
-				},
-				{
+
+                {
 					name: "User Profile",
-					path: '/users/user-profile',
+					path: '/users/user-profile/:id',
 					component: UserProfile,
 					meta: {
 						requiresAuth: true,
 						title: 'message.userProfile',
 						breadcrumb: 'message.usersUserProfile'
 					}
-				},
-				{
-					name: "Users List",
-					path: '/users/users-list',
-					component: UsersList,
+                },
+                
+                //Fin utas para usuarios
+                //Rutas para contenidos
+                {
+					name: "Content list",
+					path: '/contents/consult/:type',
+					component: ContentsList,
 					meta: {
 						requiresAuth: true,
-						title: 'message.usersList',
-						breadcrumb: 'message.usersUsersList'
+						title: 'message.contents',
+						breadcrumb: 'message.contentsmanageContents'
 					}
-				},
+                },
+
+                {
+					name: "Content create",
+					path: '/contents/create/:type',
+					component: ContentsManage,
+					meta: {
+						requiresAuth: true,
+						title: 'message.addNew',
+						breadcrumb: 'message.contentsNewContents'
+					}
+                },
+
+                {
+					name: "Content update",
+					path: '/contents/update/:type/:id',
+					component: ContentsManage,
+					meta: {
+						requiresAuth: true,
+						title: 'message.edit',
+						breadcrumb: 'message.contentsUpdateContents'
+					}
+                },
+                
+                //Fin rutas para contenidos
 			]
 		},
 		{

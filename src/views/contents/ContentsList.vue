@@ -32,22 +32,18 @@
                     <table class="table table-hover table-bordered table-striped">
                         <thead>
                             <tr class="bg-primary text-center">
-                                <th>{{$t('message.document')}}</th>
                                 <th>{{$t('message.name')}}</th>
-                                <th>{{$t('message.email')}}</th>
                                 <th>{{$t('message.actions')}}</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="user in users" :key="user.id">
-                                <td class="text-right">{{user.identification | formatNumber}}</td>
-                                <td class="text-center">{{user.name}}</td>
-                                <td class="text-center">{{user.email}}</td>
+                            <tr v-for="content in contents" :key="content.id">
+                                <td class="text-center">{{content.name}}</td>
                                 <th class="text-center">
-                                    <b-button @click="redirect(false, user.id)" variant="success" class="d-inline-flex align-items-center text-capitalize m-1">
+                                    <b-button @click="redirect(false, content.id)" variant="success" class="d-inline-flex align-items-center text-capitalize m-1">
                                         <i class="fas fa-ellipsis-h"></i>
                                     </b-button>
-                                    <b-button @click="redirect(true, user.id)" variant="success" class="d-inline-flex align-items-center text-capitalize m-1">
+                                    <b-button @click="redirect(true, content.id)" variant="success" class="d-inline-flex align-items-center text-capitalize m-1">
                                         <i class="fas fa-pen"></i>
                                     </b-button>
                                 </th>
@@ -75,33 +71,29 @@
             }
         },
         mounted () {
-            this.getUsers();
+            this.getContents(this.$route.params.type);
         },
         methods: {
             ...mapActions({
-                getUsers: 'user/getUsers',
+                getContents: 'content/getContents',
             }),
             alertSweet(){
                 this.$swal('Hello Vue world!!!');
             },
             search(pagination){
-                this.getUsers(pagination);
+                this.getContents(pagination);
             },
             redirect(page, id){
                 if(!page){
-                    if(id){
-                        this.$router.push('/users/user-profile/'+id)
-                    }else{
-                        this.$router.push('/users/create')
-                    }
+                    this.$router.push('/contents/create')
                 }else{
-                    this.$router.push('/users/update/'+id)
+                    this.$router.push('/contents/update/'+id)
                 }
             }
         },
         computed:{
             ...mapState({
-                users: state => state.user.users,
+                contents: state => state.content.contents,
             }),
         },
     }

@@ -44,7 +44,7 @@ const actions = {
     create:({commit},data) => {
         commit('startProcessing', null, { root: true });
         return new Promise((resolve, reject) => {
-        Vue.http.post(state.prefix+'register_role',data).then(
+        Vue.http.post(state.prefix+'roles',data).then(
             response =>{
                 var data = response.data;
                 resolve(data)
@@ -60,7 +60,7 @@ const actions = {
     update:({commit},data) => {
         commit('startProcessing', null, { root: true });
         return new Promise((resolve, reject) => {
-        Vue.http.post(state.prefix+'edit_role',data).then(
+        Vue.http.put(state.prefix+'roles',data).then(
             response =>{
                 var data = response.data;
                 resolve(data)
@@ -76,7 +76,7 @@ const actions = {
     delete:({commit},data) => {
         commit('startProcessing', null, { root: true });
         return new Promise((resolve, reject) => {
-        Vue.http.post(state.prefix+'delete_role', {_id: data}).then(
+        Vue.http.delete(state.prefix+'roles', {_id: data}).then(
             response =>{
                 var data = response.data;
                 resolve(data)

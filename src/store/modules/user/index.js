@@ -47,7 +47,7 @@ const actions = {
     create:({commit},data) => {
         commit('startProcessing', null, { root: true });
         return new Promise((resolve, reject) => {
-            Vue.http.post('register_user',data).then(
+            Vue.http.post('users',data).then(
                 response =>{
                     var data = actions.processResponse(response.data, false);
                     resolve(data)
@@ -64,7 +64,7 @@ const actions = {
     update:({commit},data) => {
         // commit('startProcessing', null, { root: true });
         return new Promise((resolve, reject) => {
-            Vue.http.put(state.prefix+'user',data).then(
+            Vue.http.put(state.prefix+'users',data).then(
                 response =>{
                     var data = actions.processResponse(response.data, false);
                     resolve(data)

@@ -1,67 +1,63 @@
 <template>
 	<app-card customClasses="grid-b-space" :fullBlock="true" contentCustomClass="text-center pt-20 user-profile-block">
 		<div class="avatar-wrap pos-relative d-inline-block mb-15">
-			<img src="/static/img/user-1.jpg" class="img-fluid rounded-circle" alt="user thumb" width="100" height="100">
-			<span class="badge badge-success badge-label-sm badge-thumb-top-right badge-pill fa-notify">&nbsp;</span>
+			<img src="/static/img/logo_micrositios.png" class="img-fluid rounded-circle" alt="user thumb" width="100" height="100">
+			<span class="badge badge-success badge-label-sm badge-thumb-top-right badge-pill">&nbsp;</span>
 		</div>
 		<div class="mb-20 user-info">
-			<h4 class="mb-0">Gerald Vaughn</h4>
-			<span class="text-muted font-xs">Freelance Designer, Previously TapQ</span>
+			<h4 class="mb-0">{{user.name}}</h4>
+			<span class="text-muted font-xs"></span>
 		</div>
 		<b-list-group class="mb-20">
-			<b-list-group-item v-for="profile in profile" :key="profile.title"
-				class="d-flex align-items-center py-15 px-20 justify-content-between">
+			<b-list-group-item v-for="profile in profile" :key="profile.title" class="d-flex align-items-center py-15 px-20 justify-content-between">
 				<h5 class="m-0">{{profile.title}} :</h5>
 				<h6 class="mb-0">{{profile.details}}</h6>
 			</b-list-group-item>
 		</b-list-group>
-		<div class="address-block px-20">
-			<span class="font-sm d-block mb-10"><i class="zmdi zmdi-account"></i>Gerald Vaugn</span>
-			<span class="font-sm d-block mb-10"><i class="zmdi zmdi-email"></i>geraldv@example.com</span>
-			<span class="font-sm d-block mb-10"><i class="zmdi zmdi-phone"></i>(01) 234 567 8901</span>
-			<span class="font-sm d-block mb-10"><i class="zmdi zmdi-pin"></i>E51, Industrial Area, Phase 2, Mohali,
-				Punjab.</span>
-		</div>
-		<div class="map overflow-hide p-15">
-			<gmap-map :center="center" :zoom="9" style="width: '100%'; height: 300px">
-				<gmap-marker :position="markers.position" :clickable="true" :draggable="true"
-					@click="center=markers.position"></gmap-marker>
-			</gmap-map>
+		<div class="address-block px-20 text-left">
+            <span class="font-sm d-block mb-10"><i class="far fa-id-card"></i> {{user.identification}}</span>
+			<span class="font-sm d-block mb-10"><i class="fas fa-envelope"></i> {{user.email}}</span>
+			<span class="font-sm d-block mb-10"><i class="fas fa-phone-alt"></i> {{user.cellphone}}</span>
+            <br>
 		</div>
 	</app-card>
 </template>
 
 <script>
 	export default {
+        props:["user"],
 		data: function () {
 			return {
-				profile: [
-					{
-						title: "Followers",
-						details: "1,097"
-					},
-					{
-						title: "Online Status",
-						details: "Offline"
-					},
-					{
-						title: "Last Seen",
-						details: "2 Days ago"
-					},
-					{
-						title: "Last Updated",
-						details: "A Month ago"
-					},
-					{
-						title: "Connections ",
-						details: "2,097"
-					}
-				],
-				center: { lat: 30.7, lng: 76.7 },
-				markers: {
-					position: { lat: 30.7, lng: 76.7 }
-				}
+				profile: [],
 			};
-		}
+        },
+        watch:{
+            user(val){
+                if(val){
+                    this.profile = [
+                        {
+                            title: "Tipo de contacto",
+                            details: "val.role_id"
+                        },
+                        {
+                            title: "Rol",
+                            details: "val.role_id"
+                        },
+                        {
+                            title: "País",
+                            details: "val.country_id"
+                        },
+                        {
+                            title: "Idioma",
+                            details: "val.language_id"
+                        },
+                        {
+                            title: "Unidad",
+                            details: "val.unit_id"
+                        },
+                    ];
+                }
+            },
+        },
 	};
 </script>

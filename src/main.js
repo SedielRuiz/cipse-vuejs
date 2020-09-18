@@ -21,8 +21,13 @@ import VueI18n from "vue-i18n";
 import Vuelidate from "vuelidate";
 import VueSweetalert2 from 'vue-sweetalert2';
 import BlockUI from 'vue-blockui';
-
 import AppConfig from "Constants/AppConfig";
+import numeral from 'numeral';
+ 
+Vue.filter("formatNumber", function (value) {
+    return numeral(value).format("0,0");
+});
+
 
 //vue resource
 import VueResource from 'vue-resource';
@@ -56,30 +61,30 @@ import messages from "./lang";
 router.beforeEach((to, from, next) => {
 	Nprogress.start();
   	if (to.matched.some(record => record.meta.requiresAuth)) {
-      // this route requires auth, check if logged in
-      // if not, redirect to login page.
-      if (localStorage.getItem('user') === null) {
-        next({
-          path: "/session/login",
-          query: { redirect: to.fullPath }
-        })
-      } else {
-        next()
-      }
+        // this route requires auth, check if logged in
+        // if not, redirect to login page.
+        if (localStorage.getItem('user') === null) {
+            next({
+            path: "/session/login",
+            query: { redirect: to.fullPath }
+            })
+        } else {
+            next()
+        }
     } else {
-      next() // make sure to always call next()!
+        next() // make sure to always call next()!
    }
 });
 
 // navigation guard after each
 router.afterEach((to, from) => {
-  Nprogress.done();
-  setTimeout(() => {
-    const contentWrapper = document.querySelector(".base-container");
-    if (contentWrapper !== null) {
-      contentWrapper.scrollTop = 0;
-    }
-  }, 200);
+    Nprogress.done();
+    setTimeout(() => {
+        const contentWrapper = document.querySelector(".base-container");
+        if (contentWrapper !== null) {
+        contentWrapper.scrollTop = 0;
+        }
+    }, 200);
 });
 
 Vue.use(BlockUI);

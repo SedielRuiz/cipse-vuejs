@@ -31,9 +31,9 @@
 				</b-nav-item-dropdown>
 				<b-nav-item-dropdown right no-caret class="notification-wrap">
 					<template slot="button-content">
-						<span class="zmdi animated infinite wobble zmdi-hc-fw">
+						<span class="zmdi infinite wobble zmdi-hc-fw">
 							<i class="zmdi zmdi-notifications-active"></i>
-							<b-badge pill variant="success" class="badge-sm badge-top-right fa-notify">4</b-badge>
+							<b-badge pill variant="success" class="badge-sm badge-top-right">4</b-badge>
 						</span>
 					</template>
 					<b-dropdown-header class="gradient-primary text-white">{{$t('message.notifications')}}

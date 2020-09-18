@@ -2,7 +2,7 @@ export default {
 	"routes": [
 		{
 			"menu_title": "message.dashboard",
-			"menu_icon": "zmdi zmdi-view-dashboard",
+			"menu_icon": "fas fa-dice-d20",
 			"active": false,
 			"child_routes": [
 				{
@@ -28,7 +28,7 @@ export default {
         },
         {
 			"menu_title": "message.manageUsers",
-			"menu_icon": "zmdi zmdi-accounts",
+			"menu_icon": "fas fa-users-cog",
 			"active": false,
 			"child_routes": [
                 {
@@ -36,20 +36,60 @@ export default {
 					"path": "/users/consult",
 					"menu_title": "message.consult"
 				},
-				{
-					"path": "/users/user-profile",
-					"menu_title": "message.userProfile"
-				},
                 {
-					"route_name": "projectDetails",
-					"path": "/crm/projectDetails/01",
-					"menu_title": "message.projectDetails"
+					"route_name": "creareUser",
+					"path": "/users/create",
+					"menu_title": "message.addNew"
 				},
 			]
-		},
+        },
+        {
+			"menu_title": "message.manageContents",
+			"menu_icon": "fas fa-folder-open",
+			"active": false,
+			"child_routes": [
+                {
+					"route_name": "notices",
+					"path": "/contents/consult/NOTICIA",
+					"menu_title": "message.notices"
+				},
+                {
+					"route_name": "doctrinal",
+					"path": "/contents/consult/doctrinal",
+					"menu_title": "message.doctrinal"
+                },
+                {
+					"route_name": "memories",
+					"path": "/contents/consult/memories",
+					"menu_title": "message.memories"
+                },
+                {
+					"route_name": "us",
+					"path": "/contents/consult/us",
+					"menu_title": "message.us"
+                },
+			]
+        },
+        {
+			"menu_title": "message.manageRequest",
+			"menu_icon": "fas fa-file-contract",
+			"active": false,
+			"child_routes": [
+                {
+					"route_name": "users",
+					"path": "/users/consult",
+					"menu_title": "message.consult"
+				},
+                {
+					"route_name": "creareUser",
+					"path": "/users/create",
+					"menu_title": "message.addNew"
+				},
+			]
+        },
 		{
 			"menu_title": "message.session",
-			"menu_icon": "zmdi zmdi-time-countdown",
+			"menu_icon": "fas fa-sign-out-alt",
 			"active": false,
 			"child_routes": [
 				{

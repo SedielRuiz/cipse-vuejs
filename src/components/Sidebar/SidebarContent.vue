@@ -46,7 +46,7 @@
 		},
 		methods: {
 			textTruncate(text) {
-				return textTruncate(text, 18);
+				return textTruncate(text, 20);
 			},
 			toggleActive(index) {
 				for (let selectedRoute in this.sideBarLinks.routes) {

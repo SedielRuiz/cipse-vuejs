@@ -25,6 +25,7 @@
     "leaflet": "^1.5.1",
     "moment": "^2.24.0",
     "nprogress": "^0.2.0",
+    "numeral": "^2.0.6",
     "screenfull": "^5.0.2",
     "tour-component": "^6.5.1",
     "velocity-animate": "^1.5.2",
