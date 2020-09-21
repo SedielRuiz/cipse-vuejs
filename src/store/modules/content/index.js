@@ -1,7 +1,10 @@
 import Vue from 'vue';
 
 const state = {
-  contents: [],
+  notices: [],
+  doctrinal: [],
+  memories: [],
+  us: [],
   role: "",
   //Paginación
   page_size:"",
@@ -28,6 +31,7 @@ const actions = {
         });
     },
     getContents:({commit}, type) => {
+        commit('startProcessing', null, { root: true });
         var json = {
             params: {"type":type}
         }
@@ -35,12 +39,26 @@ const actions = {
             Vue.http.get(state.prefix+'contents', json).then(
                 response =>{
                     var data = response.data;
-                    commit('setContents',data);
+                    switch (type) {
+                        case "NOTICIA":
+                            commit('setNotices',data);       
+                            break;
+                        case "DOCTRINAl":
+                            commit('setDoctrinal',data);       
+                            break;
+                        case "MEMORIAS":
+                            commit('setMemories',data);       
+                            break;
+                        case "NOSOTROS":
+                            commit('setUS',data);       
+                            break;
+                    }
                     resolve(data)
                 }).catch(error=>{
                     commit('setError', error, { root: true });
                     reject(error)
                 }).finally(()=>{
+                    commit('stopProcessing', null, { root: true });
                 })
             });
     },
@@ -98,14 +116,32 @@ const getters = {
 };
 
 const mutations = {
-    setContents: (state, list) => {
-        state.contents = list.data;
+    setNotices: (state, list) => {
+        state.notices = list.data;
         state.page_size = list.page_size;
         state.total_pages = list.total_pages;
         state.total_items = list.total_items;
     },
-    setRole: (state, rl) => {
-        state.role = rl
+
+    setDoctrinal: (state, list) => {
+        state.doctrinal = list.data;
+        state.page_size = list.page_size;
+        state.total_pages = list.total_pages;
+        state.total_items = list.total_items;
+    },
+
+    setMemories: (state, list) => {
+        state.memories = list.data;
+        state.page_size = list.page_size;
+        state.total_pages = list.total_pages;
+        state.total_items = list.total_items;
+    },
+
+    setUS: (state, list) => {
+        state.us = list.data;
+        state.page_size = list.page_size;
+        state.total_pages = list.total_pages;
+        state.total_items = list.total_items;
     },
 
 };

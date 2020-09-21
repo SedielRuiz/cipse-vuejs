@@ -373,4 +373,10 @@ export default {
     contentsmanageContents: "Manage Contents / Consult", 
     contentsNewContents: "Manage Contents / New",
     contentsUpdateContents: "Manage Contents / Consult / Update",
+    unit: "Unit",
+    category: "Category",
+    user: "User",
+    type: "Type",
+    durationDate: "Duration Date",
+    languages: "Languages"
 }

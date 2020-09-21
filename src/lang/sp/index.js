@@ -375,4 +375,10 @@ export default {
    contentsmanageContents: "Gestion de cotenidos / Consulta", 
    contentsNewContents: "Gestion de cotenidos / Nuevo",
    contentsUpdateContents: "Gestion de cotenidos / Consulta / Actualizar",
+   unit: "Unidad",
+   category: "Categoria",
+   user: "Usuario",
+   type: "Tipo",
+   durationDate: "Fecha de duración",
+   languages: "Idiomas"
 }

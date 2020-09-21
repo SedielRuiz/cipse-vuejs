@@ -6,7 +6,7 @@
 				<div class="custom-search-wrap px-4 py-30 idb-block">
 					<div class="row align-items-stretch">
 						<div class="col-12 col-sm-12 col-md-12 col-lg-3 col-xl-3">
-							<h2>{{$t('message.search')}}</h2>
+							<h2>{{$t('message.search')}} {{type}}</h2>
 						</div>
 						<div class="col-12 col-sm-12 col-md-12 col-lg-9 col-xl-9">
 							<div class="d-sm-flex align-items-center">
@@ -32,13 +32,25 @@
                     <table class="table table-hover table-bordered table-striped">
                         <thead>
                             <tr class="bg-primary text-center">
-                                <th>{{$t('message.name')}}</th>
+                                <th>{{$t('message.unit')}}</th>
+                                <th>{{$t('message.user')}}</th>
+                                <th>{{$t('message.category')}}</th>
+                                <th>{{$t('message.languages')}}</th>
+                                <th>{{$t('message.durationDate')}}</th>
                                 <th>{{$t('message.actions')}}</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr v-for="content in contents" :key="content.id">
-                                <td class="text-center">{{content.name}}</td>
+                                <td class="text-center">{{content.unit.name}}</td>
+                                <td class="text-center">{{content.user.name}}</td>
+                                <td class="text-center">{{content.category ? content.category.name : ""}}</td>
+                                <td class="text-center">
+                                    <span class="badge badge-success" v-for="language in content.contents" :key="language.id">
+                                        {{language.language.name}}
+                                    </span>
+                                </td>
+                                <td class="text-center">{{content.duration_date | formatDate}}</td>
                                 <th class="text-center">
                                     <b-button @click="redirect(false, content.id)" variant="success" class="d-inline-flex align-items-center text-capitalize m-1">
                                         <i class="fas fa-ellipsis-h"></i>
@@ -67,11 +79,22 @@
         },
         data () {
             return {
-                headers: [],
+                type: "",
+                contents:[]
             }
         },
         mounted () {
-            this.getContents(this.$route.params.type);
+            this.type = this.$route.params.type;
+            this.getContents(this.type);
+        },
+        watch:{
+            cahngeType(val){
+                this.search();
+            },
+            contents(val){
+                console.log("nuevi comnetnido");
+                console.log(val);
+            }
         },
         methods: {
             ...mapActions({
@@ -80,8 +103,23 @@
             alertSweet(){
                 this.$swal('Hello Vue world!!!');
             },
-            search(pagination){
-                this.getContents(pagination);
+            search(){
+                this.getContents(this.type);
+
+                switch (this.type) {
+                    case "NOTICIA":
+                        this.contents = this.notices;
+                        break;
+                    case "DOCTRINAl":
+                        this.contents = this.doctrinal;      
+                        break;
+                    case "MEMORIAS":
+                        this.contents = this.memories;     
+                        break;
+                    case "NOSOTROS":
+                        this.contents = this.us;
+                        break;
+                }
             },
             redirect(page, id){
                 if(!page){
@@ -92,8 +130,15 @@
             }
         },
         computed:{
+            cahngeType(){
+                this.type = this.$route.params.type;
+                return this.type;
+            },
             ...mapState({
-                contents: state => state.content.contents,
+                notices: state => state.content.notices,
+                doctrinal: state => state.content.doctrinal,
+                memories: state => state.content.memories,
+                us: state => state.content.us,
             }),
         },
     }

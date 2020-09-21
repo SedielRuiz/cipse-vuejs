@@ -55,17 +55,17 @@ export default {
 				},
                 {
 					"route_name": "doctrinal",
-					"path": "/contents/consult/doctrinal",
+					"path": "/contents/consult/DOCTRINAL",
 					"menu_title": "message.doctrinal"
                 },
                 {
 					"route_name": "memories",
-					"path": "/contents/consult/memories",
+					"path": "/contents/consult/MEMORIAS",
 					"menu_title": "message.memories"
                 },
                 {
 					"route_name": "us",
-					"path": "/contents/consult/us",
+					"path": "/contents/consult/NOSOTROS",
 					"menu_title": "message.us"
                 },
 			]

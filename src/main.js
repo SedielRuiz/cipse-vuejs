@@ -23,7 +23,14 @@ import VueSweetalert2 from 'vue-sweetalert2';
 import BlockUI from 'vue-blockui';
 import AppConfig from "Constants/AppConfig";
 import numeral from 'numeral';
+import moment from 'moment';
  
+Vue.filter('formatDate', function(value) {
+    if (value) {
+        return moment(String(value)).format('DD/MM/YYYY')
+    }
+});
+
 Vue.filter("formatNumber", function (value) {
     return numeral(value).format("0,0");
 });
