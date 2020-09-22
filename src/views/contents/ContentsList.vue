@@ -6,7 +6,7 @@
 				<div class="custom-search-wrap px-4 py-30 idb-block">
 					<div class="row align-items-stretch">
 						<div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
-							<h2>{{$t('message.search')}} {{type}}</h2>
+							<h2>{{$t('message.search')}} {{capitalizeType()}}</h2>
 						</div>
 						<div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8">
 							<div class="d-sm-flex align-items-center">
@@ -39,6 +39,7 @@
                         </thead>
                         <tbody>
                             <tr v-for="content in contents" :key="content.id">
+                                <td class="text-center">{{content.country.name}}</td>
                                 <td class="text-center">{{content.unit.name}}</td>
                                 <td class="text-center">{{content.user.name}}</td>
                                 <td class="text-center">
@@ -46,18 +47,31 @@
                                         {{language.language.name}}
                                     </span>
                                 </td>
-                                
-                                <td class="text-center" v-if="type == 'NOTICIA'">
-                                    {{content.category ? content.category.name : ""}}
-                                </td>
-                                <td class="text-center" v-else-if="type == 'MEMORIAS'">
+
+                                <!-- Campo para doctrinal -->
+                                <td class="text-center" v-if="type == 'DOCTRINAL'">
                                     {{content.topic}}
                                 </td>
+                                
+                                 <!-- Noticias y Memorias-->
+                                <td class="text-center" v-if="type == 'NOTICIA' || type == 'MEMORIAS'">
+                                    {{content.category ? content.category.name : ""}}
+                                </td>
 
+                                <td class="text-center">
+                                    {{ geTitle(content.contents) }}
+                                </td>
 
+                                <!-- Campo para doctrinal y noticias y memorias-->
+                                <td class="text-center" v-if="type == 'NOTICIA' || type == 'DOCTRINAL' || type == 'MEMORIAS'">
+                                    {{content.created_at | formatDate}}
+                                </td>
+
+                                <!-- Noticias-->
                                 <td class="text-center" v-if="type == 'NOTICIA'">
                                     {{content.duration_date | formatDate}}
                                 </td>
+
 
                                 <th class="text-center">
                                     <b-button @click="redirect(false, content.id)" variant="success" class="d-inline-flex align-items-center text-capitalize m-1">
@@ -108,27 +122,44 @@
             alertSweet(){
                 this.$swal('Hello Vue world!!!');
             },
+            capitalizeType(){
+                var text = this.type.toLowerCase();
+                return text.charAt(0).toUpperCase()+text.slice(1);
+            },
+            geTitle(contents){
+                var title = "";
+                var content = contents.filter(content => content.language.key == "INGLES");
+                
+                if(content.length > 0){
+                    title = content[0].title;
+                }else{
+                    title = contents[0].title;
+                }
+                return title;
+            },
             async search(){
                 await this.getContents(this.type);
                 this.heading = [
+                    "country",
                     "unit",
                     "user",
                     "languages"
                 ];
                 switch (this.type) {
                     case "NOTICIA":
-                        this.heading.push("category","durationDate");
+                        this.heading.push("category", "title", "publishDate", "durationDate");
                         this.contents = this.notices;
-                        console.log("aca", this.notices, this.contents);
                         break;
-                    case "MEMORIAS":
-                        this.heading.push("topic");
-                        this.contents = this.memories;     
-                        break;
-                    case "DOCTRINAl":
+                    case "DOCTRINAL":
+                        this.heading.push("topic", "title", "publishDate");
                         this.contents = this.doctrinal;      
                         break;
+                    case "MEMORIAS":
+                        this.heading.push("category", "title", "publishDate");
+                        this.contents = this.memories;     
+                        break;
                     case "NOSOTROS":
+                        this.heading.push("title");
                         this.contents = this.us;
                         break;
                 }
@@ -137,7 +168,11 @@
             },
             redirect(page, id){
                 if(!page){
-                    this.$router.push('/contents/create')
+                    if(id){
+                        this.$router.push('/contents/detail/'+this.type+"/"+id);
+                    }else{
+                        this.$router.push('/contents/create')
+                    }
                 }else{
                     this.$router.push('/contents/update/'+id)
                 }

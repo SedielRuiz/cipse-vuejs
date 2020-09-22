@@ -380,6 +380,11 @@ export default {
    user: "Usuario",
    type: "Tipo",
    durationDate: "Fecha de duración",
+   publishDate: "Fecha de publicación",
    languages: "Idiomas",
    topic: "Tema",
+   country: "País",
+   contentsDetailContents: "Gestion de cotenidos / Consulta / Detalle",
+   title: "Titulo",
+   gallery: "Galería"
 }

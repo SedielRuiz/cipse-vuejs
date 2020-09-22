@@ -378,5 +378,11 @@ export default {
     user: "User",
     type: "Type",
     durationDate: "Duration Date",
-    languages: "Languages"
+    publishDate: "Publish Date",
+    languages: "Languages",
+    topic: "Topic",
+    country: "Country",
+    contentsDetailContents: "Manage Contents / Consult / Detail",
+    title: "Title",
+    gallery: "Gallery"
 }

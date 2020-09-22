@@ -13,7 +13,7 @@ export const store = new Vuex.Store({
     state: {
         processing: false,
         warning: null,
-        error: null
+        error: null,
     },
     mutations: {
         startProcessing (state) {

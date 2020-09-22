@@ -5,7 +5,7 @@ const state = {
   doctrinal: [],
   memories: [],
   us: [],
-  role: "",
+  content: "",
   //Paginación
   page_size:"",
   total_items:"",
@@ -20,7 +20,7 @@ const actions = {
             Vue.http.get(state.prefix+'contents/'+id).then(
                 response =>{
                     var data = response.data;
-                    commit('setRole',data);
+                    commit('setContent',data);
                     resolve(data)
                 }).catch(error=>{
                     commit('setError', error, { root: true });
@@ -43,7 +43,7 @@ const actions = {
                         case "NOTICIA":
                             commit('setNotices',data);       
                             break;
-                        case "DOCTRINAl":
+                        case "DOCTRINAL":
                             commit('setDoctrinal',data);       
                             break;
                         case "MEMORIAS":
@@ -53,6 +53,7 @@ const actions = {
                             commit('setUS',data);       
                             break;
                     }
+                    console.log("consulte", data);
                     resolve(data)
                 }).catch(error=>{
                     commit('setError', error, { root: true });
@@ -81,7 +82,7 @@ const actions = {
     update:({commit},data) => {
         commit('startProcessing', null, { root: true });
         return new Promise((resolve, reject) => {
-            Vue.http.post(state.prefix+'edit_role',data).then(
+            Vue.http.post(state.prefix+'contents',data).then(
                 response =>{
                     var data = response.data;
                     resolve(data)
@@ -139,6 +140,13 @@ const mutations = {
 
     setUS: (state, list) => {
         state.us = list.data;
+        state.page_size = list.page_size;
+        state.total_pages = list.total_pages;
+        state.total_items = list.total_items;
+    },
+
+    setContent: (state, list) => {
+        state.content = list.data;
         state.page_size = list.page_size;
         state.total_pages = list.total_pages;
         state.total_items = list.total_items;

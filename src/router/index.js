@@ -18,6 +18,7 @@ const UsersManage = () => import('Views/users/UsersManage')
 // vista de contenidos
 const ContentsList = () => import('Views/contents/ContentsList')
 const ContentsManage = () => import('Views/contents/ContentsManage')
+const ContentsDetail = () => import('Views/contents/ContentsDetail')
 
 // vista de sesiones
 const Login = () => import('Views/session/Login')
@@ -134,6 +135,17 @@ export default new Router({
 						requiresAuth: true,
 						title: 'message.contents',
 						breadcrumb: 'message.contentsmanageContents'
+					}
+                },
+
+                {
+					name: "Content detail",
+					path: '/contents/detail/:type/:id',
+					component: ContentsDetail,
+					meta: {
+						requiresAuth: true,
+						title: 'message.contents',
+						breadcrumb: 'message.contentsDetailContents'
 					}
                 },
 
