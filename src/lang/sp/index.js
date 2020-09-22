@@ -382,9 +382,13 @@ export default {
    durationDate: "Fecha de duración",
    publishDate: "Fecha de publicación",
    languages: "Idiomas",
+   language: "Idioma",
    topic: "Tema",
    country: "País",
    contentsDetailContents: "Gestion de cotenidos / Consulta / Detalle",
    title: "Titulo",
-   gallery: "Galería"
+   gallery: "Galería",
+   unitFrom: "Unidad solicitante",
+   unitTo: "Unidad destinataria",
+   requestsManageRequests: "Gestion de solicitudes / Consulta", 
 }

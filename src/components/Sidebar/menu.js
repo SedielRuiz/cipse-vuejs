@@ -37,7 +37,7 @@ export default {
 					"menu_title": "message.consult"
 				},
                 {
-					"route_name": "creareUser",
+					"route_name": "createUser",
 					"path": "/users/create",
 					"menu_title": "message.addNew"
 				},
@@ -76,13 +76,13 @@ export default {
 			"active": false,
 			"child_routes": [
                 {
-					"route_name": "users",
-					"path": "/users/consult",
+					"route_name": "requests",
+					"path": "/requests/consult",
 					"menu_title": "message.consult"
 				},
                 {
-					"route_name": "creareUser",
-					"path": "/users/create",
+					"route_name": "createRequest",
+					"path": "/requests/create",
 					"menu_title": "message.addNew"
 				},
 			]

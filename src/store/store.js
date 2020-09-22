@@ -6,6 +6,7 @@ import auth from './modules/auth';
 import user from './modules/user';
 import role from './modules/role';
 import content from './modules/content';
+import request from './modules/request';
 
 Vue.use(Vuex);
 
@@ -52,6 +53,7 @@ export const store = new Vuex.Store({
         auth,
         user,
         role,
-        content
+        content,
+        request
 	}
 })

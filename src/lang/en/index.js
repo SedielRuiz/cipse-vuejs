@@ -380,9 +380,13 @@ export default {
     durationDate: "Duration Date",
     publishDate: "Publish Date",
     languages: "Languages",
+    language: "Language",
     topic: "Topic",
     country: "Country",
     contentsDetailContents: "Manage Contents / Consult / Detail",
     title: "Title",
-    gallery: "Gallery"
+    gallery: "Gallery",
+    unitFrom: "Unit From",
+    unitTo: "Unit To",
+    requestsManageRequests: "Manage Requests / Consult", 
 }

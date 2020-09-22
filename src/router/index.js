@@ -20,6 +20,10 @@ const ContentsList = () => import('Views/contents/ContentsList')
 const ContentsManage = () => import('Views/contents/ContentsManage')
 const ContentsDetail = () => import('Views/contents/ContentsDetail')
 
+// vista de solicitudes
+const RequestsList = () => import('Views/requests/RequestsList')
+const RequestsManage = () => import('Views/requests/RequestsManage')
+
 // vista de sesiones
 const Login = () => import('Views/session/Login')
 const SignUp = () => import('Views/session/SignUp')
@@ -172,6 +176,39 @@ export default new Router({
                 },
                 
                 //Fin rutas para contenidos
+                //Rutas para solicitudes
+                {
+					name: "Requests list",
+					path: '/requests/consult',
+					component: RequestsList,
+					meta: {
+						requiresAuth: true,
+						title: 'message.requests',
+						breadcrumb: 'message.requestsManageRequests'
+					}
+                },
+
+                {
+					name: "Requests create",
+					path: '/requests/create',
+					component: RequestsManage,
+					meta: {
+						requiresAuth: true,
+						title: 'message.addNew',
+						breadcrumb: 'message.usersNewUsers'
+					}
+                },
+
+                {
+					name: "Requests update",
+					path: '/requests/update/:id',
+					component: RequestsManage,
+					meta: {
+						requiresAuth: true,
+						title: 'message.edit',
+						breadcrumb: 'message.usersUpdateUser'
+					}
+                },
 			]
 		},
 		{

@@ -6,7 +6,7 @@
                 <div class="col-xs-12 col-sm-12 col-md-1 align-self-center text-left">
                     <b-button @click="$emit('back')" class="m-1" type="reset" variant="success"><i class="fas fa-chevron-left"></i></b-button>
                 </div>
-                <div class="col-xs-12 col-sm-12 col-md-6 align-self-center">
+                <div class="col-xs-12 col-sm-12 col-md-11 align-self-center">
                     <h2>{{doctrinal.title}}</h2>
                 </div>
             </div>
