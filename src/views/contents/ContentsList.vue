@@ -5,10 +5,10 @@
 			<div class="col-half-lg-block col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 grid-b-space">
 				<div class="custom-search-wrap px-4 py-30 idb-block">
 					<div class="row align-items-stretch">
-						<div class="col-12 col-sm-12 col-md-12 col-lg-3 col-xl-3">
+						<div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
 							<h2>{{$t('message.search')}} {{type}}</h2>
 						</div>
-						<div class="col-12 col-sm-12 col-md-12 col-lg-9 col-xl-9">
+						<div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8">
 							<div class="d-sm-flex align-items-center">
 								<div class="input-wrap">
 									<b-form-input type="text" required >
@@ -32,25 +32,33 @@
                     <table class="table table-hover table-bordered table-striped">
                         <thead>
                             <tr class="bg-primary text-center">
-                                <th>{{$t('message.unit')}}</th>
-                                <th>{{$t('message.user')}}</th>
-                                <th>{{$t('message.category')}}</th>
-                                <th>{{$t('message.languages')}}</th>
-                                <th>{{$t('message.durationDate')}}</th>
-                                <th>{{$t('message.actions')}}</th>
+                                <th v-for="(head, index) in heading" :key="index">
+                                    {{$t('message.'+head)}}
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr v-for="content in contents" :key="content.id">
                                 <td class="text-center">{{content.unit.name}}</td>
                                 <td class="text-center">{{content.user.name}}</td>
-                                <td class="text-center">{{content.category ? content.category.name : ""}}</td>
                                 <td class="text-center">
                                     <span class="badge badge-success" v-for="language in content.contents" :key="language.id">
                                         {{language.language.name}}
                                     </span>
                                 </td>
-                                <td class="text-center">{{content.duration_date | formatDate}}</td>
+                                
+                                <td class="text-center" v-if="type == 'NOTICIA'">
+                                    {{content.category ? content.category.name : ""}}
+                                </td>
+                                <td class="text-center" v-else-if="type == 'MEMORIAS'">
+                                    {{content.topic}}
+                                </td>
+
+
+                                <td class="text-center" v-if="type == 'NOTICIA'">
+                                    {{content.duration_date | formatDate}}
+                                </td>
+
                                 <th class="text-center">
                                     <b-button @click="redirect(false, content.id)" variant="success" class="d-inline-flex align-items-center text-capitalize m-1">
                                         <i class="fas fa-ellipsis-h"></i>
@@ -80,21 +88,18 @@
         data () {
             return {
                 type: "",
+                heading:[],
                 contents:[]
             }
         },
         mounted () {
             this.type = this.$route.params.type;
-            this.getContents(this.type);
+            this.search();
         },
         watch:{
-            cahngeType(val){
+            changeType(val){
                 this.search();
             },
-            contents(val){
-                console.log("nuevi comnetnido");
-                console.log(val);
-            }
         },
         methods: {
             ...mapActions({
@@ -103,23 +108,32 @@
             alertSweet(){
                 this.$swal('Hello Vue world!!!');
             },
-            search(){
-                this.getContents(this.type);
-
+            async search(){
+                await this.getContents(this.type);
+                this.heading = [
+                    "unit",
+                    "user",
+                    "languages"
+                ];
                 switch (this.type) {
                     case "NOTICIA":
+                        this.heading.push("category","durationDate");
                         this.contents = this.notices;
+                        console.log("aca", this.notices, this.contents);
+                        break;
+                    case "MEMORIAS":
+                        this.heading.push("topic");
+                        this.contents = this.memories;     
                         break;
                     case "DOCTRINAl":
                         this.contents = this.doctrinal;      
-                        break;
-                    case "MEMORIAS":
-                        this.contents = this.memories;     
                         break;
                     case "NOSOTROS":
                         this.contents = this.us;
                         break;
                 }
+                this.heading.push("actions");
+                this.contents.push();
             },
             redirect(page, id){
                 if(!page){
@@ -130,7 +144,7 @@
             }
         },
         computed:{
-            cahngeType(){
+            changeType(){
                 this.type = this.$route.params.type;
                 return this.type;
             },

@@ -380,5 +380,6 @@ export default {
    user: "Usuario",
    type: "Tipo",
    durationDate: "Fecha de duración",
-   languages: "Idiomas"
+   languages: "Idiomas",
+   topic: "Tema",
 }
