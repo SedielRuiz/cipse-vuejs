@@ -10,12 +10,12 @@
 					<img src="/static/img/user-1.jpg" class="rounded-circle" width="65" height="65" alt="author" />
 				</div>
 				<div class="media-body">
-					<h5>{{notice.title}}</h5>
+					<h5>{{doctrinal.title}}</h5>
 				</div>
 			</div>
 			<div class="blog-content">
 				<div class="custom-p-lh">
-					<p class="font-sm">{{notice.title_description}}</p>
+					<p class="font-sm">{{doctrinal.title_description}}</p>
 				</div>
 				<div class="post-actions">
 					<a href="javascript:;" class="font-xs text-muted"><i
@@ -31,7 +31,7 @@
 <script>
 
 	export default {
-        props:["notice"],
+        props:["doctrinal"],
 		data: function () {
 			return {	
 			};

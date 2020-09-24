@@ -53,7 +53,6 @@ const actions = {
                             commit('setUS',data);       
                             break;
                     }
-                    console.log("consulte", data);
                     resolve(data)
                 }).catch(error=>{
                     commit('setError', error, { root: true });

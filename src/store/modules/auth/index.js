@@ -13,7 +13,8 @@ import {
 } from '../../../firebase';
 
 const state = {
-	user: localStorage.getItem('user'),
+    user: localStorage.getItem('user'),
+    language: "INGLES",
 	isUserSigninWithAuth0: Boolean(localStorage.getItem('isUserSigninWithAuth0'))
 }
 

@@ -21,7 +21,6 @@
 			</div>
 			<div class="col-half-lg-block col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8 grid-b-space">
 				<app-card customClasses="mb-30">
-					<h3 class="mb-4">{{$t('message.description')}}</h3><hr>
 					<div class="project-content">
 						<p>{{ us.description_title }}</p>
 					</div>

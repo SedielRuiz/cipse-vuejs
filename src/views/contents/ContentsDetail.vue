@@ -1,16 +1,16 @@
 <template>
 	<div>
-        <div v-if="type == 'NOTICIA'">
-            <notice v-for="(notice, index) in content.contents" :key="index"  @back="back()" :notice=notice></notice>
+        <div v-if="type == 'NOTICIA' && content != ''">
+            <notice @back="back()" :meta=content :notice=getContentLanguage()></notice>
         </div>
-        <div v-if="type == 'NOSOTROS'">
-            <unit-us v-for="(us, index) in content.contents" :key="index"  @back="back()" :us=us></unit-us>
+        <div v-if="type == 'NOSOTROS' && content != ''">
+            <unit-us @back="back()" :meta=content :us=getContentLanguage()></unit-us>
         </div>
-        <div v-if="type == 'DOCTRINAL'">
-            <doctrinal v-for="(doctrinal, index) in content.contents" :key="index"  @back="back()" :doctrinal=doctrinal></doctrinal>
+        <div v-if="type == 'DOCTRINAL' && content != ''">
+            <doctrinal @back="back()" :meta=content :doctrinal=getContentLanguage()></doctrinal>
         </div>
-        <div v-if="type == 'MEMORIAS'">
-            <memory v-for="(memory, index) in content.contents" :key="index"  @back="back()" :memory=memory></memory>
+        <div v-if="type == 'MEMORIAS' && content != ''">
+            <memory @back="back()" :meta=content :memory=getContentLanguage()></memory>
         </div>
 	</div>
 </template>
@@ -45,6 +45,15 @@
             ...mapActions({
                 getContent: 'content/getContent',
             }),
+            getContentLanguage(){
+                var result = this.content.contents.filter(content => content.language.key == this.language);
+                if(result){
+                    result = result[0];
+                }else{
+                    result = content.contents[0];
+                }
+                return result;
+            },
             back(){
                 this.$router.push('/contents/consult/'+this.type);
             }
@@ -55,6 +64,7 @@
                 return this.type;
             },
             ...mapState({
+                language: state => state.auth.language,
                 content: state => state.content.content,
             }),
         },

@@ -389,4 +389,6 @@ export default {
     unitFrom: "Unit From",
     unitTo: "Unit To",
     requestsManageRequests: "Manage Requests / Consult", 
+    typeDocument: "Type document",
+    noResults: "No Results"
 }

@@ -9,6 +9,11 @@
 							<h2>{{$t('message.search')}} {{capitalizeType()}}</h2>
 						</div>
 						<div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8">
+                            <b-form-group id="input-group-view">
+                                <b-form-checkbox-group v-model="view" id="type">
+                                    <b-form-checkbox value=true>Tabla</b-form-checkbox>
+                                </b-form-checkbox-group>
+                            </b-form-group>
 							<div class="d-sm-flex align-items-center">
 								<div class="input-wrap">
 									<b-form-input type="text" required >
@@ -26,7 +31,7 @@
 				</div>
 			</div>
 		</div>
-        <app-card customClasses="grid-b-space" :heading="''">
+        <app-card v-if="view.length > 0" customClasses="grid-b-space" :heading="''">
             <div class="table-responsive">
                 <div class="unseen">
                     <table class="table table-hover table-bordered table-striped">
@@ -87,21 +92,41 @@
                 </div>
             </div><!-- table responsive closed -->
         </app-card>
+        <div v-else class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6" v-for="(content, index) in contents" :key="index">
+                <div v-if="type == 'NOTICIA'">
+                    <notice-card :meta=content :notice=getContent(content)></notice-card>
+                </div>
+                <div v-if="type == 'DOCTRINAL'">
+                    <doctrinal-card :meta=content :doctrinal=getContent(content)></doctrinal-card>
+                </div>
+                <div v-if="type == 'MEMORIAS'">
+                    <memory-card :meta=content :memory=getContent(content)></memory-card>
+                </div>
+            </div>
+        </div>
 	</div>
 </template>
 
 <script>
     import {mapActions,mapState} from 'vuex';
     import pagination from '@/components/Pagination/Paginate';
+    import NoticeCard from "Components/Contents/Cards/NoticeCard";
+    import MemoryCard from "Components/Contents/Cards/MemoryCard";
+    import DoctrinalCard from "Components/Contents/Cards/DoctrinalCard";
 
     export default {
         name: 'user-list',
         components:{
             pagination,
+            NoticeCard,
+            MemoryCard,
+            DoctrinalCard
         },
         data () {
             return {
                 type: "",
+                view:[true],
                 heading:[],
                 contents:[]
             }
@@ -119,6 +144,15 @@
             ...mapActions({
                 getContents: 'content/getContents',
             }),
+            getContent(content){
+                var result = content.contents.filter(content => content.language.key == this.language);
+                if(result){
+                    result = result[0];
+                }else{
+                    result = content.contents[0];
+                }
+                return result;
+            },
             alertSweet(){
                 this.$swal('Hello Vue world!!!');
             },
@@ -128,7 +162,7 @@
             },
             geTitle(contents){
                 var title = "";
-                var content = contents.filter(content => content.language.key == "INGLES");
+                var content = contents.filter(content => content.language.key == this.language);
                 
                 if(content.length > 0){
                     title = content[0].title;
@@ -184,6 +218,7 @@
                 return this.type;
             },
             ...mapState({
+                language: state => state.auth.language,
                 notices: state => state.content.notices,
                 doctrinal: state => state.content.doctrinal,
                 memories: state => state.content.memories,

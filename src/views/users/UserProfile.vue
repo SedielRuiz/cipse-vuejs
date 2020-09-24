@@ -5,6 +5,7 @@
 			<div class="col-full-lg-block col-sm-12 col-md-12 col-lg-4 col-xl-4">
 				<user-profile-block :user=user></user-profile-block>
 			</div>
+            <!-- Noticias -->
 			<div class="col-full-lg-block col-sm-12 col-md-12 col-lg-8 col-xl-8">
 				<app-card customClasses="grid-b-space">
                     <b-card-title>
@@ -18,7 +19,44 @@
                         </div>
                     </b-card-title>
 					<hr>
-                    <activity-timeline :user=user :notices=notices></activity-timeline>
+                    <div v-if="notices.length > 0">
+                        <notice-card v-for="(notice, index) in notices" :key="'notice-'+index" :notice=notice></notice-card>
+                    </div>
+                    <div v-else class="alert alert-info">
+                        {{$t('message.noResults')}}
+                    </div>
+				</app-card>
+			</div>
+
+            <!-- Memorias -->
+            <div class="col-full-lg-block col-sm-12 col-md-12 col-lg-6 col-xl-6">
+				<app-card customClasses="grid-b-space">
+                    <b-card-title>
+                        <h2><i class="fas fa-star-of-life"></i> {{$t('message.memories')}}</h2>
+                    </b-card-title>
+					<hr>
+                    <div v-if="memories.length > 0">
+                        <memory-card v-for="(memory, index) in memories" :key="'memory-'+index" :memory=memory></memory-card>
+                    </div>
+                    <div v-else class="alert alert-info">
+                        {{$t('message.noResults')}}
+                    </div>
+				</app-card>
+			</div>
+
+            <!-- Doctrinal -->
+            <div class="col-full-lg-block col-sm-12 col-md-12 col-lg-6 col-xl-6">
+				<app-card customClasses="grid-b-space">
+                    <b-card-title>
+                        <h2><i class="fas fa-memory"></i> {{$t('message.doctrinal')}}</h2>
+                    </b-card-title>
+					<hr>
+                    <div v-if="doctrinals.length > 0">
+                        <doctrinal-card v-for="(doctrinal, index) in doctrinals" :key="'docrinal-'+index" :doctrinal=doctrinal></doctrinal-card>
+                    </div>
+                    <div v-else class="alert alert-info">
+                        {{$t('message.noResults')}}
+                    </div>
 				</app-card>
 			</div>
 		</div>
@@ -27,8 +65,10 @@
 
 <script>
 	import Blogs from "Components/Widgets/Blogs";
-	import ActivityTimeline from "Components/Widgets/ActivityTimeline";
-	import UserProfileBlock from "Components/Widgets/UserProfileBlock";
+	import UserProfileBlock from "Components/Users/UserProfileBlock";
+    import NoticeCard from "Components/Contents/Cards/NoticeCard";
+    import MemoryCard from "Components/Contents/Cards/MemoryCard";
+    import DoctrinalCard from "Components/Contents/Cards/DoctrinalCard";
 
     import {mapActions,mapState} from 'vuex';
     
@@ -36,18 +76,24 @@
         name: 'user-manage',
         components: {
 			Blogs,
-			ActivityTimeline,
-			UserProfileBlock
+			UserProfileBlock,
+            NoticeCard,
+            MemoryCard,
+            DoctrinalCard
 		},
         data () {
             return {
-                notices:[]
+                notices:[],
+                memories:[],
+                doctrinals:[],
             }
         },
         watch:{
             user(val){
                 if(val){
-                    this.notices = [];
+                    this.notices = val.contents.filter(content => content.type.key == "NOTICIA");
+                    this.memories = val.contents.filter(content => content.type.key == "MEMORIAS");
+                    this.doctrinals = val.contents.filter(content => content.type.key == "DOCTRINAL");
                 }
             }
         },

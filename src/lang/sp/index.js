@@ -390,5 +390,7 @@ export default {
    gallery: "Galería",
    unitFrom: "Unidad solicitante",
    unitTo: "Unidad destinataria",
-   requestsManageRequests: "Gestion de solicitudes / Consulta", 
+   requestsManageRequests: "Gestion de solicitudes / Consulta",
+   typeDocument: "Tipo de documento",
+   noResults: "Sin resultados"
 }

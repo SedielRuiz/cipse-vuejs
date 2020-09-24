@@ -5,10 +5,15 @@
 			<div class="col-half-lg-block col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 grid-b-space">
 				<div class="custom-search-wrap px-4 py-30 idb-block">
 					<div class="row align-items-stretch">
-						<div class="col-12 col-sm-12 col-md-12 col-lg-3 col-xl-3">
+						<div class="col-12 col-sm-12 col-md-12 col-lg-2 col-xl-2">
 							<h2>{{$t('message.search')}}</h2>
 						</div>
-						<div class="col-12 col-sm-12 col-md-12 col-lg-9 col-xl-9">
+						<div class="col-12 col-sm-12 col-md-12 col-lg-10 col-xl-10">
+                            <b-form-group id="input-group-view">
+                                <b-form-checkbox-group v-model="type" id="type">
+                                    <b-form-checkbox value=true>Tabla</b-form-checkbox>
+                                </b-form-checkbox-group>
+                            </b-form-group>
 							<div class="d-sm-flex align-items-center">
 								<div class="input-wrap">
 									<b-form-input type="text" required >
@@ -16,6 +21,7 @@
 								</div>
 								<div class="action-btn-wrap ml-3">
 									<b-button @click="alertSweet()" variant="primary" class="mr-3 text-capitalize">{{$t('message.search')}}</b-button>
+
 									<b-button @click="redirect(false)" variant="success" class="d-inline-flex align-items-center text-capitalize">
                                         {{$t('message.addNew')}}<i class="material-icons btn-icon ml-1">add</i> 
                                     </b-button>
@@ -26,12 +32,15 @@
 				</div>
 			</div>
 		</div>
-        <app-card customClasses="grid-b-space" :heading="''">
+        <app-card v-if="type" customClasses="grid-b-space" :heading="''">
             <div class="table-responsive">
                 <div class="unseen">
                     <table class="table table-hover table-bordered table-striped">
                         <thead>
                             <tr class="bg-primary text-center">
+                                <th>{{$t('message.unit')}}</th>
+                                <th>{{$t('message.country')}}</th>
+                                <th>{{$t('message.typeDocument')}}</th>
                                 <th>{{$t('message.document')}}</th>
                                 <th>{{$t('message.name')}}</th>
                                 <th>{{$t('message.email')}}</th>
@@ -40,6 +49,9 @@
                         </thead>
                         <tbody>
                             <tr v-for="user in users" :key="user.id">
+                                <td class="text-center">{{user.unit.name}}</td>
+                                <td class="text-center">{{user.country.name}}</td>
+                                <td class="text-center">{{user.type.name}}</td>
                                 <td class="text-right">{{user.identification | formatNumber}}</td>
                                 <td class="text-center">{{user.name}}</td>
                                 <td class="text-center">{{user.email}}</td>
@@ -57,21 +69,26 @@
                 </div>
             </div><!-- table responsive closed -->
         </app-card>
+        <div v-else>
+            <user-list-card v-for="(user, index) in users" :key="index" :user=user @redirect="redirect"></user-list-card>
+        </div>
 	</div>
 </template>
 
 <script>
     import {mapActions,mapState} from 'vuex';
     import pagination from '@/components/Pagination/Paginate';
+    import UserListCard from '@/components/Users/UserListCard';
 
     export default {
         name: 'user-list',
         components:{
             pagination,
+            UserListCard
         },
         data () {
             return {
-                headers: [],
+                type: true,
             }
         },
         mounted () {
@@ -88,6 +105,7 @@
                 this.getUsers(pagination);
             },
             redirect(page, id){
+                console.log("hijo ", page, id);
                 if(!page){
                     if(id){
                         this.$router.push('/users/user-profile/'+id)
