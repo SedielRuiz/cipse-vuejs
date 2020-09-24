@@ -4,25 +4,47 @@
 			<img class="img-fluid" src="/static/img/post-1.jpg" height="400" alt="blog" />
 		</div>
 		<div class="card-body pos-relative">
-			<a href="javascript:;" class="icon-btn top"><i class="zmdi zmdi-share"></i></a>
+			<a href="javascript:;" @click="detailMemory" class="icon-btn top"><i class="fas fa-ellipsis-h"></i></a>
 			<div class="media mb-15 align-items-center">
 				<div class="img-wrap">
-					<img src="/static/img/user-1.jpg" class="rounded-circle" width="65" height="65" alt="author" />
+					<!-- <img src="/static/img/user-1.jpg" class="rounded-circle" width="65" height="65" alt="author" /> -->
 				</div>
 				<div class="media-body">
-					<h5>{{memory.title}}</h5>
+					<h3>{{memory.title}}</h3>
 				</div>
 			</div>
 			<div class="blog-content">
 				<div class="custom-p-lh">
-					<p class="font-sm">{{memory.title_description}}</p>
+					<p class="font-sm">{{memory.description_title}}</p>
+                    <p class="font-sm">{{memory.memory}}</p>
 				</div>
-				<div class="post-actions">
-					<a href="javascript:;" class="font-xs text-muted"><i
-						class="zmdi zmdi-comment font-sm text-success"></i>21 Comments</a>
-					<a href="javascript:;" class="font-xs text-muted"><i
-						class="zmdi zmdi-thumb-up font-sm text-primary"></i>16 Likes</a>
-				</div>
+				<hr>
+                    <ul>
+                        <li class="p-2 border-bottom d-flex justify-content-between align-content-center">
+                            <span class="fw-light text-capitalize pr-10">
+                                <i class="fas fa-user-cog"></i> {{$t('message.user')}} :
+                            </span>
+                            <span class="fw-semi-bold text-capitalize">{{meta.user.name}}</span>
+                        </li>
+                        <li class="p-2 border-bottom d-flex justify-content-between align-content-center">
+                            <span class="fw-light text-capitalize pr-10">
+                                <i class="far fa-object-group"></i> {{$t('message.category')}} :
+                            </span>
+                            <span class="fw-semi-bold text-capitalize">{{meta.category.name}}</span>
+                        </li>
+                        <li class="p-2 border-bottom d-flex justify-content-between align-content-center">
+                            <span class="fw-light text-capitalize pr-10">
+                                <i class="fas fa-file-upload"></i> {{$t('message.filesUploaded')}} :
+                            </span>
+                            <span class="fw-semi-bold text-capitalize">{{meta.files.length}}</span>
+                        </li>
+                        <li class="p-2 border-bottom d-flex justify-content-between align-content-center">
+                            <span class="fw-light text-capitalize pr-10">
+                                <i class="fas fa-language"></i> {{$t('message.language')}} :
+                            </span>
+                            <span class="fw-semi-bold text-capitalize">{{memory.language.name}}</span>
+                        </li>
+                    </ul>
 			</div>
 		</div>
 	</app-card>
@@ -31,10 +53,15 @@
 <script>
 
 	export default {
-        props:["memory"],
+        props:["meta", "memory"],
 		data: function () {
 			return {	
 			};
+        },
+        methods:{
+            detailMemory(){
+                this.$router.push("/contents/detail/MEMORIAS/"+this.meta.id);
+            }
         },
 	};
 </script>

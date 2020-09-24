@@ -17,7 +17,35 @@
 					<h3 class="mb-4">{{$t('message.description')}}</h3><hr>
 					<div class="project-content">
 						<p>{{ memory.description_title }}</p>
+                        <p>{{ memory.memory }}</p>
 					</div>
+                    <hr>
+                    <ul>
+                        <li class="p-2 border-bottom d-flex justify-content-between align-content-center">
+                            <span class="fw-light text-capitalize pr-10">
+                                <i class="fas fa-user-cog"></i> {{$t('message.user')}} :
+                            </span>
+                            <span class="fw-semi-bold text-capitalize">{{meta.user.name}}</span>
+                        </li>
+                        <li class="p-2 border-bottom d-flex justify-content-between align-content-center">
+                            <span class="fw-light text-capitalize pr-10">
+                                <i class="far fa-object-group"></i> {{$t('message.category')}} :
+                            </span>
+                            <span class="fw-semi-bold text-capitalize">{{meta.category.name}}</span>
+                        </li>
+                        <li class="p-2 border-bottom d-flex justify-content-between align-content-center">
+                            <span class="fw-light text-capitalize pr-10">
+                                <i class="fas fa-file-upload"></i> {{$t('message.filesUploaded')}} :
+                            </span>
+                            <span class="fw-semi-bold text-capitalize">{{meta.files.length}}</span>
+                        </li>
+                        <li class="p-2 border-bottom d-flex justify-content-between align-content-center">
+                            <span class="fw-light text-capitalize pr-10">
+                                <i class="fas fa-language"></i> {{$t('message.language')}} :
+                            </span>
+                            <span class="fw-semi-bold text-capitalize">{{memory.language.name}}</span>
+                        </li>
+                    </ul>
 				</app-card>
 				<app-card :heading="$t('message.filesUploaded')" customClasses="mb-30 files-uploaded">
 					<files-uploaded></files-uploaded>
@@ -37,7 +65,7 @@
     import ContentGallery from 'Components/Contents/ContentGallery'
 
 	export default {
-        props:["memory"],
+        props:["meta", "memory"],
         components: {
 			FilesUploaded,
 			ContentGallery

@@ -55,7 +55,7 @@
 
                                 <!-- Campo para doctrinal -->
                                 <td class="text-center" v-if="type == 'DOCTRINAL'">
-                                    {{content.topic}}
+                                    {{ getColumn(content.contents, "topic") }}
                                 </td>
                                 
                                  <!-- Noticias y Memorias-->
@@ -64,7 +64,7 @@
                                 </td>
 
                                 <td class="text-center">
-                                    {{ geTitle(content.contents) }}
+                                    {{ getColumn(content.contents, "title") }}
                                 </td>
 
                                 <!-- Campo para doctrinal y noticias y memorias-->
@@ -146,7 +146,7 @@
             }),
             getContent(content){
                 var result = content.contents.filter(content => content.language.key == this.language);
-                if(result){
+                if(result.length > 0){
                     result = result[0];
                 }else{
                     result = content.contents[0];
@@ -160,16 +160,16 @@
                 var text = this.type.toLowerCase();
                 return text.charAt(0).toUpperCase()+text.slice(1);
             },
-            geTitle(contents){
-                var title = "";
+            getColumn(contents, column){
+                var result = "";
                 var content = contents.filter(content => content.language.key == this.language);
                 
                 if(content.length > 0){
-                    title = content[0].title;
+                    result = content[0][column];
                 }else{
-                    title = contents[0].title;
+                    result = contents[0][column];
                 }
-                return title;
+                return result;
             },
             async search(){
                 await this.getContents(this.type);

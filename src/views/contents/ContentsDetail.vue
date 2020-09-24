@@ -47,10 +47,10 @@
             }),
             getContentLanguage(){
                 var result = this.content.contents.filter(content => content.language.key == this.language);
-                if(result){
+                if(result.length > 0){
                     result = result[0];
                 }else{
-                    result = content.contents[0];
+                    result = this.content.contents[0];
                 }
                 return result;
             },

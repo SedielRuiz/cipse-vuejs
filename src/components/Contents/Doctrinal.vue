@@ -14,10 +14,44 @@
 		<div class="row align-items-stretch">
 			<div class="col-half-lg-block col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8 grid-b-space">
 				<app-card customClasses="mb-30">
-					<h3 class="mb-4">{{$t('message.description')}}</h3><hr>
-					<div class="project-content">
-						<p>{{ doctrinal.description_title }}</p>
-					</div>
+					<ul>
+                        <li class="p-2 border-bottom d-flex justify-content-between align-content-center">
+                            <span class="fw-light text-capitalize pr-10">
+                                <i class="fas fa-code-branch"></i> {{$t('message.version')}} :
+                            </span>
+                            <span class="fw-semi-bold text-capitalize badge badge-success">{{doctrinal.version}}</span>
+                        </li>
+                        <li class="p-2 border-bottom d-flex justify-content-between align-content-center">
+                            <span class="fw-light text-capitalize pr-10">
+                                <i class="fas fa-user-cog"></i> {{$t('message.user')}} :
+                            </span>
+                            <span class="fw-semi-bold text-capitalize">{{meta.user.name}}</span>
+                        </li>
+                        <li class="p-2 border-bottom d-flex justify-content-between align-content-center">
+                            <span class="fw-light text-capitalize pr-10">
+                                <i class="fas fa-thumbtack"></i> {{$t('message.topic')}} :
+                            </span>
+                            <span class="fw-semi-bold text-capitalize">{{doctrinal.topic}}</span>
+                        </li>
+                        <li class="p-2 border-bottom d-flex justify-content-between align-content-center">
+                            <span class="fw-light text-capitalize pr-10">
+                                <i class="fas fa-language"></i> {{$t('message.typeDocument')}} :
+                            </span>
+                            <span class="fw-semi-bold text-capitalize">{{doctrinal.type_document}}</span>
+                        </li>
+                        <li class="p-2 border-bottom d-flex justify-content-between align-content-center">
+                            <span class="fw-light text-capitalize pr-10">
+                                <i class="fas fa-file-upload"></i> {{$t('message.filesUploaded')}} :
+                            </span>
+                            <span class="fw-semi-bold text-capitalize">{{meta.files.length}}</span>
+                        </li>
+                        <li class="p-2 border-bottom d-flex justify-content-between align-content-center">
+                            <span class="fw-light text-capitalize pr-10">
+                                <i class="fas fa-language"></i> {{$t('message.language')}} :
+                            </span>
+                            <span class="fw-semi-bold text-capitalize">{{doctrinal.language.name}}</span>
+                        </li>
+                    </ul>
 				</app-card>
 				<app-card :heading="$t('message.filesUploaded')" customClasses="mb-30 files-uploaded">
 					<files-uploaded></files-uploaded>
@@ -37,7 +71,7 @@
     import ContentGallery from 'Components/Contents/ContentGallery'
 
 	export default {
-        props:["doctrinal"],
+        props:["meta", "doctrinal"],
         components: {
 			FilesUploaded,
 			ContentGallery

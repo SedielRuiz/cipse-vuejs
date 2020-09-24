@@ -19,8 +19,15 @@
 					<p class="">
                         {{notice.description_title}}
                     </p>
+                    <p class="font-sm">{{notice.notice}}</p>
                     <hr>
                     <ul>
+                        <li class="p-2 border-bottom d-flex justify-content-between align-content-center">
+                            <span class="fw-light text-capitalize pr-10">
+                                <i class="fas fa-user-cog"></i> {{$t('message.user')}} :
+                            </span>
+                            <span class="fw-semi-bold text-capitalize">{{meta.user.name}}</span>
+                        </li>
                         <li class="p-2 border-bottom d-flex justify-content-between align-content-center">
                             <span class="fw-light text-capitalize pr-10">
                                 <i class="far fa-object-group"></i> {{$t('message.category')}} :
@@ -47,26 +54,16 @@
 </template>
 
 <script>
-    import {mapState} from 'vuex';
 	export default {
         props:["meta", "notice"],
 		data: function () {
 			return {	
 			};
         },
-        watch:{
-            notice(val){
-            }
-        },
         methods:{
             detailNotice(){
                 this.$router.push("/contents/detail/NOTICIA/"+this.meta.id);
             }
-        },
-        computed:{
-            ...mapState({
-                language: state => state.auth.language,
-            }),
         },
 	};
 </script>

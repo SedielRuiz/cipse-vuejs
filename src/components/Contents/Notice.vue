@@ -17,8 +17,15 @@
 					<h3 class="mb-4">{{$t('message.description')}}</h3><hr>
 					<div class="project-content">
 						<p>{{ notice.description_title }}</p>
+                        <p>{{ notice.notice }}</p>
                         <hr>
                         <ul>
+                            <li class="p-2 border-bottom d-flex justify-content-between align-content-center">
+                                <span class="fw-light text-capitalize pr-10">
+                                    <i class="fas fa-user-cog"></i> {{$t('message.user')}} :
+                                </span>
+                                <span class="fw-semi-bold text-capitalize">{{meta.user.name}}</span>
+                            </li>
                             <li class="p-2 border-bottom d-flex justify-content-between align-content-center">
                                 <span class="fw-light text-capitalize pr-10">
                                     <i class="far fa-object-group"></i> {{$t('message.category')}} :

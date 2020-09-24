@@ -392,5 +392,6 @@ export default {
    unitTo: "Unidad destinataria",
    requestsManageRequests: "Gestion de solicitudes / Consulta",
    typeDocument: "Tipo de documento",
-   noResults: "Sin resultados"
+   noResults: "Sin resultados",
+   version: "Versión"
 }
