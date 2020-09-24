@@ -389,6 +389,8 @@ export default {
     unitFrom: "Unit From",
     unitTo: "Unit To",
     requestsManageRequests: "Manage Requests / Consult", 
+    requestsNewRequest: "Manage Requests / New",
+    requestsUpdateRequest: "Manage Requests / Consult / Update",
     typeDocument: "Type document",
     noResults: "No Results",
     version: "Version",
@@ -398,4 +400,14 @@ export default {
     editContent: "Edit content",
     content: "Content",
     role: "Role",
+    files: "Files",
+    save: "Save",
+    cancel: "Cancel",
+    rank: "Rank",
+    position: "Position",
+    typeContact: "Type contact",
+    cellphone: "Cellphone",
+    nameComplete: "Name Complete",
+    newRequest: "New Request",
+    editRequest: "Edit Request"
 }

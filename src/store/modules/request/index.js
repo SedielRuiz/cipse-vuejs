@@ -2,7 +2,7 @@ import Vue from 'vue';
 
 const state = {
     requests : [],
-    user: "",
+    request: "",
     //Paginación
     page_size:"",
     total_items:"",
@@ -17,7 +17,7 @@ const actions = {
             Vue.http.get(state.prefix+'requests/'+id).then(
                 response =>{
                     var data = response.data;
-                    commit('setUser',data);
+                    commit('setRequest',data);
                     resolve(data)
                 }
             ).catch(error=>{
@@ -117,8 +117,8 @@ const mutations = {
         state.total_pages = list.total_pages;
         state.total_items = list.total_items;
     },
-    setUser: (state, response) => {
-        state.user = response.data;
+    setRequest: (state, response) => {
+        state.request = response.data;
     },
 };
 

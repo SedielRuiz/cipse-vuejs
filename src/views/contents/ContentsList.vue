@@ -93,7 +93,7 @@
             </div><!-- table responsive closed -->
         </app-card>
         <div v-else class="row">
-            <div class="col-xs-12 col-sm-12 col-md-6" v-for="(content, index) in contents" :key="index">
+            <div class="col-xs-12 col-sm-12 col-md-6 p-2" v-for="(content, index) in contents" :key="index">
                 <div v-if="type == 'NOTICIA'">
                     <notice-card :meta=content :notice=getContent(content)></notice-card>
                 </div>
@@ -208,7 +208,7 @@
                         this.$router.push('/contents/create/'+this.type)
                     }
                 }else{
-                    this.$router.push('/contents/update/'+id)
+                    this.$router.push('/contents/update/'+this.type+"/"+id);
                 }
             }
         },

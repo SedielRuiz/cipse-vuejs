@@ -195,7 +195,7 @@ export default new Router({
 					meta: {
 						requiresAuth: true,
 						title: 'message.addNew',
-						breadcrumb: 'message.usersNewUsers'
+						breadcrumb: 'message.requestsManageRequests'
 					}
                 },
 
@@ -206,7 +206,7 @@ export default new Router({
 					meta: {
 						requiresAuth: true,
 						title: 'message.edit',
-						breadcrumb: 'message.usersUpdateUser'
+						breadcrumb: 'message.requestsUpdateRequest'
 					}
                 },
 			]

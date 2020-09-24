@@ -391,6 +391,8 @@ export default {
    unitFrom: "Unidad solicitante",
    unitTo: "Unidad destinataria",
    requestsManageRequests: "Gestion de solicitudes / Consulta",
+   requestsNewRequest: "Gestion de solicitudes / Nuevo",
+   requestsUpdateRequest: "Gestion de solicitudes / Consulta / Actualizar",
    typeDocument: "Tipo de documento",
    noResults: "Sin resultados",
    version: "Versión",
@@ -400,4 +402,14 @@ export default {
    editContent: "Editar contenido",
    content: "Contenido",
    role: "Rol",
+   files: "Archivos",
+   save: "Guardar",
+   cancel: "Cancelar",
+   rank: "Grado",
+   position: "Cargo",
+   typeContact: "Tipo de contacto",
+   cellphone: "Celular",
+   nameComplete: "Nombre completo",
+   newRequest: "Nueva solicitud",
+   editRequest: "Editar solicitud"
 }

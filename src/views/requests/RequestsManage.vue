@@ -3,171 +3,61 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <b-card class="mt-3" >
                 <b-card-title>
-                    <h2><i class="fas fa-user-tie"></i> {{ titleText }}</h2>
+                    <h2><i class="fas fa-file-contract"></i> {{$t('message.'+titleText)}}</h2>
                 </b-card-title><hr>
-                <b-form @submit="processUser" @reset="onBack">
+                <b-form @submit="processRequest" @reset="onBack">
 
                     <div class="row">
-                        <div class="col-xs-12 col-sm-12 col-md-4">
-                            <b-form-group id="input-group-country" label="País:" label-for="country">
-                                <b-form-select
-                                id="country"
-                                v-model="user.country_id"
-                                :options="countries"
-                                required
-                                ></b-form-select>
+                        <div class="col-xs-12 col-sm-12 col-md-6">
+                            <b-form-group id="input-group-country" :label="$t('message.country')+':'" label-for="country">
+                                <select class="form-control" id="country" v-model="request.country_id" required>
+                                    <option v-for="(country, index) in countries" :key="index" :value="country.id">{{country.name}}</option>
+                                </select>
                             </b-form-group>
                         </div>
-                        <div class="col-xs-12 col-sm-12 col-md-4">
-                            <b-form-group id="input-group-language" label="Idioma:" label-for="language">
-                                <b-form-select
-                                id="language"
-                                v-model="user.language_id"
-                                :options="languages"
-                                required
-                                ></b-form-select>
+                        <div class="col-xs-12 col-sm-12 col-md-6">
+                            <b-form-group id="input-group-language" :label="$t('message.language')+':'" label-for="language">
+                                <select class="form-control" id="language" v-model="request.language_id" required>
+                                    <option v-for="(language, index) in languages" :key="index" :value="language.id">{{language.name}}</option>
+                                </select>
                             </b-form-group>
                         </div>
-                        <div class="col-xs-12 col-sm-12 col-md-4">
-                            <b-form-group id="input-group-unit" label="Unidad:" label-for="unit">
-                                <b-form-select
-                                id="unit"
-                                v-model="user.unit_id"
-                                :options="units"
-                                required
-                                ></b-form-select>
+                        <div class="col-xs-12 col-sm-12 col-md-6">
+                            <b-form-group id="input-group-unit-strat" :label="$t('message.unitFrom')+':'" label-for="unitStart">
+                                <select class="form-control" id="unitStart" v-model="request.unit_start_id" required>
+                                    <option v-for="(unit, index) in units" :key="index" :value="unit.id">{{unit.name}}</option>
+                                </select>
+                            </b-form-group>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-6">
+                            <b-form-group id="input-group-unit-end" :label="$t('message.unitTo')+':'" label-for="unitEnd">
+                                <select class="form-control" id="unitEnd" v-model="request.unit_end_id" required>
+                                    <option v-for="(unit, index) in units" :key="index" :value="unit.id">{{unit.name}}</option>
+                                </select>
                             </b-form-group>
                         </div>
                     </div>
 
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-12 col-md-4">
-                            <b-form-group id="input-group-name" label="Nombres y Apellidos:" label-for="name">
-                                <b-form-input
-                                id="name"
-                                v-model="user.name"
-                                required
-                                placeholder=""
-                                ></b-form-input>
-                            </b-form-group>
-                        </div>
-                        <div class="col-xs-12 col-sm-12 col-md-4">
-                            <b-form-group id="input-group-position" label="Grado:" label-for="position">
-                                <b-form-select
-                                id="position"
-                                v-model="user.position_id"
-                                :options="positions"
-                                required
-                                ></b-form-select>
-                            </b-form-group>
-                        </div>
-                        <div class="col-xs-12 col-sm-12 col-md-4">
-                            <b-form-group id="input-group-rank" label="Cargo:" label-for="rank">
-                                <b-form-select
-                                id="rank"
-                                v-model="user.rank_id"
-                                :options="ranks"
-                                required
-                                ></b-form-select>
-                            </b-form-group>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-12 col-md-4">
-                            <b-form-group id="input-group-typeContacts" label="Tipo de contacto:" label-for="typeContacts">
-                                <b-form-select
-                                id="typeContacts"
-                                v-model="user.type_contact_id"
-                                :options="typeContacts"
-                                required
-                                ></b-form-select>
-                            </b-form-group>
-                        </div>
-                        <div class="col-xs-12 col-sm-12 col-md-4">
-                            <b-form-group id="input-group-identification" label="Identificación:" label-for="identification">
-                                <b-form-input
-                                type="number"
-                                id="identification"
-                                v-model="user.identification"
-                                required
-                                placeholder=""
-                                ></b-form-input>
-                            </b-form-group>
-                        </div>
-                        <div class="col-xs-12 col-sm-12 col-md-4">
-                            <b-form-group id="input-group-cellphone" label="Teléfono:" label-for="cellphone">
-                                <b-form-input
-                                type="number"
-                                id="cellphone"
-                                v-model="user.cellphone"
-                                required
-                                placeholder=""
-                                ></b-form-input>
-                            </b-form-group>
-                        </div>
-                    </div>
-                    
-
-                    <b-form-group id="input-group-email" label="Correo electrónico:" label-for="email">
-                        <b-form-input
-                        id="email"
-                        v-model="user.email"
-                        type="email"
-                        required
-                        placeholder=""
-                        ></b-form-input>
+                    <b-form-group id="input-group-description" :label="$t('message.description')+':'" label-for="description">
+                        <quill-editor v-model="request.description" ref="myQuillEditor" :options="editorOption"
+                            @blur="onEditorBlur($event)" @focus="onEditorFocus($event)" @ready="onEditorReady($event)">
+                        </quill-editor>
                     </b-form-group>
 
-                    <b-form-group id="input-group-role" label="Rol:" label-for="role">
-                        <b-form-select
-                        id="role"
-                        v-model="user.role_id"
-                        :options="roles"
-                        required
-                        ></b-form-select>
+                    <b-form-group id="input-group-notice" label="Archivos" label-for="files">
+                        <dropzone id="files" v-on:vdropzone-success="showSuccess" class="mb-30"
+                            @vdropzone-removed-file="removeFile" :options="dropzoneOptions">
+                            <div class="dropzone-custom-content">
+                                <h3>Arrastres o selecione archivos</h3>
+                            </div>
+                            <input type="hidden" name="token" value="xxx">
+                        </dropzone>
                     </b-form-group>
-
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-12 col-md-3">
-                            <b-form-checkbox
-                                id="in_directory"
-                                v-model="user.in_directory"
-                                name="in_directory"
-                                value="true"
-                                unchecked-value="false"
-                                class="nowrap">
-                                ¿ Aparece en el directorio ?
-                            </b-form-checkbox>
-                        </div>
-                        <div class="col-xs-12 col-sm-12 col-md-4">
-                            <b-form-checkbox
-                                id="portal_terms_accepted"
-                                v-model="user.portal_terms_accepted"
-                                name="portal_terms_accepted"
-                                value="true"
-                                unchecked-value="false"
-                                class="nowrap">
-                                ¿Autoriza condiciones de uso del portal?
-                            </b-form-checkbox>
-                        </div>
-                        <div class="col-xs-12 col-sm-12 col-md-4">
-                            <b-form-checkbox
-                                id="app_terms_accepted"
-                                v-model="user.app_terms_accepted"
-                                name="app_terms_accepted"
-                                value="true"
-                                unchecked-value="false"
-                                class="nowrap">
-                                ¿Autoriza condiciones de uso del app móvil?
-                            </b-form-checkbox>
-                        </div>
-                    </div>
 
                     <hr>
                     <div class="text-right">
-                        <b-button class="m-1" type="submit" variant="primary"><i class="fas fa-save"></i> Guardar</b-button>
-                        <b-button class="m-1" type="reset" variant="danger"><i class="fas fa-times-circle"></i> Cancelar</b-button>
+                        <b-button class="m-1" type="submit" variant="primary"><i class="fas fa-save"></i> {{$t('message.save')}}</b-button>
+                        <b-button class="m-1" type="reset" variant="danger"><i class="fas fa-times-circle"></i> {{$t('message.cancel')}}</b-button>
                     </div>
                 </b-form>
             </b-card>
@@ -177,63 +67,98 @@
 
 <script>
     import {mapActions,mapState} from 'vuex';
-    
+    import Dropzone from "vue2-dropzone";
+
     export default {
-        name: 'user-manage',
+        name: 'request-manage',
+        components: {
+			Dropzone
+		},
         data () {
             return {
-                user: {},
+                request: {},
                 edit:"",
-                titleText:"",
-                roles:[],
-                countries:[],
-                units:[],
-                positions:[],
-                ranks:[],
-                languages:[],
-                typeContacts:[]
+                titleText:"request",
+                file:[],
+                editorOption:{
+                    placeholder: "Escriba aquí su contenido",
+                },
+                dropzoneOptions: {
+                    url: "https://httpbin.org/post",
+                    addRemoveLinks:true,
+					thumbnailWidth: 150,
+					maxFilesize: 20,
+					headers: { "My-Awesome-Header": "header value" }
+				},
             }
         },
         watch:{
-            us(val){
+            requst(val){
                 if(val){
-                    this.user = val;
-                }
-            },
-            rols(val){
-                if(val){
-                    for(var s = 0; s < val.length; s++){
-                        this.roles.push({"text":val[s].name, "value":val[s].id});
-                    }
+                    this.request = val;
                 }
             },
         },
-        mounted () {
-            this.getRoles();
+        async mounted () {
+            //terminos
+            await this.getTerms("CATEGORIAS");
+            //Unidades
+            await this.getUnits();
+            //paises
+            await this.getCountries();
+            //idiomas
+            await this.getLanguages();
+
             this.edit = this.$route.params.id == undefined ? 0 : this.$route.params.id;
             if(this.edit!=""){
                 if(this.edit == 1){
-                    this.titleText="Nuevo Usuario"
+                    this.titleText="newRequest"
                 }
                 else{
-                    this.titleText="Editar usuario"
-                    this.getUser(this.edit);
+                    this.titleText="editRequest"
+                    this.getRequest(this.edit);
                 }
             }else{
-                this.titleText="Nuevo usuario"
+                this.titleText="newRequest"
             }
         },
         methods: {
             ...mapActions({
-                create: 'user/create',
-                update: 'user/update',
-                getRoles: 'role/getRoles',
-                getUser: 'user/getUser',
+                create: 'request/create',
+                update: 'request/update',
+                getRequest: 'request/getRequest',
+                getTerms: 'term/getTerms',
+                getUnits: 'unit/getUnits',
+                getCountries: 'country/getCountries',
+                getLanguages: 'language/getLanguages',
             }),
-            onBack(){
-                this.$router.push('/users/consult');
+            removeFile(file){
+                console.log("File removed!")
+                console.log(file);
+                console.log(this.files);
             },
-            processUser () {
+            showSuccess(file) {
+                console.log("A file was successfully uploaded");
+                console.log(file);
+                this.files.push(file);
+                console.log(this.files);
+			},
+            onEditorBlur(editor) {
+				console.log('editor blur!', editor)
+			},
+			onEditorFocus(editor) {
+				console.log('editor focus!', editor)
+			},
+			onEditorReady(editor) {
+				console.log('editor ready!', editor)
+			},
+			onEditorChange({ editor, html, text }) {
+				console.log('editor change!', editor, html, text)
+			},
+            onBack(){
+                this.$router.push('/requests/consult');
+            },
+            processRequest () {
                 if(this.edit){
                     this.update(this.user).then(
                         data => {
@@ -241,7 +166,7 @@
                             if(this.edit == 1){
                                 this.$router.push('/');
                             }else{
-                                this.$router.push('/users/update/'+this.edit);
+                                this.$router.push('/request/update/'+this.edit);
                             }
                             });
                         },
@@ -251,7 +176,7 @@
                     this.create(this.user).then(
                         data => {
                             this.setWarning(data, { root: true }).then(()=>{
-                                this.$router.push('/users/consult')
+                                this.$router.push('/request/consult')
                             })
                         },
                         error => {
@@ -261,8 +186,11 @@
         },
         computed:{
             ...mapState({
-                rols: state => state.role.roles,
-                us: state => state.user.user, 
+                requst: state => state.request.request, 
+                categories: state => state.term.categories,
+                units: state => state.unit.units,
+                languages: state => state.language.languages,
+                countries: state => state.country.countries,
             }),
         },
     }

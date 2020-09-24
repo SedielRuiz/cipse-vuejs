@@ -9,21 +9,21 @@
 
                     <div class="row">
                         <div class="col-xs-12 col-sm-12 col-md-4">
-                            <b-form-group id="input-group-country" label="País:" label-for="country">
+                            <b-form-group id="input-group-country" :label="$t('message.country')+':'" label-for="country">
                                 <select class="form-control" id="country" v-model="user.country_id" required>
                                     <option v-for="(country, index) in countries" :key="index" :value="country.id">{{country.name}}</option>
                                 </select>
                             </b-form-group>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-4">
-                            <b-form-group id="input-group-language" label="Idioma:" label-for="language">
+                            <b-form-group id="input-group-language" :label="$t('message.language')+':'" label-for="language">
                                 <select class="form-control" id="language" v-model="user.language_id" required>
                                     <option v-for="(language, index) in languages" :key="index" :value="language.id">{{language.name}}</option>
                                 </select>
                             </b-form-group>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-4">
-                            <b-form-group id="input-group-unit" label="Unidad:" label-for="unit">
+                            <b-form-group id="input-group-unit" :label="$t('message.unit')+':'" label-for="unit">
                                 <select class="form-control" id="unit" v-model="user.unit_id" required>
                                     <option v-for="(unit, index) in units" :key="index" :value="unit.id">{{unit.name}}</option>
                                 </select>
@@ -33,7 +33,7 @@
 
                     <div class="row">
                         <div class="col-xs-12 col-sm-12 col-md-4">
-                            <b-form-group id="input-group-name" label="Nombres y Apellidos:" label-for="name">
+                            <b-form-group id="input-group-name" :label="$t('message.nameComplete')+':'" label-for="name">
                                 <b-form-input
                                 id="name"
                                 v-model="user.name"
@@ -43,14 +43,14 @@
                             </b-form-group>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-4">
-                            <b-form-group id="input-group-rank" label="Grado:" label-for="rank">
+                            <b-form-group id="input-group-rank" :label="$t('message.rank')+':'" label-for="rank">
                                 <select class="form-control" id="rank" v-model="user.rank_id" required>
                                     <option v-for="(rank, index) in ranks" :key="index" :value="rank.id">{{rank.name}}</option>
                                 </select>
                             </b-form-group>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-4">
-                            <b-form-group id="input-group-position" label="Cargo:" label-for="position">
+                            <b-form-group id="input-group-position" :label="$t('message.position')+':'" label-for="position">
                                 <select class="form-control" id="position" v-model="user.position_id" required>
                                     <option value="">-{{$t('message.select')}}-</option>
                                     <option v-for="(position, index) in positions" :key="index" :value="position.id">{{position.name}}</option>
@@ -61,14 +61,14 @@
 
                     <div class="row">
                         <div class="col-xs-12 col-sm-12 col-md-4">
-                            <b-form-group id="input-group-typeContacts" label="Tipo de contacto:" label-for="typeContact">
+                            <b-form-group id="input-group-typeContacts" :label="$t('message.typeContact')+':'" label-for="typeContact">
                                 <select class="form-control" id="typeContact" v-model="user.type_contact_id" required>
                                     <option v-for="(typesContact, index) in typesContacts" :key="index" :value="typesContact.id">{{typesContact.name}}</option>
                                 </select>
                             </b-form-group>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-4">
-                            <b-form-group id="input-group-identification" label="Identificación:" label-for="identification">
+                            <b-form-group id="input-group-identification" :label="$t('message.document')+':'" label-for="identification">
                                 <b-form-input
                                 type="number"
                                 id="identification"
@@ -79,7 +79,7 @@
                             </b-form-group>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-4">
-                            <b-form-group id="input-group-cellphone" label="Teléfono:" label-for="cellphone">
+                            <b-form-group id="input-group-cellphone" :label="$t('message.cellphone')+':'" label-for="cellphone">
                                 <b-form-input
                                 type="number"
                                 id="cellphone"
@@ -92,7 +92,7 @@
                     </div>
                     
 
-                    <b-form-group id="input-group-email" label="Correo electrónico:" label-for="email">
+                    <b-form-group id="input-group-email" :label="$t('message.email')+':'" label-for="email">
                         <b-form-input
                         id="email"
                         v-model="user.email"
@@ -102,7 +102,7 @@
                         ></b-form-input>
                     </b-form-group>
 
-                    <b-form-group id="input-group-role" label="Rol:" label-for="role">
+                    <b-form-group id="input-group-role" :label="$t('message.role')+':'" label-for="role">
                         <select class="form-control" id="role" v-model="user.role_id" required>
                             <option v-for="(role, index) in roles" :key="index" :value="role.id">{{role.name}}</option>
                         </select>
@@ -146,8 +146,8 @@
 
                     <hr>
                     <div class="text-right">
-                        <b-button class="m-1" type="submit" variant="primary"><i class="fas fa-save"></i> Guardar</b-button>
-                        <b-button class="m-1" type="reset" variant="danger"><i class="fas fa-times-circle"></i> Cancelar</b-button>
+                        <b-button class="m-1" type="submit" variant="primary"><i class="fas fa-save"></i> {{$t('message.save')}}</b-button>
+                        <b-button class="m-1" type="reset" variant="danger"><i class="fas fa-times-circle"></i> {{$t('message.cancel')}}</b-button>
                     </div>
                 </b-form>
             </b-card>
@@ -224,7 +224,7 @@
                             if(this.edit == 1){
                                 this.$router.push('/');
                             }else{
-                                this.$router.push('/users/update/'+this.edit);
+                                this.$router.push('/users/update/'+this.type+"/"+this.edit);
                             }
                             });
                         },
