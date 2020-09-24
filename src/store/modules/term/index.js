@@ -62,7 +62,7 @@ const actions = {
                     commit('setError', error, { root: true });
                     reject(error)
                 }).finally(()=>{
-                    commit('stopProcessing', null, { root: true });
+                    // commit('stopProcessing', null, { root: true });
                 })
             });
     },

@@ -20,7 +20,9 @@
                     </b-card-title>
 					<hr>
                     <div v-if="notices.length > 0">
-                        <notice-card v-for="(notice, index) in notices" :key="'notice-'+index" :notice=notice></notice-card>
+                        <div v-for="(content, index) in notices" :key="index">
+                            <content-blog :content=getContent(content)></content-blog>
+                        </div>
                     </div>
                     <div v-else class="alert alert-info">
                         {{$t('message.noResults')}}
@@ -36,7 +38,9 @@
                     </b-card-title>
 					<hr>
                     <div v-if="memories.length > 0">
-                        <memory-card v-for="(memory, index) in memories" :key="'memory-'+index" :memory=memory></memory-card>
+                        <div v-for="(content, index) in memories" :key="index">
+                            <content-blog :content=getContent(content)></content-blog>
+                        </div>
                     </div>
                     <div v-else class="alert alert-info">
                         {{$t('message.noResults')}}
@@ -52,7 +56,9 @@
                     </b-card-title>
 					<hr>
                     <div v-if="doctrinals.length > 0">
-                        <doctrinal-card v-for="(doctrinal, index) in doctrinals" :key="'docrinal-'+index" :doctrinal=doctrinal></doctrinal-card>
+                        <div v-for="(content, index) in doctrinals" :key="index">
+                            <content-blog :content=getContent(content)></content-blog>
+                        </div>
                     </div>
                     <div v-else class="alert alert-info">
                         {{$t('message.noResults')}}
@@ -64,22 +70,16 @@
 </template>
 
 <script>
-	import Blogs from "Components/Widgets/Blogs";
-	import UserProfileBlock from "Components/Users/UserProfileBlock";
-    import NoticeCard from "Components/Contents/Cards/NoticeCard";
-    import MemoryCard from "Components/Contents/Cards/MemoryCard";
-    import DoctrinalCard from "Components/Contents/Cards/DoctrinalCard";
-
     import {mapActions,mapState} from 'vuex';
+
+	import ContentBlog from "Components/Contents/ContentBlog";
+	import UserProfileBlock from "Components/Users/UserProfileBlock";
     
     export default {
         name: 'user-manage',
         components: {
-			Blogs,
-			UserProfileBlock,
-            NoticeCard,
-            MemoryCard,
-            DoctrinalCard
+			ContentBlog,
+			UserProfileBlock
 		},
         data () {
             return {
@@ -105,6 +105,35 @@
                 getRoles: 'role/getRoles',
                 getUser: 'user/getUser',
             }),
+            getContent(content){
+                var result = content.contents.filter(content => content.language.key == this.language);
+                if(result.length > 0){
+                    result = result[0];
+                }else{
+                    result = content.contents[0];
+                }
+
+                var data = {};
+                data.id = content.id;
+                data.title = result.title;
+                data.type = content.type.key;
+                switch (content.type.key) {
+                    case "NOTICIA":
+                        data.info = result.notice;
+                        break;
+                    case "MEMORIAS":
+                        data.info = result.memory;
+                        break;
+                    case "DOCTRINAL":
+                        data.info = result.topic;
+                        break;
+                }
+                
+                data.created_at = content.created_at;
+                data.files = content.files;
+
+                return data;
+            },
             back(){
                 this.$router.push('/users/consult')
             },

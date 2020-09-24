@@ -103,12 +103,9 @@
                     </b-form-group>
 
                     <b-form-group id="input-group-role" label="Rol:" label-for="role">
-                        <b-form-select
-                        id="role"
-                        v-model="user.role_id"
-                        :options="roles"
-                        required
-                        ></b-form-select>
+                        <select class="form-control" id="role" v-model="user.role_id" required>
+                            <option v-for="(role, index) in roles" :key="index" :value="role.id">{{role.name}}</option>
+                        </select>
                     </b-form-group>
 
                     <div class="row">
@@ -167,7 +164,7 @@
             return {
                 user: {},
                 edit:"",
-                titleText:"newUser",
+                titleText:"user",
             }
         },
         watch:{
@@ -202,7 +199,7 @@
                     this.getUser(this.edit);
                 }
             }else{
-                this.titleText="Nuevo usuario"
+                this.titleText="newUser"
             }
         },
         methods: {
