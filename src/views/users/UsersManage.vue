@@ -186,7 +186,7 @@
             await this.getUnits();
             //paises
             await this.getCountries();
-            //idio,as
+            //idiomas
             await this.getLanguages();
 
             this.edit = this.$route.params.id == undefined ? 0 : this.$route.params.id;

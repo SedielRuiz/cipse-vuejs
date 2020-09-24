@@ -28,6 +28,12 @@
                             </li>
                             <li class="p-2 border-bottom d-flex justify-content-between align-content-center">
                                 <span class="fw-light text-capitalize pr-10">
+                                    <i class="fas fa-users"></i> {{$t('message.unit')}} :
+                                </span>
+                                <span class="fw-semi-bold text-capitalize">{{meta.unit.name}}</span>
+                            </li>
+                            <li class="p-2 border-bottom d-flex justify-content-between align-content-center">
+                                <span class="fw-light text-capitalize pr-10">
                                     <i class="far fa-object-group"></i> {{$t('message.category')}} :
                                 </span>
                                 <span class="fw-semi-bold text-capitalize">{{meta.category.name}}</span>

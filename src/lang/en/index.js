@@ -394,4 +394,7 @@ export default {
     version: "Version",
     select: "Select",
     editUser: "Edit user",
+    newContent: "New content",
+    editContent: "Edit content",
+    content: "Content",
 }

@@ -1,9 +1,43 @@
 .white{
     color: #fff;
 }
+
 .nowrap{
     white-space: nowrap;
 }
+
 .wrap{
     white-space: wrap;
+}
+
+.font-20{
+    font-size:20px;
+}
+
+.cursor{
+    cursor:pointer;
+}
+
+.ql-container {
+    min-height: 250px;
+}
+
+.logo_ponal{
+    width: 112px !important;
+    height: auto;
+}
+
+.foot-sidebar{
+    background: #fff;
+    margin-left: auto;
+	margin-right: auto;
+	position: absolute;
+	bottom: 0px;
+	left: 0;
+	right: 0;
+	padding: 3px;
+    width: 100%;
+    height: 130px;
+    overflow-x: hidden;
+    overflow-y: auto;
 }

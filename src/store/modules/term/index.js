@@ -32,7 +32,7 @@ const actions = {
         });
     },
     getTerms:({commit}, key) => {
-        // commit('startProcessing', null, { root: true });
+        commit('startProcessing', null, { root: true });
         var json = {
             params: {"key":key}
         }

@@ -10,8 +10,8 @@
 				<user-block></user-block>
 
 			<sidebar-content></sidebar-content>
-
 		</div>
+        
 	</div>
 </template>
 

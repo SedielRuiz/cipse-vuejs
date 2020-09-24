@@ -23,6 +23,33 @@
 				<app-card customClasses="mb-30">
 					<div class="project-content">
 						<p>{{ us.description_title }}</p>
+                        <hr>
+                        <ul>
+                            <li class="p-2 border-bottom d-flex justify-content-between align-content-center">
+                                <span class="fw-light text-capitalize pr-10">
+                                    <i class="fas fa-user-cog"></i> {{$t('message.user')}} :
+                                </span>
+                                <span class="fw-semi-bold text-capitalize">{{meta.user.name}}</span>
+                            </li>
+                            <li class="p-2 border-bottom d-flex justify-content-between align-content-center">
+                                <span class="fw-light text-capitalize pr-10">
+                                    <i class="fas fa-users"></i> {{$t('message.unit')}} :
+                                </span>
+                                <span class="fw-semi-bold text-capitalize">{{meta.unit.name}}</span>
+                            </li>
+                            <li class="p-2 border-bottom d-flex justify-content-between align-content-center">
+                                <span class="fw-light text-capitalize pr-10">
+                                    <i class="fas fa-file-upload"></i> {{$t('message.filesUploaded')}} :
+                                </span>
+                                <span class="fw-semi-bold text-capitalize">{{meta.files.length}}</span>
+                            </li>
+                            <li class="p-2 border-bottom d-flex justify-content-between align-content-center">
+                                <span class="fw-light text-capitalize pr-10">
+                                    <i class="fas fa-language"></i> {{$t('message.language')}} :
+                                </span>
+                                <span class="fw-semi-bold text-capitalize">{{us.language.name}}</span>
+                            </li>
+                        </ul>
 					</div>
 				</app-card>
 				<app-card :heading="$t('message.filesUploaded')" customClasses="mb-30 files-uploaded">
@@ -38,7 +65,7 @@
     import ContentGallery from 'Components/Contents/ContentGallery'
 
 	export default {
-        props:["us"],
+        props:["meta", "us"],
         components: {
 			FilesUploaded,
 			ContentGallery
