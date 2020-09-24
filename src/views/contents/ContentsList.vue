@@ -205,7 +205,7 @@
                     if(id){
                         this.$router.push('/contents/detail/'+this.type+"/"+id);
                     }else{
-                        this.$router.push('/contents/create')
+                        this.$router.push('/contents/create/'+this.type)
                     }
                 }else{
                     this.$router.push('/contents/update/'+id)
