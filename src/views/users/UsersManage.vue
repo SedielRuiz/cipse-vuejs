@@ -3,39 +3,30 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <b-card class="mt-3" >
                 <b-card-title>
-                    <h2><i class="fas fa-user-tie"></i> {{ titleText }}</h2>
+                    <h2><i class="fas fa-user-tie"></i> {{$t('message.'+titleText)}}</h2>
                 </b-card-title><hr>
                 <b-form @submit="processUser" @reset="onBack">
 
                     <div class="row">
                         <div class="col-xs-12 col-sm-12 col-md-4">
                             <b-form-group id="input-group-country" label="País:" label-for="country">
-                                <b-form-select
-                                id="country"
-                                v-model="user.country_id"
-                                :options="countries"
-                                required
-                                ></b-form-select>
+                                <select class="form-control" id="country" v-model="user.country_id" required>
+                                    <option v-for="(country, index) in countries" :key="index" :value="country.id">{{country.name}}</option>
+                                </select>
                             </b-form-group>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-4">
                             <b-form-group id="input-group-language" label="Idioma:" label-for="language">
-                                <b-form-select
-                                id="language"
-                                v-model="user.language_id"
-                                :options="languages"
-                                required
-                                ></b-form-select>
+                                <select class="form-control" id="language" v-model="user.language_id" required>
+                                    <option v-for="(language, index) in languages" :key="index" :value="language.id">{{language.name}}</option>
+                                </select>
                             </b-form-group>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-4">
                             <b-form-group id="input-group-unit" label="Unidad:" label-for="unit">
-                                <b-form-select
-                                id="unit"
-                                v-model="user.unit_id"
-                                :options="units"
-                                required
-                                ></b-form-select>
+                                <select class="form-control" id="unit" v-model="user.unit_id" required>
+                                    <option v-for="(unit, index) in units" :key="index" :value="unit.id">{{unit.name}}</option>
+                                </select>
                             </b-form-group>
                         </div>
                     </div>
@@ -52,36 +43,28 @@
                             </b-form-group>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-4">
-                            <b-form-group id="input-group-position" label="Grado:" label-for="position">
-                                <b-form-select
-                                id="position"
-                                v-model="user.position_id"
-                                :options="positions"
-                                required
-                                ></b-form-select>
+                            <b-form-group id="input-group-rank" label="Grado:" label-for="rank">
+                                <select class="form-control" id="rank" v-model="user.rank_id" required>
+                                    <option v-for="(rank, index) in ranks" :key="index" :value="rank.id">{{rank.name}}</option>
+                                </select>
                             </b-form-group>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-4">
-                            <b-form-group id="input-group-rank" label="Cargo:" label-for="rank">
-                                <b-form-select
-                                id="rank"
-                                v-model="user.rank_id"
-                                :options="ranks"
-                                required
-                                ></b-form-select>
+                            <b-form-group id="input-group-position" label="Cargo:" label-for="position">
+                                <select class="form-control" id="position" v-model="user.position_id" required>
+                                    <option value="">-{{$t('message.select')}}-</option>
+                                    <option v-for="(position, index) in positions" :key="index" :value="position.id">{{position.name}}</option>
+                                </select>
                             </b-form-group>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-xs-12 col-sm-12 col-md-4">
-                            <b-form-group id="input-group-typeContacts" label="Tipo de contacto:" label-for="typeContacts">
-                                <b-form-select
-                                id="typeContacts"
-                                v-model="user.type_contact_id"
-                                :options="typeContacts"
-                                required
-                                ></b-form-select>
+                            <b-form-group id="input-group-typeContacts" label="Tipo de contacto:" label-for="typeContact">
+                                <select class="form-control" id="typeContact" v-model="user.type_contact_id" required>
+                                    <option v-for="(typesContact, index) in typesContacts" :key="index" :value="typesContact.id">{{typesContact.name}}</option>
+                                </select>
                             </b-form-group>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-4">
@@ -184,14 +167,7 @@
             return {
                 user: {},
                 edit:"",
-                titleText:"",
-                roles:[],
-                countries:[],
-                units:[],
-                positions:[],
-                ranks:[],
-                languages:[],
-                typeContacts:[]
+                titleText:"newUser",
             }
         },
         watch:{
@@ -200,23 +176,29 @@
                     this.user = val;
                 }
             },
-            rols(val){
-                if(val){
-                    for(var s = 0; s < val.length; s++){
-                        this.roles.push({"text":val[s].name, "value":val[s].id});
-                    }
-                }
-            },
         },
-        mounted () {
-            this.getRoles();
+        async mounted () {
+            //Roles
+            await this.getRoles();
+            //terminos
+            await this.getTerms("TIPOS_DE_DOCUMENTO");
+            await this.getTerms("RANGOS");
+            await this.getTerms("TIPOS_CONTACTO");
+            await this.getTerms("POSITIONS");
+            //Unidades
+            await this.getUnits();
+            //paises
+            await this.getCountries();
+            //idio,as
+            await this.getLanguages();
+
             this.edit = this.$route.params.id == undefined ? 0 : this.$route.params.id;
             if(this.edit!=""){
                 if(this.edit == 1){
-                    this.titleText="Nuevo Usuario"
+                    this.titleText="newUser"
                 }
                 else{
-                    this.titleText="Editar usuario"
+                    this.titleText="editUser"
                     this.getUser(this.edit);
                 }
             }else{
@@ -229,6 +211,10 @@
                 update: 'user/update',
                 getRoles: 'role/getRoles',
                 getUser: 'user/getUser',
+                getTerms: 'term/getTerms',
+                getUnits: 'unit/getUnits',
+                getCountries: 'country/getCountries',
+                getLanguages: 'language/getLanguages',
             }),
             onBack(){
                 this.$router.push('/users/consult');
@@ -261,8 +247,14 @@
         },
         computed:{
             ...mapState({
-                rols: state => state.role.roles,
+                roles: state => state.role.roles,
                 us: state => state.user.user, 
+                positions: state => state.term.positions, 
+                ranks: state => state.term.ranks, 
+                typesContacts: state => state.term.typesContacts,
+                units: state => state.unit.units,
+                languages: state => state.language.languages,
+                countries: state => state.country.countries,
             }),
         },
     }

@@ -105,7 +105,6 @@
                 this.getUsers(pagination);
             },
             redirect(page, id){
-                console.log("hijo ", page, id);
                 if(!page){
                     if(id){
                         this.$router.push('/users/user-profile/'+id)

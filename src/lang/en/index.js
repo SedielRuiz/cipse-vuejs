@@ -391,5 +391,7 @@ export default {
     requestsManageRequests: "Manage Requests / Consult", 
     typeDocument: "Type document",
     noResults: "No Results",
-    version: "Version"
+    version: "Version",
+    select: "Select",
+    editUser: "Edit user",
 }

@@ -1,26 +1,27 @@
 import Vue from 'vue';
 
 const state = {
-    notices: [],
-    doctrinal: [],
-    memories: [],
-    us: [],
-    content: "",
+    categories: [],
+    positions: [],
+    ranks: [],
+    typesContacts: [],
+    typesDocuments: [],
+    term: "",
     //Paginación
     page_size:"",
     total_items:"",
     total_pages:"",
-    prefix:"clients/"
+    prefix:"admin/"
 };
 
 const actions = {
-    getContent:({commit}, id) => {
+    getTerm:({commit}, id) => {
         commit('startProcessing', null, { root: true });
         return new Promise((resolve, reject) => {
-            Vue.http.get(state.prefix+'contents/'+id).then(
+            Vue.http.get(state.prefix+'terms/'+id).then(
                 response =>{
                     var data = response.data;
-                    commit('setContent',data);
+                    commit('setTerm',data);
                     resolve(data)
                 }).catch(error=>{
                     commit('setError', error, { root: true });
@@ -30,27 +31,30 @@ const actions = {
                 })
         });
     },
-    getContents:({commit}, type) => {
-        commit('startProcessing', null, { root: true });
+    getTerms:({commit}, key) => {
+        // commit('startProcessing', null, { root: true });
         var json = {
-            params: {"type":type}
+            params: {"key":key}
         }
         return new Promise((resolve, reject) => {
-            Vue.http.get(state.prefix+'contents', json).then(
+            Vue.http.get(state.prefix+'terms/list', json).then(
                 response =>{
                     var data = response.data;
-                    switch (type) {
-                        case "NOTICIA":
-                            commit('setNotices',data);       
+                    switch (key) {
+                        case "CATEGORIAS":
+                            commit('setCategories',data);       
                             break;
-                        case "DOCTRINAL":
-                            commit('setDoctrinal',data);       
+                        case "POSITIONS":
+                            commit('setPositions',data);       
                             break;
-                        case "MEMORIAS":
-                            commit('setMemories',data);       
+                        case "RANGOS":
+                            commit('setRanks',data);       
                             break;
-                        case "NOSOTROS":
-                            commit('setUS',data);       
+                        case "TIPOS_CONTACTO":
+                            commit('setTypesContact',data);
+                            break;
+                        case "TIPOS_DE_DOCUMENTO":
+                            commit('setTypesDocument',data);
                             break;
                     }
                     resolve(data)
@@ -65,7 +69,7 @@ const actions = {
     create:({commit},data) => {
         commit('startProcessing', null, { root: true });
         return new Promise((resolve, reject) => {
-            Vue.http.post(state.prefix+'contents',data).then(
+            Vue.http.post(state.prefix+'terms',data).then(
                 response =>{
                     var data = response.data;
                     resolve(data)
@@ -81,7 +85,7 @@ const actions = {
     update:({commit},data) => {
         commit('startProcessing', null, { root: true });
         return new Promise((resolve, reject) => {
-            Vue.http.post(state.prefix+'contents',data).then(
+            Vue.http.post(state.prefix+'terms',data).then(
                 response =>{
                     var data = response.data;
                     resolve(data)
@@ -97,7 +101,7 @@ const actions = {
     delete:({commit},data) => {
         commit('startProcessing', null, { root: true });
         return new Promise((resolve, reject) => {
-        Vue.http.delete(state.prefix+'contents', {_id: data}).then(
+        Vue.http.delete(state.prefix+'terms', {_id: data}).then(
             response =>{
                 var data = response.data;
                 resolve(data)
@@ -116,36 +120,43 @@ const getters = {
 };
 
 const mutations = {
-    setNotices: (state, list) => {
-        state.notices = list.data;
+    setCategories: (state, list) => {
+        state.categories = list.data;
         state.page_size = list.page_size;
         state.total_pages = list.total_pages;
         state.total_items = list.total_items;
     },
 
-    setDoctrinal: (state, list) => {
-        state.doctrinal = list.data;
+    setPositions: (state, list) => {
+        state.positions = list.data;
         state.page_size = list.page_size;
         state.total_pages = list.total_pages;
         state.total_items = list.total_items;
     },
 
-    setMemories: (state, list) => {
-        state.memories = list.data;
+    setRanks: (state, list) => {
+        state.ranks = list.data;
         state.page_size = list.page_size;
         state.total_pages = list.total_pages;
         state.total_items = list.total_items;
     },
 
-    setUS: (state, list) => {
-        state.us = list.data;
+    setTypesContact: (state, list) => {
+        state.typesContacts = list.data;
         state.page_size = list.page_size;
         state.total_pages = list.total_pages;
         state.total_items = list.total_items;
     },
 
-    setContent: (state, list) => {
-        state.content = list.data;
+    setTypesDocument: (state, list) => {
+        state.typesDocuments = list.data;
+        state.page_size = list.page_size;
+        state.total_pages = list.total_pages;
+        state.total_items = list.total_items;
+    },
+
+    setTerm: (state, list) => {
+        state.term = list.data;
         state.page_size = list.page_size;
         state.total_pages = list.total_pages;
         state.total_items = list.total_items;

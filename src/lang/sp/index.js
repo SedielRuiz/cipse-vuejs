@@ -393,5 +393,7 @@ export default {
    requestsManageRequests: "Gestion de solicitudes / Consulta",
    typeDocument: "Tipo de documento",
    noResults: "Sin resultados",
-   version: "Versión"
+   version: "Versión",
+   select: "Seleccione",
+   editUser: "Editar usuario",
 }

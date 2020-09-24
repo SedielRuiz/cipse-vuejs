@@ -7,6 +7,10 @@ import user from './modules/user';
 import role from './modules/role';
 import content from './modules/content';
 import request from './modules/request';
+import term from './modules/term';
+import unit from './modules/unit';
+import language from './modules/language';
+import country from './modules/country';
 
 Vue.use(Vuex);
 
@@ -54,6 +58,10 @@ export const store = new Vuex.Store({
         user,
         role,
         content,
-        request
+        request,
+        term,
+        unit,
+        country,
+        language
 	}
 })
