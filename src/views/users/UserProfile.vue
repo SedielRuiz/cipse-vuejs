@@ -19,7 +19,7 @@
                         </div>
                     </b-card-title>
 					<hr>
-                    <div v-if="notices.length > 0">
+                    <div class="view-blog-content" v-if="notices.length > 0">
                         <div v-for="(content, index) in notices" :key="index">
                             <content-blog :content=getContent(content)></content-blog>
                         </div>
@@ -37,7 +37,7 @@
                         <h2><i class="fas fa-star-of-life"></i> {{$t('message.memories')}}</h2>
                     </b-card-title>
 					<hr>
-                    <div v-if="memories.length > 0">
+                    <div class="view-blog-content" v-if="memories.length > 0">
                         <div v-for="(content, index) in memories" :key="index">
                             <content-blog :content=getContent(content)></content-blog>
                         </div>
@@ -55,7 +55,7 @@
                         <h2><i class="fas fa-memory"></i> {{$t('message.doctrinal')}}</h2>
                     </b-card-title>
 					<hr>
-                    <div v-if="doctrinals.length > 0">
+                    <div class="view-blog-content" v-if="doctrinals.length > 0">
                         <div v-for="(content, index) in doctrinals" :key="index">
                             <content-blog :content=getContent(content)></content-blog>
                         </div>

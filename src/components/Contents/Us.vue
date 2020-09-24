@@ -15,7 +15,7 @@
 			<div class="col-full-lg-block col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 grid-b-space">
 				<app-card customClasses="mb-30">
                     <div class="top-selling-widget project-gallery-wrap">
-                        <img :src="'/static/img/logo_micrositios.png'" class="img-fluid" />
+                        <img :src="'/static/img/LogoCIPSE_800.png'" class="img-fluid" />
                     </div>
 				</app-card>
 			</div>

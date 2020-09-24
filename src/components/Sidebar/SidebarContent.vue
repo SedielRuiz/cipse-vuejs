@@ -2,7 +2,6 @@
     <div>
         <vue-perfect-scrollbar :settings="settings">
             <nav class="idb-sidebar-nav">
-
                 <ul class="idb-nav list-unstyled p-0">
                     <template v-for="(menu, index) in sideBarLinks.routes">
                         <li v-if="menu.child_routes!=null" :key="index" :class="[ 'nav-item', { 'active': menu.active } ]"
@@ -31,7 +30,7 @@
             </nav>
         </vue-perfect-scrollbar>
         <div class="foot-sidebar">
-            <img src="/static/img/foot_logo.jpeg" width="230" alt="Escudos" class="logo-ponal rounded-circle mb-10" />
+            <img src="/static/img/foot_logo.jpeg" width="244" alt="Escudos" class="logo-ponal " />
         </div>
     </div>
 </template>

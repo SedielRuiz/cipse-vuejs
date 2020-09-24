@@ -40,7 +40,7 @@
                             <tr class="bg-primary text-center">
                                 <th>{{$t('message.unit')}}</th>
                                 <th>{{$t('message.country')}}</th>
-                                <th>{{$t('message.typeDocument')}}</th>
+                                <th>{{$t('message.role')}}</th>
                                 <th>{{$t('message.document')}}</th>
                                 <th>{{$t('message.name')}}</th>
                                 <th>{{$t('message.email')}}</th>
@@ -51,7 +51,7 @@
                             <tr v-for="user in users" :key="user.id">
                                 <td class="text-center">{{user.unit.name}}</td>
                                 <td class="text-center">{{user.country.name}}</td>
-                                <td class="text-center">{{user.type.name}}</td>
+                                <td class="text-center">{{user.role.name}}</td>
                                 <td class="text-right">{{user.identification | formatNumber}}</td>
                                 <td class="text-center">{{user.name}}</td>
                                 <td class="text-center">{{user.email}}</td>
@@ -70,7 +70,11 @@
             </div><!-- table responsive closed -->
         </app-card>
         <div v-else>
-            <user-list-card v-for="(user, index) in users" :key="index" :user=user @redirect="redirect"></user-list-card>
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-3 p-2" v-for="(user, index) in users" :key="index">
+                    <user-list-card :user=user @redirect="redirect"></user-list-card>
+                </div>
+            </div>
         </div>
 	</div>
 </template>

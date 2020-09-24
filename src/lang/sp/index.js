@@ -399,4 +399,5 @@ export default {
    newContent: "Nuevo contenido",
    editContent: "Editar contenido",
    content: "Contenido",
+   role: "Rol",
 }
