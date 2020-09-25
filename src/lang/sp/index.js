@@ -413,5 +413,7 @@ export default {
    newRequest: "Nueva solicitud",
    editRequest: "Editar solicitud",
    observatory: "Observatorio",
-   observatories: "Observatorios"
+   observatories: "Observatorios",
+   requestDetailRequest: "Gestion de solicitudes / Consulta / Detalle",
+   requirement: "Requerimiento"
 }

@@ -2,65 +2,58 @@
     <div id="dashboard" class="project-detail-wrap">
 		<page-title-bar></page-title-bar>
         <div class="col-half-lg-block col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 grid-b-space">
-            <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-1 align-self-center text-left">
-                    <b-button @click="$emit('back')" class="m-1" type="reset" variant="success"><i class="fas fa-chevron-left"></i></b-button>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-11 align-self-center">
-                    <h2>{{notice.title}}</h2>
-                </div>
-            </div>
+
         </div>
 		<div class="row align-items-stretch">
 			<div class="col-half-lg-block col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8 grid-b-space">
 				<app-card customClasses="mb-30">
-					<h3 class="mb-4">{{$t('message.description')}}</h3><hr>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-1 align-self-center text-left">
+                            <b-button @click="$emit('back')" class="m-1" type="reset" variant="success"><i class="fas fa-chevron-left"></i></b-button>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-11 align-self-center">
+                            <h3>{{$t('message.requirement')}}</h3>
+                        </div>
+                    </div><hr>
 					<div class="project-content">
-						<p>{{ notice.description_title }}</p>
-                        <p>{{ notice.notice }}</p>
+						<p>{{ request.description }}</p>
                         <hr>
                         <ul>
                             <li class="p-2 border-bottom d-flex justify-content-between align-content-center">
                                 <span class="fw-light text-capitalize pr-10">
-                                    <i class="fas fa-calendar-day"></i> {{$t('message.publishDate')}} :
-                                </span>
-                                <span class="fw-semi-bold text-capitalize">{{meta.created_at | formatDate}}</span>
-                            </li>
-                            <li class="p-2 border-bottom d-flex justify-content-between align-content-center">
-                                <span class="fw-light text-capitalize pr-10">
-                                    <i class="fas fa-calendar-day"></i> {{$t('message.durationDate')}} :
-                                </span>
-                                <span class="fw-semi-bold text-capitalize">{{meta.duration_date | formatDate}}</span>
-                            </li>
-                            <li class="p-2 border-bottom d-flex justify-content-between align-content-center">
-                                <span class="fw-light text-capitalize pr-10">
                                     <i class="fas fa-user-cog"></i> {{$t('message.user')}} :
                                 </span>
-                                <span class="fw-semi-bold text-capitalize">{{meta.user.name}}</span>
+                                <span class="fw-semi-bold text-capitalize">{{request.user.name}}</span>
                             </li>
                             <li class="p-2 border-bottom d-flex justify-content-between align-content-center">
                                 <span class="fw-light text-capitalize pr-10">
-                                    <i class="fas fa-users"></i> {{$t('message.unit')}} :
+                                    <i class="fas fa-users"></i> {{$t('message.unitFrom')}} :
                                 </span>
-                                <span class="fw-semi-bold text-capitalize">{{meta.unit.name}}</span>
+                                <span class="fw-semi-bold text-capitalize">{{request.unit_start.name}}</span>
                             </li>
                             <li class="p-2 border-bottom d-flex justify-content-between align-content-center">
                                 <span class="fw-light text-capitalize pr-10">
-                                    <i class="far fa-object-group"></i> {{$t('message.category')}} :
+                                    <i class="fas fa-users"></i> {{$t('message.unitTo')}} :
                                 </span>
-                                <span class="fw-semi-bold text-capitalize">{{meta.category.name}}</span>
+                                <span class="fw-semi-bold text-capitalize">{{request.unit_end.name}}</span>
+                            </li>
+                            <li class="p-2 border-bottom d-flex justify-content-between align-content-center">
+                                <span class="fw-light text-capitalize pr-10">
+                                    <i class="far fa-object-group"></i> {{$t('message.type')}} :
+                                </span>
+                                <span class="fw-semi-bold text-capitalize">{{request.type.name}}</span>
                             </li>
                             <li class="p-2 border-bottom d-flex justify-content-between align-content-center">
                                 <span class="fw-light text-capitalize pr-10">
                                     <i class="fas fa-file-upload"></i> {{$t('message.filesUploaded')}} :
                                 </span>
-                                <span class="fw-semi-bold text-capitalize">{{meta.files.length}}</span>
-                            </li>
+                                <span class="fw-semi-bold text-capitalize">{{request.files.length}}</span>
+                            </li> 
                             <li class="p-2 border-bottom d-flex justify-content-between align-content-center">
                                 <span class="fw-light text-capitalize pr-10">
                                     <i class="fas fa-language"></i> {{$t('message.language')}} :
                                 </span>
-                                <span class="fw-semi-bold text-capitalize">{{notice.language.name}}</span>
+                                <span class="fw-semi-bold text-capitalize">{{request.language.name}}</span>
                             </li>
                         </ul>
 
@@ -84,7 +77,7 @@
     import ContentGallery from 'Components/Contents/ContentGallery'
 
 	export default {
-        props:["meta", "notice"],
+        props:["request"],
         components: {
 			FilesUploaded,
 			ContentGallery

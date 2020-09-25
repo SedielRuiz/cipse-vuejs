@@ -23,6 +23,7 @@ const ContentsDetail = () => import('Views/contents/ContentsDetail')
 // vista de solicitudes
 const RequestsList = () => import('Views/requests/RequestsList')
 const RequestsManage = () => import('Views/requests/RequestsManage')
+const RequestsDetail = () => import('Views/requests/RequestsDetail')
 
 // vista de sesiones
 const Login = () => import('Views/session/Login')
@@ -185,6 +186,17 @@ export default new Router({
 						requiresAuth: true,
 						title: 'message.requests',
 						breadcrumb: 'message.requestsManageRequests'
+					}
+                },
+
+                {
+					name: "Request detail",
+					path: '/requests/detail/:id',
+					component: RequestsDetail,
+					meta: {
+						requiresAuth: true,
+						title: 'message.requests',
+						breadcrumb: 'message.requestDetailRequest'
 					}
                 },
 

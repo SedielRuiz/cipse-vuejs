@@ -23,6 +23,12 @@
                         </li>
                         <li class="p-2 border-bottom d-flex justify-content-between align-content-center">
                             <span class="fw-light text-capitalize pr-10">
+                                <i class="fas fa-calendar-day"></i> {{$t('message.publishDate')}} :
+                            </span>
+                            <span class="fw-semi-bold text-capitalize">{{meta.created_at | formatDate}}</span>
+                        </li>
+                        <li class="p-2 border-bottom d-flex justify-content-between align-content-center">
+                            <span class="fw-light text-capitalize pr-10">
                                 <i class="fas fa-user-cog"></i> {{$t('message.user')}} :
                             </span>
                             <span class="fw-semi-bold text-capitalize">{{meta.user.name}}</span>

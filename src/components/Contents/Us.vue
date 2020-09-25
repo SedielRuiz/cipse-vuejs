@@ -22,7 +22,7 @@
 			<div class="col-half-lg-block col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8 grid-b-space">
 				<app-card customClasses="mb-30">
 					<div class="project-content">
-						<p>{{ us.description_title }}</p>
+						<p>{{ us.us }}</p>
                         <hr>
                         <ul>
                             <li class="p-2 border-bottom d-flex justify-content-between align-content-center">

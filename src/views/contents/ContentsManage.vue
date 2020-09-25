@@ -165,6 +165,9 @@
                             if(this.type == "MEMORIA"){
                                 this.languages[s].content = contentLanguage[0].memory;
                             }
+                            if(this.type == "NOSOTROS"){
+                                this.languages[s].content = contentLanguage[0].us;
+                            }
                         }
                     }
                 }

@@ -409,5 +409,7 @@ export default {
     cellphone: "Cellphone",
     nameComplete: "Name Complete",
     newRequest: "New Request",
-    editRequest: "Edit Request"
+    editRequest: "Edit Request",
+    requestDetailRequest: "Manage Requests / Consult / Detail",
+    requirement: "Requirement"
 }
