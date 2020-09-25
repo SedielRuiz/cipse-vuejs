@@ -16,7 +16,7 @@
 			<div class="blog-content">
 				<div class="custom-p-lh">
 					<p class="font-sm">{{memory.description_title}}</p>
-                    <p class="font-sm">{{memory.memory}}</p>
+                    <p class="font-sm">{{textTruncate(memory.memory, 250)}}</p>
 				</div>
 				<hr>
                     <ul>
@@ -51,6 +51,7 @@
 </template>
 
 <script>
+    import { textTruncate } from "Helpers/helpers";
 
 	export default {
         props:["meta", "memory"],
@@ -59,6 +60,9 @@
 			};
         },
         methods:{
+            textTruncate(text, limit) {
+				return textTruncate(text, limit);
+			},
             detailMemory(){
                 this.$router.push("/contents/detail/MEMORIAS/"+this.meta.id);
             }

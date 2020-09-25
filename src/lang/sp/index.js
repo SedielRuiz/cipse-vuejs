@@ -411,5 +411,7 @@ export default {
    cellphone: "Celular",
    nameComplete: "Nombre completo",
    newRequest: "Nueva solicitud",
-   editRequest: "Editar solicitud"
+   editRequest: "Editar solicitud",
+   observatory: "Observatorio",
+   observatories: "Observatorios"
 }

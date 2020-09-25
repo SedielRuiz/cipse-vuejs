@@ -9,9 +9,9 @@
 
                     <div class="row">
                         <div class="col-xs-12 col-sm-12 col-md-6">
-                            <b-form-group id="input-group-country" :label="$t('message.country')+':'" label-for="country">
-                                <select class="form-control" id="country" v-model="request.country_id" required>
-                                    <option v-for="(country, index) in countries" :key="index" :value="country.id">{{country.name}}</option>
+                            <b-form-group id="input-group-type" :label="$t('message.type')+':'" label-for="type">
+                                <select class="form-control" id="type" v-model="request.type_id" required>
+                                    <option v-for="(type, index) in categories" :key="index" :value="type.id">{{type.name}}</option>
                                 </select>
                             </b-form-group>
                         </div>
@@ -22,14 +22,29 @@
                                 </select>
                             </b-form-group>
                         </div>
-                        <div class="col-xs-12 col-sm-12 col-md-6">
+
+                        <div class="col-xs-12 col-sm-12 col-md-3">
+                            <b-form-group id="input-group-country" :label="$t('message.country')+':'" label-for="country">
+                                <select class="form-control" id="country" v-model="request.country_start_id" required>
+                                    <option v-for="(country, index) in countries" :key="index" :value="country.id">{{country.name}}</option>
+                                </select>
+                            </b-form-group>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-3">
                             <b-form-group id="input-group-unit-strat" :label="$t('message.unitFrom')+':'" label-for="unitStart">
                                 <select class="form-control" id="unitStart" v-model="request.unit_start_id" required>
                                     <option v-for="(unit, index) in units" :key="index" :value="unit.id">{{unit.name}}</option>
                                 </select>
                             </b-form-group>
                         </div>
-                        <div class="col-xs-12 col-sm-12 col-md-6">
+                        <div class="col-xs-12 col-sm-12 col-md-3">
+                            <b-form-group id="input-group-country" :label="$t('message.country')+':'" label-for="country">
+                                <select class="form-control" id="country" v-model="request.country_end_id" required>
+                                    <option v-for="(country, index) in countries" :key="index" :value="country.id">{{country.name}}</option>
+                                </select>
+                            </b-form-group>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-3">
                             <b-form-group id="input-group-unit-end" :label="$t('message.unitTo')+':'" label-for="unitEnd">
                                 <select class="form-control" id="unitEnd" v-model="request.unit_end_id" required>
                                     <option v-for="(unit, index) in units" :key="index" :value="unit.id">{{unit.name}}</option>
@@ -38,20 +53,24 @@
                         </div>
                     </div>
 
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <b-form-group id="input-group-notice" label="Archivos" label-for="files">
+                                <dropzone id="files" v-on:vdropzone-success="showSuccess" class="mb-30"
+                                    @vdropzone-removed-file="removeFile" :options="dropzoneOptions">
+                                    <div class="dropzone-custom-content">
+                                        <h3>Arrastres o selecione archivos</h3>
+                                    </div>
+                                    <input type="hidden" name="token" value="xxx">
+                                </dropzone>
+                            </b-form-group>
+                        </div>
+                    </div>
+                    
                     <b-form-group id="input-group-description" :label="$t('message.description')+':'" label-for="description">
                         <quill-editor v-model="request.description" ref="myQuillEditor" :options="editorOption"
                             @blur="onEditorBlur($event)" @focus="onEditorFocus($event)" @ready="onEditorReady($event)">
                         </quill-editor>
-                    </b-form-group>
-
-                    <b-form-group id="input-group-notice" label="Archivos" label-for="files">
-                        <dropzone id="files" v-on:vdropzone-success="showSuccess" class="mb-30"
-                            @vdropzone-removed-file="removeFile" :options="dropzoneOptions">
-                            <div class="dropzone-custom-content">
-                                <h3>Arrastres o selecione archivos</h3>
-                            </div>
-                            <input type="hidden" name="token" value="xxx">
-                        </dropzone>
                     </b-form-group>
 
                     <hr>

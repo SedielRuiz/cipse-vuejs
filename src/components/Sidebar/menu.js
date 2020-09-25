@@ -70,6 +70,7 @@ export default {
                 },
 			]
         },
+        
         {
 			"menu_title": "message.manageRequest",
 			"menu_icon": "fas fa-file-contract",
@@ -87,6 +88,18 @@ export default {
 				},
 			]
         },
+        {
+			"menu_title": "message.observatory",
+            "menu_icon": "fas fa-eye",
+			"active": false,
+			"child_routes": [
+                {
+					"route_name": "observatories",
+					"path": "/requests/consult",
+					"menu_title": "message.consult"
+				},
+			]
+        },
 		{
 			"menu_title": "message.session",
 			"menu_icon": "fas fa-sign-out-alt",
@@ -96,18 +109,10 @@ export default {
 					"path": "/session/login",
 					"menu_title": "message.login"
 				},
-				{
-					"path": "/session/sign-up",
-					"menu_title": "message.signUp"
-				},
-				{
-					"path": "/session/lock-screen",
-					"menu_title": "message.lockScreen"
-				},
-				{
-					"path": "/session/forgot-password",
-					"menu_title": "message.forgotPassword"
-				}
+				// {
+				// 	"path": "/session/lock-screen",
+				// 	"menu_title": "message.lockScreen"
+				// },
 			]
 		},
 	]

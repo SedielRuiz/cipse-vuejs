@@ -195,7 +195,7 @@ export default new Router({
 					meta: {
 						requiresAuth: true,
 						title: 'message.addNew',
-						breadcrumb: 'message.requestsManageRequests'
+						breadcrumb: 'message.requestsNewRequest'
 					}
                 },
 

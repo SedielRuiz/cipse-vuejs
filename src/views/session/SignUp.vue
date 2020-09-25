@@ -3,23 +3,18 @@
 		<div class="container">
 			<div class="row justify-content-center">
 				<div class="col-lg-5  col-md-7 col-sm-10 col-xs-12 ">
-					<div class="logo-wrap text-center mb-50">
-						<img src="/static/img/logo.png" alt="site-logo" width="200" height="60">
-					</div>
 					<div class="session-block d-block ">
 						<div class="text-center mb-30">
 							<div class="mb-20">
-								<img class="img-fluid rounded-circle" width="60" height="60" src="/static/img/user-1.jpg" />
+								<img class="img-fluid rounded-circle" width="150" height="150" src="/static/img/LogoCIPSE_800.png" />
 							</div>
 							<h3 class="mb-20">{{$t('message.registerToAdmin')}}</h3>
-							<span
-								class="fs-12 d-block w-75 mx-auto">{{$t('message.enterUsernameAndPasswordToAccessControlPanelOfAdminify')}}</span>
 						</div>
 						<div class="form-wrapper">
 							<b-form @submit="onSubmit">
-								<b-form-group id="exampleInputGroup1" label="Username" label-for="userName1">
-									<b-form-input id="userName1" type="text" v-model="form.userName" required
-										placeholder="Enter Username">
+								<b-form-group id="exampleInputGroup1" label="email" label-for="email1">
+									<b-form-input id="email1" type="text" v-model="form.email" required
+										placeholder="Enter email">
 									</b-form-input>
 								</b-form-group>
 								<b-form-group id="exampleInputGroup1" label="E-mail ID" label-for="emailInput1">

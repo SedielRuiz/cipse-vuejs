@@ -53,7 +53,7 @@
                 if(!page){
                     this.$router.push('/contents/detail/'+this.content.type+"/"+this.content.id);
                 }else{
-                    this.$router.push('/contents/update/'+this.content.id)
+                    this.$router.push('/contents/update/'+this.content.type+"/"+this.content.id)
                 }
             }
         }

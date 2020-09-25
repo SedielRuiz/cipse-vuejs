@@ -19,7 +19,7 @@
 					<p class="">
                         {{notice.description_title}}
                     </p>
-                    <p class="font-sm">{{notice.notice}}</p>
+                    <p class="font-sm">{{textTruncate(notice.notice, 250)}}</p>
                     <hr>
                     <ul>
                         <li class="p-2 border-bottom d-flex justify-content-between align-content-center">
@@ -54,6 +54,8 @@
 </template>
 
 <script>
+    import { textTruncate } from "Helpers/helpers";
+    
 	export default {
         props:["meta", "notice"],
 		data: function () {
@@ -61,6 +63,9 @@
 			};
         },
         methods:{
+            textTruncate(text, limit) {
+				return textTruncate(text, limit);
+			},
             detailNotice(){
                 this.$router.push("/contents/detail/NOTICIA/"+this.meta.id);
             }
