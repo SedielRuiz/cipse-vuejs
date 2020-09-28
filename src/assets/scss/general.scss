@@ -55,3 +55,7 @@
 .top-grip{
     margin-top: 13px;
 }
+
+.nav-link-only:after{
+    content:none !important;
+}

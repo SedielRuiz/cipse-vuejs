@@ -20,7 +20,7 @@
                         </li>
                         <router-link :key="index" :to="menu.path" tag="li" class="nav-item" @click.native="toggleActive(index)"
                             v-else>
-                            <a class="nav-link">
+                            <a class="nav-link nav-link-only">
                                 <i :class="menu.menu_icon" class="mr-15"></i>
                                 <span class="menu-title">{{ textTruncate($t(menu.menu_title)) }}</span>
                             </a>

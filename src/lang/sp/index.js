@@ -433,4 +433,10 @@ export default {
    october: "Octubre",
    november: "Noviembre",
    december: "Diciembre",
+   manageUnits: "Gestión de unidades",
+   unitManageUnit: "Gestion de unidades / Consulta",
+   unitNewUnit: "Gestion de unidades / Nueba",
+   unitUpdateUnit: "Gestion de unidades / Actualizar",
+   newUnit: "Nueva unidad",
+   editUnit: "Editar unidad",
 }

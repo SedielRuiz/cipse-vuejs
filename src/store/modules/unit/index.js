@@ -14,7 +14,7 @@ const actions = {
     getUnit:({commit}, id) => {
         commit('startProcessing', null, { root: true });
         return new Promise((resolve, reject) => {
-        Vue.http.post(state.prefix+'units/'+id).then(
+        Vue.http.get(state.prefix+'units/'+id).then(
             response =>{
                 var data = response.data;
                 commit('setUnit',data);
@@ -101,8 +101,8 @@ const mutations = {
         state.total_pages = list.total_pages;
         state.total_items = list.total_items;
     },
-    setUnit: (state, rl) => {
-        state.unit = rl
+    setUnit: (state, response) => {
+        state.unit = response.data
     },
 
 };

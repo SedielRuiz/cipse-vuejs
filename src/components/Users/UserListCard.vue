@@ -7,13 +7,16 @@
                 </div>
                 <div class="client-content">
                     <h4 class="mb-2 text-primary">
-                        {{ user.name }}
+                        {{ user.name }} 
+                        <img class="flag-img" :src="'/static/flag-icons/'+getFlag()+'.png'">
                         <br>
                         ({{ user.role.name }})
                     </h4>
                     <div class="address-block px-20 text-left">
                         <span class="font-sm d-block mb-10"><i class="fas fa-universal-access"></i> {{user.unit.name}}</span>
-                        <span class="font-sm d-block mb-10"><i class="fas fa-map-marker-alt"></i> {{user.country.name}}</span>
+                        <span class="font-sm d-block mb-10">
+                            <i class="fas fa-map-marker-alt"></i> {{user.country.name}} ({{user.language.name}})
+                        </span>
                         <span class="font-sm d-block mb-10"><i class="far fa-id-card"></i> {{user.type.initials +"."+ user.identification}}</span>
                         <span class="font-sm d-block mb-10"><i class="fas fa-envelope"></i> {{user.email}}</span>
                         <span class="font-sm d-block mb-10"><i class="fas fa-phone-alt"></i> {{user.cellphone}}</span>  
@@ -43,6 +46,16 @@
 			}
 		},
 		methods: {
+            getFlag(){
+                var flag = "";
+                if(this.user.language.key == "ESPANOL"){
+                    flag = "en";
+                }else{
+                    flag = "es";
+                }
+
+                return flag;
+            },
 			onDeleteClients(item, tabName) {
 			},
 			deleteClientItem() {

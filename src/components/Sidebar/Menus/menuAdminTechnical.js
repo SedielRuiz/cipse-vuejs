@@ -1,6 +1,23 @@
 export default {
 	"routes": [
         {
+			"menu_title": "message.manageUnits",
+			"menu_icon": "fas fa-users-cog",
+			"active": false,
+			"child_routes": [
+                {
+					"route_name": "units",
+					"path": "/units/consult",
+					"menu_title": "message.consult"
+				},
+                {
+					"route_name": "createUnit",
+					"path": "/units/create",
+					"menu_title": "message.addNew"
+				},
+			]
+        },
+        {
 			"menu_title": "message.manageUsers",
 			"menu_icon": "fas fa-users-cog",
 			"active": false,
@@ -67,6 +84,10 @@ export default {
             "menu_icon": "fas fa-eye",
 			"active": false,
 			"child_routes": [
+                {
+					"path": "/observatories/create",
+					"menu_title": "message.consult"
+				},
                 {
 					"path": "/observatories/create",
 					"menu_title": "message.addNew"

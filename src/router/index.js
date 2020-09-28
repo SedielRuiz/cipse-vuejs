@@ -10,6 +10,10 @@ const DashboardTwo = () => import('Views/dashboard/DashboardTwo')
 const CRM = () => import('Views/dashboard/CRM')
 const Crypto = () => import('Views/dashboard/Crypto')
 
+// vistas de unidades
+const UnitsList = () => import('Views/units/UnitsList')
+const UnitsManage = () => import('Views/units/UnitsManage')
+
 // vistas de usuarios
 const UserProfile = () => import('Views/users/UserProfile')
 const UsersList = () => import('Views/users/UsersList')
@@ -88,7 +92,41 @@ export default new Router({
 						title: 'message.crypto',
 						breadcrumb: 'message.dashboardCrypto'
 					}
-				},
+                },
+                //Rutas para unidades
+                {
+					name: "Units list",
+					path: '/units/consult',
+					component: UnitsList,
+					meta: {
+						requiresAuth: true,
+						title: 'message.units',
+						breadcrumb: 'message.unitManageUnit'
+					}
+                },
+
+                {
+					name: "Units create",
+					path: '/units/create',
+					component: UnitsManage,
+					meta: {
+						requiresAuth: true,
+						title: 'message.addNew',
+						breadcrumb: 'message.unitNewUnit'
+					}
+                },
+
+                {
+					name: "Units update",
+					path: '/units/update/:id',
+					component: UnitsManage,
+					meta: {
+						requiresAuth: true,
+						title: 'message.edit',
+						breadcrumb: 'message.unitUpdateUnit'
+					}
+                },
+
                 //Rutas para usuarios
                 {
 					name: "Users list",
