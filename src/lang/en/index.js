@@ -411,5 +411,10 @@ export default {
     newRequest: "New Request",
     editRequest: "Edit Request",
     requestDetailRequest: "Manage Requests / Consult / Detail",
-    requirement: "Requirement"
+    requirement: "Requirement",
+    newObservatory:"New Observatory",
+    editObservatory:"Edit Observatory",
+    observatory:"Observatory",
+    crime:"Crime",
+    crimes:"Crimes",
 }

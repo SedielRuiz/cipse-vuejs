@@ -1,8 +1,8 @@
 <template>
 	<app-card customClasses="grid-b-space" :fullBlock="true" contentCustomClass="text-center pt-20 user-profile-block">
 		<div class="avatar-wrap pos-relative d-inline-block mb-15">
-			<img src="/static/img/logo_micrositios.png" class="img-fluid rounded-circle" alt="user thumb" width="100" height="100">
-			<span class="badge badge-success badge-label-sm badge-thumb-top-right badge-pill">&nbsp;</span>
+			<img src="/static/img/user-11.jpg" class="img-fluid rounded-circle" alt="user thumb" width="100" height="100">
+			<!-- <span class="badge badge-success badge-label-sm badge-thumb-top-right badge-pill">&nbsp;</span> -->
 		</div>
 		<div class="mb-20 user-info">
 			<h4 class="mb-0">{{user.name}}</h4>

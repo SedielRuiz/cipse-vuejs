@@ -1,23 +1,23 @@
 import Vue from 'vue';
 
 const state = {
-  roles: [],
-  role: "",
-  //Paginación
-  page_size:"",
-  total_items:"",
-  total_pages:"",
-  prefix:"admin/"
+    crimes: [],
+    crime: "",
+    //Paginación
+    page_size:"",
+    total_items:"",
+    total_pages:"",
+    prefix:"admin/"
 };
 
 const actions = {
-    getRol:({commit}, id) => {
+    getCrime:({commit}, id) => {
         commit('startProcessing', null, { root: true });
         return new Promise((resolve, reject) => {
-        Vue.http.post(state.prefix+'roles/'+id).then(
+        Vue.http.post(state.prefix+'crimes/'+id).then(
             response =>{
                 var data = response.data;
-                commit('setRole',data);
+                commit('setCrime',data);
                 resolve(data)
             }).catch(error=>{
                 commit('setError', error, { root: true });
@@ -27,13 +27,12 @@ const actions = {
             })
         });
     },
-    getRoles:({commit}, data) => {
-        commit('startProcessing', null, { root: true });
+    getCrimes:({commit}, data) => {
         return new Promise((resolve, reject) => {
-        Vue.http.get(state.prefix+'roles', data).then(
+        Vue.http.get(state.prefix+'crimes', data).then(
             response =>{
                 var data = response.data;
-                commit('setRoles',data);
+                commit('setCrimes',data);
                 resolve(data)
             }).catch(error=>{
                 commit('setError', error, { root: true });
@@ -46,7 +45,7 @@ const actions = {
     create:({commit},data) => {
         commit('startProcessing', null, { root: true });
         return new Promise((resolve, reject) => {
-        Vue.http.post(state.prefix+'roles',data).then(
+        Vue.http.post(state.prefix+'crimes',data).then(
             response =>{
                 var data = response.data;
                 resolve(data)
@@ -62,7 +61,7 @@ const actions = {
     update:({commit},data) => {
         commit('startProcessing', null, { root: true });
         return new Promise((resolve, reject) => {
-        Vue.http.put(state.prefix+'roles',data).then(
+        Vue.http.put(state.prefix+'crimes',data).then(
             response =>{
                 var data = response.data;
                 resolve(data)
@@ -78,7 +77,7 @@ const actions = {
     delete:({commit},data) => {
         commit('startProcessing', null, { root: true });
         return new Promise((resolve, reject) => {
-        Vue.http.delete(state.prefix+'roles', {_id: data}).then(
+        Vue.http.delete(state.prefix+'crimes', {_id: data}).then(
             response =>{
                 var data = response.data;
                 resolve(data)
@@ -97,22 +96,22 @@ const getters = {
 };
 
 const mutations = {
-    setRoles: (state, list) => {
-        state.roles = list.data;
+    setCrimes: (state, list) => {
+        state.crimes = list.data;
         state.page_size = list.page_size;
         state.total_pages = list.total_pages;
         state.total_items = list.total_items;
     },
-    setRole: (state, rl) => {
-        state.role = rl
+    setCrime: (state, rl) => {
+        state.crime = rl
     },
 
 };
 
 export default {
-  namespaced: true,
-  state,
-  actions,
-  getters,
-  mutations
+    namespaced: true,
+    state,
+    actions,
+    getters,
+    mutations
 };

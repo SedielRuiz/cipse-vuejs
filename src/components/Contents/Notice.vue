@@ -12,7 +12,7 @@
             </div>
         </div>
 		<div class="row align-items-stretch">
-			<div class="col-half-lg-block col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8 grid-b-space">
+			<div class="col-half-lg-block col-12 col-sm-12 col-md-12 col-lg-7 col-xl-7 grid-b-space">
 				<app-card customClasses="mb-30">
 					<h3 class="mb-4">{{$t('message.description')}}</h3><hr>
 					<div class="project-content">
@@ -20,13 +20,13 @@
                         <p>{{ notice.notice }}</p>
                         <hr>
                         <ul>
-                            <li class="p-2 border-bottom d-flex justify-content-between align-content-center">
+                            <li v-if="viewContent" class="p-2 border-bottom d-flex justify-content-between align-content-center">
                                 <span class="fw-light text-capitalize pr-10">
                                     <i class="fas fa-calendar-day"></i> {{$t('message.publishDate')}} :
                                 </span>
                                 <span class="fw-semi-bold text-capitalize">{{meta.created_at | formatDate}}</span>
                             </li>
-                            <li class="p-2 border-bottom d-flex justify-content-between align-content-center">
+                            <li v-if="viewContent" class="p-2 border-bottom d-flex justify-content-between align-content-center">
                                 <span class="fw-light text-capitalize pr-10">
                                     <i class="fas fa-calendar-day"></i> {{$t('message.durationDate')}} :
                                 </span>
@@ -70,7 +70,7 @@
 					<files-uploaded></files-uploaded>
 				</app-card>
 			</div>
-			<div class="col-full-lg-block col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 grid-b-space">
+			<div class="col-full-lg-block col-12 col-sm-12 col-md-12 col-lg-5 col-xl-5 grid-b-space">
 				<app-card :heading="$t('message.gallery')" customClasses="mb-30">
 					<content-gallery></content-gallery>
 				</app-card>
@@ -84,7 +84,7 @@
     import ContentGallery from 'Components/Contents/ContentGallery'
 
 	export default {
-        props:["meta", "notice"],
+        props:["viewContent", "meta", "notice"],
         components: {
 			FilesUploaded,
 			ContentGallery

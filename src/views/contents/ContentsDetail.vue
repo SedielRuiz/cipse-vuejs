@@ -1,16 +1,16 @@
 <template>
 	<div>
         <div v-if="type == 'NOTICIA' && content != ''">
-            <notice @back="back()" :meta=content :notice=getContentLanguage()></notice>
+            <notice @back="back()" :viewContent=viewContent :meta=content :notice=getContentLanguage()></notice>
         </div>
         <div v-if="type == 'NOSOTROS' && content != ''">
-            <unit-us @back="back()" :meta=content :us=getContentLanguage()></unit-us>
+            <unit-us @back="back()" :viewContent=viewContent :meta=content :us=getContentLanguage()></unit-us>
         </div>
         <div v-if="type == 'DOCTRINAL' && content != ''">
-            <doctrinal @back="back()" :meta=content :doctrinal=getContentLanguage()></doctrinal>
+            <doctrinal @back="back()" :viewContent=viewContent :meta=content :doctrinal=getContentLanguage()></doctrinal>
         </div>
         <div v-if="type == 'MEMORIAS' && content != ''">
-            <memory @back="back()" :meta=content :memory=getContentLanguage()></memory>
+            <memory @back="back()" :viewContent=viewContent :meta=content :memory=getContentLanguage()></memory>
         </div>
 	</div>
 </template>
@@ -66,6 +66,7 @@
             ...mapState({
                 language: state => state.auth.language,
                 content: state => state.content.content,
+                viewContent: state => state.auth.viewContent,
             }),
         },
     }

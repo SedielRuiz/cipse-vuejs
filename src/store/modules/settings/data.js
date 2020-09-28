@@ -10,46 +10,46 @@ export const languages = [
 		icon: "en",
 		locale: "en"
 	},
-	{
-		name: "French",
-		icon: "fr",
-		locale: "fr"
-	},
-	{
-		name: "Russian",
-		icon: "ru",
-		locale: "ru"
-	},
-	{
-		name: "Chinese",
-		icon: "cn",
-		locale: "cn"
-	},
-	{
-		name: "German",
-		icon: "ge",
-		locale: "ge"
-	},
-	{
-		name: "Japanese",
-		icon: "ja",
-		locale: "ja"
-	},
-	{
-		name: "Korean",
-		icon: "ko",
-		locale: "ko"
-	},
-	{
-		name: "Italian",
-		icon: "it",
-		locale: "it"
-	},
-	{
-		name: "Hungarian",
-		icon: "hu",
-		locale: "hu"
-	}
+	// {
+	// 	name: "French",
+	// 	icon: "fr",
+	// 	locale: "fr"
+	// },
+	// {
+	// 	name: "Russian",
+	// 	icon: "ru",
+	// 	locale: "ru"
+	// },
+	// {
+	// 	name: "Chinese",
+	// 	icon: "cn",
+	// 	locale: "cn"
+	// },
+	// {
+	// 	name: "German",
+	// 	icon: "ge",
+	// 	locale: "ge"
+	// },
+	// {
+	// 	name: "Japanese",
+	// 	icon: "ja",
+	// 	locale: "ja"
+	// },
+	// {
+	// 	name: "Korean",
+	// 	icon: "ko",
+	// 	locale: "ko"
+	// },
+	// {
+	// 	name: "Italian",
+	// 	icon: "it",
+	// 	locale: "it"
+	// },
+	// {
+	// 	name: "Hungarian",
+	// 	icon: "hu",
+	// 	locale: "hu"
+	// }
 ]
 
 // sidebar background images

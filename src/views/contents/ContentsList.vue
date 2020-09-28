@@ -8,12 +8,7 @@
 						<div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
 							<h2>{{$t('message.search')}} {{capitalizeType()}}</h2>
 						</div>
-						<div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8">
-                            <b-form-group id="input-group-view">
-                                <b-form-checkbox-group v-model="view" id="type">
-                                    <b-form-checkbox value=true>Tabla</b-form-checkbox>
-                                </b-form-checkbox-group>
-                            </b-form-group>
+						<div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8" v-if="type != 'NOSOTROS'">
 							<div class="d-sm-flex align-items-center">
 								<div class="input-wrap">
 									<b-form-input type="text" required >
@@ -31,7 +26,7 @@
 				</div>
 			</div>
 		</div>
-        <app-card v-if="view.length > 0" customClasses="grid-b-space" :heading="''">
+        <app-card v-if="view" customClasses="grid-b-space" :heading="''">
             <div class="table-responsive">
                 <div class="unseen">
                     <table class="table table-hover table-bordered table-striped">
@@ -116,7 +111,7 @@
     import DoctrinalCard from "Components/Contents/Cards/DoctrinalCard";
 
     export default {
-        name: 'user-list',
+        name: 'content-list',
         components:{
             pagination,
             NoticeCard,
@@ -126,9 +121,8 @@
         data () {
             return {
                 type: "",
-                view:[true],
                 heading:[],
-                contents:[]
+                contents:[],
             }
         },
         mounted () {
@@ -195,6 +189,9 @@
                     case "NOSOTROS":
                         this.heading.push("title");
                         this.contents = this.us;
+                        if(!this.view && this.type=="NOSOTROS"){
+                            this.redirect(false, this.contents[0].id);
+                        }
                         break;
                 }
                 this.heading.push("actions");
@@ -213,17 +210,21 @@
             }
         },
         computed:{
-            changeType(){
-                this.type = this.$route.params.type;
-                return this.type;
-            },
             ...mapState({
                 language: state => state.auth.language,
                 notices: state => state.content.notices,
                 doctrinal: state => state.content.doctrinal,
                 memories: state => state.content.memories,
                 us: state => state.content.us,
+                cardContent: state => state.auth.viewContent,
             }),
+            view(){
+                return this.cardContent;
+            },
+            changeType(){
+                this.type = this.$route.params.type;
+                return this.type;
+            },
         },
     }
 </script>

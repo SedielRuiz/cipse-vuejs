@@ -25,6 +25,10 @@ const RequestsList = () => import('Views/requests/RequestsList')
 const RequestsManage = () => import('Views/requests/RequestsManage')
 const RequestsDetail = () => import('Views/requests/RequestsDetail')
 
+// vista de observatorio
+const ObservatoriesList = () => import('Views/observatories/ObservatoriesList')
+const ObservatoriesManage = () => import('Views/observatories/ObservatoriesManage')
+
 // vista de sesiones
 const Login = () => import('Views/session/Login')
 const SignUp = () => import('Views/session/SignUp')
@@ -215,6 +219,39 @@ export default new Router({
 					name: "Requests update",
 					path: '/requests/update/:id',
 					component: RequestsManage,
+					meta: {
+						requiresAuth: true,
+						title: 'message.edit',
+						breadcrumb: 'message.requestsUpdateRequest'
+					}
+                },
+                //Rutas para observatorio
+                {
+					name: "Observatory list",
+					path: '/observatories/consult',
+					component: ObservatoriesList,
+					meta: {
+						requiresAuth: true,
+						title: 'message.requests',
+						breadcrumb: 'message.requestsManageRequests'
+					}
+                },
+
+                {
+					name: "Observatory create",
+					path: '/observatories/create',
+					component: ObservatoriesManage,
+					meta: {
+						requiresAuth: true,
+						title: 'message.addNew',
+						breadcrumb: 'message.requestsNewRequest'
+					}
+                },
+
+                {
+					name: "Observatory update",
+					path: '/observatories/update/:id',
+					component: ObservatoriesManage,
 					meta: {
 						requiresAuth: true,
 						title: 'message.edit',

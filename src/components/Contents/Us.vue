@@ -3,7 +3,7 @@
 		<page-title-bar></page-title-bar>
         <div class="col-half-lg-block col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 grid-b-space">
             <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-1 align-self-center text-left">
+                <div v-if="viewContent" class="col-xs-12 col-sm-12 col-md-1 align-self-center text-left">
                     <b-button @click="$emit('back')" class="m-1" type="reset" variant="success"><i class="fas fa-chevron-left"></i></b-button>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-11 align-self-center">
@@ -65,7 +65,7 @@
     import ContentGallery from 'Components/Contents/ContentGallery'
 
 	export default {
-        props:["meta", "us"],
+        props:["viewContent", "meta", "us"],
         components: {
 			FilesUploaded,
 			ContentGallery

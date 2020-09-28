@@ -21,7 +21,7 @@
                             </span>
                             <span class="fw-semi-bold text-capitalize badge badge-success">{{doctrinal.version}}</span>
                         </li>
-                        <li class="p-2 border-bottom d-flex justify-content-between align-content-center">
+                        <li v-if="viewContent" class="p-2 border-bottom d-flex justify-content-between align-content-center">
                             <span class="fw-light text-capitalize pr-10">
                                 <i class="fas fa-calendar-day"></i> {{$t('message.publishDate')}} :
                             </span>
@@ -83,7 +83,7 @@
     import ContentGallery from 'Components/Contents/ContentGallery'
 
 	export default {
-        props:["meta", "doctrinal"],
+        props:["viewContent", "meta", "doctrinal"],
         components: {
 			FilesUploaded,
 			ContentGallery

@@ -14,6 +14,8 @@ import {
 
 const state = {
     user: localStorage.getItem('user'),
+    role: "ADMINISTRADOR_TECNICO",
+    viewContent: true,
     language: "INGLES",
 	isUserSigninWithAuth0: Boolean(localStorage.getItem('isUserSigninWithAuth0'))
 }
@@ -25,11 +27,23 @@ const getters = {
 	},
 	isUserSigninWithAuth0: state => {
 		return state.isUserSigninWithAuth0;
-	}
+    },
+    getRole: state => {
+		return state.role;
+    },
+    getView: state => {
+		return state.viewContent;
+    },
 }
 
 // actions
 const actions = {
+    changeRole({commit}, role){
+        commit('setRole', role);
+    },
+    changeViewContent({commit}, view){
+        commit('setView', view);
+    },
 	signinUserInFirebase(context, payload) {
 		const { user } = payload;
 		context.commit('loginUser');
@@ -103,11 +117,17 @@ const actions = {
 	},
 	signOutUserFromAuth0(context) {
 		context.commit('signOutUserFromAuth0Success');
-	}
+    }
 }
 
 // mutations
 const mutations = {
+    setRole (state, role) {
+		state.role = role;
+    },
+    setView (state, view) {
+		state.viewContent = view;
+    },
 	loginUser(state) {
 		Nprogress.start();
 	},
@@ -175,6 +195,7 @@ const mutations = {
 }
 
 export default {
+    namespaced: true,
 	state,
 	getters,
 	actions,

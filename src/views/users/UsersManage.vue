@@ -224,7 +224,7 @@
                             if(this.edit == 1){
                                 this.$router.push('/');
                             }else{
-                                this.$router.push('/users/update/'+this.type+"/"+this.edit);
+                                this.$router.push('/users/update/'+this.edit);
                             }
                             });
                         },

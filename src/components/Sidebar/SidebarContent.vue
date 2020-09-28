@@ -36,7 +36,11 @@
 </template>
 
 <script>
-	import sideBarLinks from "./menu.js";
+	import { mapGetters, mapState } from "vuex";
+    import menuAdminTechnical from "./Menus/menuAdminTechnical.js";
+    import menuAdminFuntional from "./Menus/menuAdminFuntional.js";
+    import menuFuntional from "./Menus/menuFuntional.js";
+    import menuObservator from "./Menus/menuObservator.js";
 	import { textTruncate } from "Helpers/helpers";
 
 	export default {
@@ -44,10 +48,15 @@
 			return {
 				settings: {
 					maxScrollbarLength: 220
-				},
-				sideBarLinks,
+                },
+                sideBarLinks:null
 			};
-		},
+        },
+        watch:{
+            dataMenu(val){
+                
+            }
+        },
 		methods: {
 			textTruncate(text) {
 				return textTruncate(text, 20);
@@ -61,7 +70,33 @@
 					}
 				}
 			}
-		}
+        },
+        computed: {
+            ...mapGetters({
+				role: 'auth/getRole',
+            }),
+            dataMenu() {
+				switch (this.role) {
+                    case "ADMINISTRADOR_TECNICO":
+                        this.sideBarLinks = menuAdminTechnical;
+                        break;
+                    case "ADMINISTRADOR_FUNCIONAL":
+                        this.sideBarLinks = menuAdminFuntional;
+                        break;
+                    case "FUNCIONAL":
+                        this.sideBarLinks = menuFuntional;
+                        break;
+                    case "OBSERVADOR":
+                        this.sideBarLinks = menuObservator;
+                        break;
+                
+                    default:
+                        this.sideBarLinks = menuObservator;
+                        break;
+                }
+                return this.sideBarLinks;
+			},
+        }
 
 	};
 </script>

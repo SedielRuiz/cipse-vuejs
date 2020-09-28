@@ -2,17 +2,46 @@
 4.7 Session
 ----------------------------------------------------------*/
 /*=========== Session ==========*/
+.session-wrapper-container{
+    // background: #08404a !important;
+    background: linear-gradient(to bottom, #08404a, white) !important;
+    padding: 1rem 1rem !important;
+}
+.session-block {
+    background-color: $white;
+    padding: 2rem;
+    box-shadow: 0 12px 34px 0 rgba(0,0,0,0.5);
+    border-radius: 0.625rem;
+    .form-wrapper{
+        .form-group{
+            label,.form-control{
+                font-size:0.75rem;
+            }
+            .custom-checkbox{
+                .custom-control-label{
+                    line-height:2
+                }
+            }
+        }
+    }
+}
+.session-btn{
+    font-size: 0.875rem;
+    font-weight: 600;
+    width:100%;
+    display:block;
+}
 .session-wrapper {
-	// background-image: url("/static/img/session.jpg");
-	background-position: 50%;
+    background-image: url("/static/img/session.jpg") ;
+    background-position: 50%;
 	background-repeat: no-repeat;
-	background-size: cover;
+	background-size: cover;//contain
 	bottom: 0;
 	height: 100vh;
 	left: 0;
-	// overflow: auto;
+    // overflow: auto;
 	padding: 5rem 1rem;
-	position: fixed;
+	position: initial;
 	right: 0;
 	top: 0;
 	.logo-wrap{
