@@ -85,7 +85,7 @@ export default {
 			"active": false,
 			"child_routes": [
                 {
-					"path": "/observatories/create",
+					"path": "/observatories/consult",
 					"menu_title": "message.consult"
 				},
                 {

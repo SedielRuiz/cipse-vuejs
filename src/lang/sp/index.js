@@ -439,4 +439,6 @@ export default {
    unitUpdateUnit: "Gestion de unidades / Actualizar",
    newUnit: "Nueva unidad",
    editUnit: "Editar unidad",
+   month: "Mes",
+   quantity: "Cantidad",
 }

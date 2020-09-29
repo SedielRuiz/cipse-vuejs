@@ -18,6 +18,8 @@
     "core-js": "^3.6.5",
     "countup.js": "^2.0.4",
     "cryptofont": "^0.1.1",
+    "datatables.net": "^1.10.22",
+    "datatables.net-bs4": "^1.10.22",
     "echarts": "^4.2.1",
     "firebase": "^7.20.0",
     "font-awesome": "^4.7.0",

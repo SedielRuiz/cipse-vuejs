@@ -32,6 +32,7 @@ const RequestsDetail = () => import('Views/requests/RequestsDetail')
 // vista de observatorio
 const ObservatoriesList = () => import('Views/observatories/ObservatoriesList')
 const ObservatoriesManage = () => import('Views/observatories/ObservatoriesManage')
+const ObservatoriesDetail = () => import('Views/observatories/ObservatoriesDetail')
 
 // vista de sesiones
 const Login = () => import('Views/session/Login')
@@ -272,6 +273,17 @@ export default new Router({
 						requiresAuth: true,
 						title: 'message.requests',
 						breadcrumb: 'message.requestsManageRequests'
+					}
+                },
+
+                {
+					name: "Observatory detail",
+					path: '/observatories/detail',
+					component: ObservatoriesDetail,
+					meta: {
+						requiresAuth: true,
+						title: 'message.detail',
+						breadcrumb: 'message.requestsNewRequest'
 					}
                 },
 

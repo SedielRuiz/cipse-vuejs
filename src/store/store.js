@@ -12,6 +12,7 @@ import unit from './modules/unit';
 import language from './modules/language';
 import country from './modules/country';
 import crime from './modules/crime';
+import report from './modules/report';
 
 Vue.use(Vuex);
 
@@ -64,6 +65,7 @@ export const store = new Vuex.Store({
         unit,
         country,
         language,
-        crime
+        crime,
+        report
 	}
 })

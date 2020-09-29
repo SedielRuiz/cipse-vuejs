@@ -10,19 +10,19 @@ const pointBorderWidth = 2;
 export default {
 	extends: Line,
 	props: {
-      label: {
-         type: String
-		},
-      dataSet: {
-			type: Array
-		},
-		label1: {
-			type: String,
-			default: () => 'Subscribed'
-		},
-		labels: {
-			type: Array
-		}
+        label: {
+            type: String
+            },
+        dataSet: {
+            type: Array
+        },
+        label1: {
+            type: String,
+            default: () => 'Subscribed'
+        },
+        labels: {
+            type: Array
+        }
 	},
 	data() {
 		return {

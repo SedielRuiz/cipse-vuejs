@@ -9,11 +9,11 @@
 							<h2>{{$t('message.search')}}</h2>
 						</div>
 						<div class="col-12 col-sm-12 col-md-12 col-lg-10 col-xl-10">
-                            <b-form-group id="input-group-view">
+                            <!-- <b-form-group id="input-group-view">
                                 <b-form-checkbox-group v-model="type" id="type">
                                     <b-form-checkbox value=true>Tabla</b-form-checkbox>
                                 </b-form-checkbox-group>
-                            </b-form-group>
+                            </b-form-group> -->
 							<div class="d-sm-flex align-items-center">
 								<div class="input-wrap">
 									<b-form-input type="text" required >
@@ -35,7 +35,7 @@
         <app-card v-if="type" customClasses="grid-b-space" :heading="''">
             <div class="table-responsive">
                 <div class="unseen">
-                    <table class="table table-hover table-bordered table-striped">
+                    <table id="tableUser" class="table table-hover table-bordered table-striped">
                         <thead>
                             <tr class="bg-primary text-center">
                                 <th>{{$t('message.unit')}}</th>
@@ -55,14 +55,14 @@
                                 <td class="text-right">{{user.identification | formatNumber}}</td>
                                 <td class="text-center">{{user.name}}</td>
                                 <td class="text-center">{{user.email}}</td>
-                                <th class="text-center">
+                                <td class="text-center">
                                     <b-button @click="redirect(false, user.id)" variant="success" class="d-inline-flex align-items-center text-capitalize m-1">
                                         <i class="fas fa-ellipsis-h"></i>
-                                    </b-button>
+                                    </b-button> 
                                     <b-button @click="redirect(true, user.id)" variant="success" class="d-inline-flex align-items-center text-capitalize m-1">
                                         <i class="fas fa-pen"></i>
                                     </b-button>
-                                </th>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -84,6 +84,7 @@
     import pagination from '@/components/Pagination/Paginate';
     import UserListCard from '@/components/Users/UserListCard';
 
+
     export default {
         name: 'user-list',
         components:{
@@ -95,13 +96,28 @@
                 type: true,
             }
         },
-        mounted () {
-            this.getUsers();
+        created(){
+            this.buildDataTable();
+        },
+        async mounted () {
+            await this.getUsers();
+            this.buildDataTable();
         },
         methods: {
             ...mapActions({
                 getUsers: 'user/getUsers',
             }),
+            buildDataTable(){
+                var language = this.language.locale == "sp" ? "Spanish.json" : "English.json" ;
+                $('#tableUser').DataTable({
+                    "language": {
+                        "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/"+language
+                    },
+                    buttons: [
+                        'copy', 'csv', 'excel', 'pdf', 'print'
+                    ]
+                });
+            },
             alertSweet(){
                 this.$swal('Hello Vue world!!!');
             },
@@ -123,6 +139,7 @@
         computed:{
             ...mapState({
                 users: state => state.user.users,
+                language: state => state.settings.selectedLocale,
             }),
         },
     }
