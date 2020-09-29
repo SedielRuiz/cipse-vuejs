@@ -29,7 +29,7 @@
         <app-card customClasses="grid-b-space" :heading="''">
             <div class="table-responsive">
                 <div class="unseen">
-                    <table class="table table-hover table-bordered table-striped">
+                    <table id="tableUnits" class="table table-hover table-bordered table-striped">
                         <thead>
                             <tr class="bg-primary text-center">
                                 <th>{{$t('message.name')}}</th>
@@ -57,7 +57,7 @@
 
 <script>
     import {mapActions,mapState} from 'vuex';
-    import { textTruncate } from "Helpers/helpers";
+    import { textTruncate, dataTable } from "Helpers/helpers";
     import pagination from '@/components/Pagination/Paginate';
 
     export default {
@@ -70,13 +70,21 @@
                 headers: [],
             }
         },
-        mounted () {
-            this.getUnits();
+        created(){
+            this.buildDataTable();
+        },
+        async mounted () {
+            await this.getUnits();
+            this.buildDataTable();
         },
         methods: {
             ...mapActions({
                 getUnits: 'unit/getUnits',
             }),
+            buildDataTable(){
+                var language = this.language.locale == "sp" ? "Spanish.json" : "English.json" ;
+                dataTable('tableUnits', language);
+            },
             alertSweet(){
                 this.$swal('Hello Vue world!!!');
             },
@@ -101,6 +109,7 @@
         computed:{
             ...mapState({
                 units: state => state.unit.units,
+                language: state => state.settings.selectedLocale,
             }),
         },
     }

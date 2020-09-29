@@ -32,3 +32,17 @@ export function textTruncate(str, length, ending) {
 		return str;
 	}
 }
+
+/**
+ * DataTable base
+ */
+export function dataTable(id, language) {
+	$('#'+id).DataTable({
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/"+language
+        },
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
+    });
+}

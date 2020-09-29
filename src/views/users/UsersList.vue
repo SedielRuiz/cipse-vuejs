@@ -81,9 +81,9 @@
 
 <script>
     import {mapActions,mapState} from 'vuex';
+    import { dataTable } from "Helpers/helpers";
     import pagination from '@/components/Pagination/Paginate';
     import UserListCard from '@/components/Users/UserListCard';
-
 
     export default {
         name: 'user-list',
@@ -109,14 +109,7 @@
             }),
             buildDataTable(){
                 var language = this.language.locale == "sp" ? "Spanish.json" : "English.json" ;
-                $('#tableUser').DataTable({
-                    "language": {
-                        "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/"+language
-                    },
-                    buttons: [
-                        'copy', 'csv', 'excel', 'pdf', 'print'
-                    ]
-                });
+                dataTable('tableUser', language);
             },
             alertSweet(){
                 this.$swal('Hello Vue world!!!');

@@ -29,7 +29,7 @@
         <app-card v-if="view" customClasses="grid-b-space" :heading="''">
             <div class="table-responsive">
                 <div class="unseen">
-                    <table class="table table-hover table-bordered table-striped">
+                    <table id="tableContents" class="table table-hover table-bordered table-striped">
                         <thead>
                             <tr class="bg-primary text-center">
                                 <th v-for="(head, index) in heading" :key="index">
@@ -105,6 +105,7 @@
 
 <script>
     import {mapActions,mapState} from 'vuex';
+    import { dataTable } from "Helpers/helpers";
     import pagination from '@/components/Pagination/Paginate';
     import NoticeCard from "Components/Contents/Cards/NoticeCard";
     import MemoryCard from "Components/Contents/Cards/MemoryCard";
@@ -125,9 +126,10 @@
                 contents:[],
             }
         },
-        mounted () {
+        async mounted () {
             this.type = this.$route.params.type;
-            this.search();
+            await this.search();
+            this.buildDataTable();
         },
         watch:{
             changeType(val){
@@ -138,6 +140,10 @@
             ...mapActions({
                 getContents: 'content/getContents',
             }),
+            buildDataTable(){
+                var language = this.language.locale == "sp" ? "Spanish.json" : "English.json" ;
+                dataTable('tableContents', language)
+            },
             getContent(content){
                 var result = content.contents.filter(content => content.language.key == this.language);
                 if(result.length > 0){
@@ -217,6 +223,7 @@
                 memories: state => state.content.memories,
                 us: state => state.content.us,
                 cardContent: state => state.auth.viewContent,
+                language: state => state.settings.selectedLocale,
             }),
             view(){
                 return this.cardContent;
