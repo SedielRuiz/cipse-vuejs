@@ -278,7 +278,7 @@ export default new Router({
 
                 {
 					name: "Observatory detail",
-					path: '/observatories/detail',
+					path: '/observatories/detail/:year',
 					component: ObservatoriesDetail,
 					meta: {
 						requiresAuth: true,
