@@ -10,15 +10,15 @@
                     <div class="row">
                         <div class="col-xs-12 col-sm-12 col-md-6">
                             <b-form-group id="input-group-country" :label="$t('message.country')+':'" label-for="country">
-                                <select class="form-control" id="country" v-model="observatory.country_id" required>
+                                <select :disabled="observatory.disabled" class="form-control" id="country" v-model="observatory.country_id" required>
                                     <option v-for="(country, index) in countries" :key="index" :value="country.id">{{country.name}}</option>
                                 </select>
                             </b-form-group>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-6">
-                            <b-form-group id="input-group-unit" :label="$t('message.unit')+':'" label-for="unit">
-                                <select class="form-control" id="unit" v-model="observatory.unit_id" required>
-                                    <option v-for="(unit, index) in units" :key="index" :value="unit.id">{{unit.name}}</option>
+                            <b-form-group id="input-group-year" :label="$t('message.year')+':'" label-for="year">
+                                <select :disabled="observatory.disabled" class="form-control" id="year" v-model="observatory.year" required>
+                                    <option v-for="(year, index) in years" :key="index" :value="year.id">{{year.name}}</option>
                                 </select>
                             </b-form-group>
                         </div>
@@ -27,15 +27,15 @@
                     <div class="row">
                         <div class="col-xs-12 col-sm-12 col-md-6">
                             <b-form-group id="input-group-crime" :label="$t('message.crime')+':'" label-for="crime">
-                                <select class="form-control" id="crime" v-model="observatory.crime_id" required>
+                                <select :disabled="observatory.disabled" class="form-control" id="crime" v-model="observatory.crime_id" required>
                                     <option v-for="(crime, index) in crimes" :key="index" :value="crime.id">{{crime.name}}</option>
                                 </select>
                             </b-form-group>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-6">
-                            <b-form-group id="input-group-year" :label="$t('message.year')+':'" label-for="year">
-                                <select class="form-control" id="year" v-model="observatory.year_id" required>
-                                    <option v-for="(year, index) in years" :key="index" :value="year.id">{{year.name}}</option>
+                            <b-form-group id="input-group-unit" :label="$t('message.unit')+':'" label-for="unit">
+                                <select :disabled="observatory.disabled" class="form-control" id="unit" v-model="observatory.unit_id" required>
+                                    <option v-for="(unit, index) in units" :key="index" :value="unit.id">{{unit.name}}</option>
                                 </select>
                             </b-form-group>
                         </div>
@@ -44,12 +44,12 @@
                     <h3>Meses</h3><hr>
 
                     <div class="row">
-                        <div class="col-xs-12 col-sm-12 col-md-6" v-for="(montn, index) in months" :key="index">
-                            <b-form-group id="input-group-identification" :label="$t('message.'+montn.name)+':'" label-for="montn">
+                        <div class="col-xs-12 col-sm-12 col-md-6" v-for="(month, index) in months" :key="index">
+                            <b-form-group id="input-group-identification" :label="$t('message.'+month.name)+':'" label-for="month">
                                 <b-form-input
                                 type="number"
-                                id="montn"
-                                v-model="data.montn"
+                                :id="'month'+month.id"
+                                v-model="month.value"
                                 required
                                 placeholder=""
                                 ></b-form-input>
@@ -70,13 +70,16 @@
 
 <script>
     import {mapActions,mapState} from 'vuex';
-    
+    import { months } from "Helpers/helpers";
+
     export default {
         name: 'observatory-manage',
         data () {
             return {
-                observatory: {},
                 edit:"",
+                crime:"",
+                country:"",
+                observatory: {},
                 titleText:"observatory",
                 data:{},
                 years:[
@@ -85,81 +88,50 @@
                         name:"2020",
                     }
                 ],
-                months:[
-                    {
-                        id:1,
-                        name:"january",
-                    },
-                    {
-                        id:2,
-                        name:"february",
-                    },
-                    {
-                        id:3,
-                        name:"march",
-                    },
-                    {
-                        id:4,
-                        name:"april",
-                    },
-                    {
-                        id:5,
-                        name:"may",
-                    },
-                    {
-                        id:6,
-                        name:"june",
-                    },
-                    {
-                        id:7,
-                        name:"july",
-                    },
-                    {
-                        id:8,
-                        name:"august",
-                    },
-                    {
-                        id:9,
-                        name:"september",
-                    },
-                    {
-                        id:10,
-                        name:"october",
-                    },
-                    {
-                        id:11,
-                        name:"november",
-                    },
-                    {
-                        id:12,
-                        name:"december",
-                    },
-                ]
+                months:months
             }
         },
         watch:{
-            us(val){
+            repot(val){
                 if(val){
-                    this.observatory = val;
+                    for (let s = 0; s < this.months.length; s++) {
+                        var observatory = val.filter(observatory => observatory.month == this.months[s].id);
+                        this.months[s].value = observatory.length > 0 ? observatory[0].value : 0;
+                    }
+                    this.months.push();
+                    this.observatory.country_id = this.country;
+                    this.observatory.crime_id = this.crime;
+                    this.observatory.year = this.year;
+                    this.observatory.disabled = true;
                 }
             },
         },
         async mounted () {
-            //Unidades
-            await this.getUnits();
+            for (let s = 0; s < this.months.length; s++) {
+                this.months[s].value = 0;
+            }
             //paises
             await this.getCountries();
+            //Unidades
+            await this.getUnits();
             //crimenes
             await this.getCrimes();
 
-            this.edit = this.$route.params.id == undefined ? 0 : this.$route.params.id;
-            if(this.edit!=""){
-                if(this.edit == 1){
+            this.country = this.$route.params.country == undefined ? 0 : this.$route.params.country;
+            this.year = this.$route.params.year == undefined ? 0 : this.$route.params.year;
+            this.crime = this.$route.params.crime == undefined ? 0 : this.$route.params.crime;
+            if(this.year!=""){
+                if(this.year == 1){
                     this.titleText="newObservatory"
                 }
                 else{
                     this.titleText="editObservatory"
-                    // this.getObservatory(this.edit);
+                    var params = {
+                        "country": this.country, 
+                        "year": this.year, 
+                        "crime": this.crime,
+                    }
+                    await this.getReport(params);
                 }
             }else{
                 this.titleText="newObservatory"
@@ -169,6 +141,7 @@
             ...mapActions({
                 create: 'observatory/create',
                 update: 'observatory/update',
+                getReport: 'report/getReport',
                 getCrimes: 'crime/getCrimes',
                 getUnits: 'unit/getUnits',
                 getCountries: 'country/getCountries',
@@ -204,6 +177,7 @@
         },
         computed:{
             ...mapState({
+                repot: state => state.report.report, 
                 crimes: state => state.crime.crimes, 
                 units: state => state.unit.units,
                 countries: state => state.country.countries,

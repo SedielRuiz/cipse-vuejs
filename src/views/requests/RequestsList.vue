@@ -102,7 +102,11 @@
             },
             redirect(page, id){
                 if(!page){
-                    this.$router.push('/requests/detail/'+id)
+                    if(id){
+                        this.$router.push('/requests/detail/'+id)
+                    }else{
+                        this.$router.push('/requests/create')
+                    }
                 }else{
                     this.$router.push('/requests/update/'+id)
                 }

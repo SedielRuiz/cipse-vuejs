@@ -41,8 +41,6 @@
                                 <th>{{$t('message.country')}}</th>
                                 <th>{{$t('message.crime')}}</th>
                                 <th>{{$t('message.year')}}</th>
-                                <th>{{$t('message.month')}}</th>
-                                <th>{{$t('message.quantity')}}</th>
                                 <th>{{$t('message.actions')}}</th>
                             </tr>
                         </thead>
@@ -51,13 +49,11 @@
                                 <td class="text-center">{{report.country.name}}</td>
                                 <td class="text-center">{{report.crime.name}}</td>
                                 <td class="text-center">{{report.year}}</td>
-                                <td class="text-center">{{report.month}}</td>
-                                <td class="text-center">{{report.value}}</td>
                                 <td class="text-center">
-                                    <b-button @click="redirect(false, report.id)" variant="success" class="d-inline-flex align-items-center text-capitalize m-1">
+                                    <b-button @click="redirect(false, report.year)" variant="success" class="d-inline-flex align-items-center text-capitalize m-1">
                                         <i class="fas fa-ellipsis-h"></i>
                                     </b-button> 
-                                    <b-button @click="redirect(true, report.id)" variant="success" class="d-inline-flex align-items-center text-capitalize m-1">
+                                    <b-button @click="redirect(true, report.year, report.crime_id, report.country_id)" variant="success" class="d-inline-flex align-items-center text-capitalize m-1">
                                         <i class="fas fa-pen"></i>
                                     </b-button>
                                 </td>
@@ -72,6 +68,7 @@
 
 <script>
     import {mapActions,mapState} from 'vuex';
+    import { dataTable, getMonth } from "Helpers/helpers";
 
     export default {
         name: 'report-list',
@@ -93,16 +90,12 @@
             ...mapActions({
                 getReports: 'report/getReports',
             }),
+            getMonth(month){
+                return getMonth(month);
+            },
             buildDataTable(){
-                var language = this.language.locale == "sp" ? "Spanish.json" : "English.json" ;
-                $('#tableReport').DataTable({
-                    "language": {
-                        "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/"+language
-                    },
-                    buttons: [
-                        'copy', 'csv', 'excel', 'pdf', 'print'
-                    ]
-                });
+                var language = this.language.locale == "sp" ? "Spanish.json" : "English.json";
+                dataTable('tableReport', language);
             },
             alertSweet(){
                 this.$swal('Hello Vue world!!!');
@@ -110,7 +103,7 @@
             search(pagination){
                 this.getReports(pagination);
             },
-            redirect(page, id){
+            redirect(page, id, crime, country){
                 if(!page){
                     if(id){
                         this.$router.push('/observatories/detail/'+id)
@@ -118,7 +111,7 @@
                         this.$router.push('/observatories/create')
                     }
                 }else{
-                    this.$router.push('/observatories/update/'+id)
+                    this.$router.push('/observatories/update/'+id+'/'+crime+'/'+country)
                 }
             }
         },

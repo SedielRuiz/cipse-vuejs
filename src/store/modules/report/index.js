@@ -1,7 +1,7 @@
 import Vue from 'vue';
 
 const state = {
-    reports: [],
+    crimes: [],
     reports: [],
     report: "",
     //Paginación
@@ -12,23 +12,30 @@ const state = {
 };
 
 const actions = {
-    getReport:({commit}, id) => {
+    getReport:({commit}, data) => {
         commit('startProcessing', null, { root: true });
+        var json = {
+            params: {
+                        "country":data.country,
+                        "crime":data.crime,
+                    }   
+        }
         return new Promise((resolve, reject) => {
-        Vue.http.post(state.prefix+'reports/'+id).then(
-            response =>{
-                var data = response.data;
-                commit('setReport',data);
-                resolve(data)
-            }).catch(error=>{
-                commit('setError', error, { root: true });
-                reject(error)
-            }).finally(()=>{
-                commit('stopProcessing', null, { root: true });
-            })
-        });
+            Vue.http.get(state.prefix+'reports/'+data.year, json).then(
+                response =>{
+                    var data = response.data;
+                    commit('setReport',data);
+                    resolve(data)
+                }).catch(error=>{
+                    commit('setError', error, { root: true });
+                    reject(error)
+                }).finally(()=>{
+                    commit('stopProcessing', null, { root: true });
+                })
+            });
     },
     getReports:({commit}, data) => {
+        commit('startProcessing', null, { root: true });
         return new Promise((resolve, reject) => {
         Vue.http.get(state.prefix+'reports', data).then(
             response =>{
@@ -103,8 +110,8 @@ const mutations = {
         state.total_pages = list.total_pages;
         state.total_items = list.total_items;
     },
-    setReport: (state, rl) => {
-        state.report = rl
+    setReport: (state, response) => {
+        state.report = response.data
     },
     setReportCrimes: (state, rl) => {
         state.crimes = rl

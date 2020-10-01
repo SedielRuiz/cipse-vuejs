@@ -28,6 +28,7 @@ const actions = {
         });
     },
     getCrimes:({commit}, data) => {
+        commit('startProcessing', null, { root: true });
         return new Promise((resolve, reject) => {
         Vue.http.get(state.prefix+'crimes', data).then(
             response =>{

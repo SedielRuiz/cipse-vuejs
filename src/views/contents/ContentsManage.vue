@@ -10,14 +10,14 @@
                     <div class="row">
                         <div class="col-xs-12 col-sm-12 col-md-6">
                             <b-form-group id="input-group-country" :label="$t('message.country')+':'" label-for="country">
-                                <select class="form-control" id="country" v-model="content.country_id" required>
+                                <select :disabled="content.disabled" class="form-control" id="country" v-model="content.country_id" required>
                                     <option v-for="(country, index) in countries" :key="index" :value="country.id">{{country.name}}</option>
                                 </select>
                             </b-form-group>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-6">
                             <b-form-group id="input-group-unit" :label="$t('message.unit')+':'" label-for="unit">
-                                <select class="form-control" id="unit" v-model="content.unit_id" required>
+                                <select :disabled="content.disabled" class="form-control" id="unit" v-model="content.unit_id" required>
                                     <option v-for="(unit, index) in units" :key="index" :value="unit.id">{{unit.name}}</option>
                                 </select>
                             </b-form-group>
@@ -39,13 +39,14 @@
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-6">
                             <b-form-group v-if="type=='NOTICIA'" id="input-group-category" :label="$t('message.category')+':'" label-for="category">
-                                <select class="form-control" id="category" v-model="content.category_id" required>
+                                <select :disabled="content.disabled" class="form-control" id="category" v-model="content.category_id" required>
                                     <option v-for="(category, index) in categories" :key="index" :value="category.id">{{category.name}}</option>
                                 </select>
                             </b-form-group>
 
                             <b-form-group v-if="type=='NOTICIA'" id="input-group-durationDate" :label="$t('message.durationDate')+':'" label-for="durationDate">
                                 <b-form-input
+                                :disabled="content.disabled"
                                 id="durationDate"
                                 v-model="content.duration_date"
                                 required
@@ -55,6 +56,7 @@
                         
                             <b-form-group v-if="type=='DOCTRINAL'" id="input-group-topic" :label="$t('message.topic')+':'" label-for="topic">
                                 <b-form-input
+                                :disabled="content.disabled"
                                 id="topic"
                                 v-model="content.topic"
                                 required
@@ -64,6 +66,7 @@
 
                             <b-form-group v-if="type=='DOCTRINAL'" id="input-group-type-document" :label="$t('message.typeDocument')+':'" label-for="type_document">
                                 <b-form-input
+                                :disabled="content.disabled"
                                 id="type_document"
                                 v-model="content.type_document"
                                 required
@@ -154,6 +157,7 @@
             contet(val){
                 if(val){
                     this.content = val;
+                    this.content.disabled = true;
                     for (var s = 0; s < this.languages.length; s++) {
                         var contentLanguage = val.contents.filter(ctn => ctn.language_id == this.languages[s].id);
                         if(contentLanguage.length > 0){

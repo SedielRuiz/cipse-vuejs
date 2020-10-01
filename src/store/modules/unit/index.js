@@ -28,6 +28,7 @@ const actions = {
         });
     },
     getUnits:({commit}, data) => {
+        commit('startProcessing', null, { root: true });
         return new Promise((resolve, reject) => {
         Vue.http.get(state.prefix+'units', data).then(
             response =>{
@@ -38,6 +39,7 @@ const actions = {
                 commit('setError', error, { root: true });
                 reject(error)
             }).finally(()=>{
+                commit('stopProcessing', null, { root: true });
             })
         });
     },

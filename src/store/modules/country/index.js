@@ -28,6 +28,7 @@ const actions = {
         });
     },
     getCountries:({commit}, data) => {
+        commit('startProcessing', null, { root: true });
         return new Promise((resolve, reject) => {
         Vue.http.get(state.prefix+'countries', data).then(
             response =>{

@@ -300,7 +300,7 @@ export default new Router({
 
                 {
 					name: "Observatory update",
-					path: '/observatories/update/:id',
+					path: '/observatories/update/:year/:crime/:country',
 					component: ObservatoriesManage,
 					meta: {
 						requiresAuth: true,
