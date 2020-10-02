@@ -56,7 +56,7 @@
 		methods: {
 			submit() {
                 // evt.preventDefault();
-                this.$router.push('/dashboard/dashboard-v1');
+				this.$router.push('/dashboard/dashboard-v1');
 				const user = {
 					email: this.form.email,
 					password: this.form.password

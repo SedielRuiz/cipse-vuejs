@@ -66,7 +66,7 @@ export default {
 					borderColor:  ChartConfig.color.white,
 					pointBorderColor:  ChartConfig.color.white,
 					pointBorderWidth,
-               pointRadius,
+               		pointRadius,
 					fill: false,
 					pointBackgroundColor: ChartConfig.color.white,
 					borderWidth,

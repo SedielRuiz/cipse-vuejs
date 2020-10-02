@@ -3,9 +3,22 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <b-card class="mt-3" >
                 <b-card-title>
-                    <h2><i class="fas fa-eye"></i> {{$t('message.detail')}}</h2>
+                    <h2>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-1 align-self-center text-left">
+                                <b-button @click="onBack()" class="m-1" type="reset" variant="success"><i class="fas fa-chevron-left"></i></b-button>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-11 align-self-center">
+                                {{country}} ({{crime}}) - {{year}}
+                            </div>
+                        </div>
+                    </h2>
                 </b-card-title><hr>
-                <line-chart :label=label :dataSet=data :labels=labels></line-chart>
+                <div>
+                    <bar-chart v-if="data.length > 0 && labels.length > 0" class="overflow-hide h-100" 
+                                :width="100" :height="60" :label=label :dataSet=data :labels=labels :type="'single'">
+                    </bar-chart>
+                </div>
             </b-card>
         </div>
     </div>
@@ -13,15 +26,21 @@
 
 <script>
     import {mapActions,mapState} from 'vuex';
-    import LineChart from "Components/Charts/LineChart";
+    import BarChart from "Components/Charts/BarChart";
+    import { months, getMonth } from "Helpers/helpers";
 
     export default {
         name: 'observatory-detail',
         components:{
-            LineChart
+            BarChart
         },
         data () {
             return {
+                year:"",
+                crime:"",
+                country:"",
+
+                months:months,
                 observatory: {},
                 label:"Observatorio",
                 data:[],
@@ -29,75 +48,44 @@
             }
         },
         watch:{
-            us(val){
+            report(val){
                 if(val){
-                    this.observatory = val;
+                    console.log(val);
+                    for (let s = 0; s < val.length; s++) {
+                        this.labels.push(getMonth(val[s].month));
+                        this.data.push(val[s].value);
+                    }
                 }
+                this.crime = val[0].crime.name;
+                this.label = this.crime;
+                this.country = val[0].country.name;
+                this.labels.push();
+                this.data.push();
             },
         },
-        async mounted () {
-            //Unidades
-            await this.getUnits();
-            //paises
-            await this.getCountries();
-            //crimenes
-            await this.getCrimes();
+        mounted () {
+            this.country = this.$route.params.country == undefined ? 0 : this.$route.params.country;
+            this.year = this.$route.params.year == undefined ? 0 : this.$route.params.year;
+            this.crime = this.$route.params.crime == undefined ? 0 : this.$route.params.crime;
 
-            this.edit = this.$route.params.id == undefined ? 0 : this.$route.params.id;
-            if(this.edit!=""){
-                if(this.edit == 1){
-                    this.titleText="newObservatory"
-                }
-                else{
-                    this.titleText="editObservatory"
-                    // this.getObservatory(this.edit);
-                }
-            }else{
-                this.titleText="newObservatory"
+            var params = {
+                "country": this.country, 
+                "year": this.year, 
+                "crime": this.crime,
             }
+            this.getReport(params);
         },
         methods: {
             ...mapActions({
-                create: 'observatory/create',
-                update: 'observatory/update',
-                getCrimes: 'crime/getCrimes',
-                getUnits: 'unit/getUnits',
-                getCountries: 'country/getCountries',
+                getReport: 'report/getReport',
             }),
             onBack(){
                 this.$router.push('/observatories/consult');
             },
-            processObservatory () {
-                if(this.edit){
-                    this.update(this.user).then(
-                        data => {
-                            this.setWarning(data, { root: true }).then(()=>{
-                            if(this.edit == 1){
-                                this.$router.push('/');
-                            }else{
-                                this.$router.push('/users/update/'+this.edit);
-                            }
-                            });
-                        },
-                        error => {
-                    });
-                }else{
-                    this.create(this.user).then(
-                        data => {
-                            this.setWarning(data, { root: true }).then(()=>{
-                                this.$router.push('/users/consult')
-                            })
-                        },
-                        error => {
-                    })
-                }
-            },
         },
         computed:{
             ...mapState({
-                crimes: state => state.crime.crimes, 
-                units: state => state.unit.units,
-                countries: state => state.country.countries,
+                report: state => state.report.report,
             }),
         },
     }

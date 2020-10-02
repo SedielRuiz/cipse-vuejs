@@ -10,11 +10,11 @@
 						</div>
 						<div class="col-12 col-sm-12 col-md-12 col-lg-9 col-xl-9">
 							<div class="d-sm-flex align-items-center">
-								<div class="input-wrap">
+								<div class="col-md-7">
 									<b-form-input type="text" required >
 									</b-form-input>
 								</div>
-								<div class="action-btn-wrap ml-3">
+								<div class="ml-3">
 									<b-button @click="alertSweet()" variant="primary" class="mr-3 text-capitalize">{{$t('message.search')}}</b-button>
 									<b-button @click="redirect(false)" variant="success" class="d-inline-flex align-items-center text-capitalize">
                                         {{$t('message.addNew')}}<i class="material-icons btn-icon ml-1">add</i> 

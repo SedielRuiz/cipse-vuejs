@@ -441,4 +441,8 @@ export default {
    editUnit: "Editar unidad",
    month: "Mes",
    quantity: "Cantidad",
+   detail: "Detalle",
+   obaservatoriesManage: "Gestion de observatorio",
+   obaservatoriesUpdateObservatory: "Gestion de observatorio / Consulta / Actulizar",
+   obaservatoriesNewObservatory: "Gestion de observatorio / Nuevo"
 }

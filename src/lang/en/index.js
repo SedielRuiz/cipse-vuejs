@@ -438,4 +438,5 @@ export default {
     editUnit: "Edit Unit",
     month: "Month",
     quantity: "Quantity",
+    detail: "Detail",
 }

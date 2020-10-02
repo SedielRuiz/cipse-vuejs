@@ -59,7 +59,7 @@ export default new Router({
 					path: '/dashboard/dashboard-v1',
 					component: DashboardOne,
 					meta: {
-						requiresAuth: true,
+						requiresAuth: false,
 						title: 'message.dashboard1',
 						breadcrumb: 'message.dashboardDashboard1'
 					}
@@ -69,7 +69,7 @@ export default new Router({
 					path: '/dashboard/dashboard-v2',
 					component: DashboardTwo,
 					meta: {
-						requiresAuth: true,
+						requiresAuth: false,
 						title: 'message.dashboard2',
 						breadcrumb: 'message.dashboardDashboard2'
 					}
@@ -79,7 +79,7 @@ export default new Router({
 					path: '/dashboard/crm',
 					component: CRM,
 					meta: {
-						requiresAuth: true,
+						requiresAuth: false,
 						title: 'message.crm',
 						breadcrumb: 'message.dashboardCrm'
 					}
@@ -89,7 +89,7 @@ export default new Router({
 					path: '/dashboard/crypto',
 					component: Crypto,
 					meta: {
-						requiresAuth: true,
+						requiresAuth: false,
 						title: 'message.crypto',
 						breadcrumb: 'message.dashboardCrypto'
 					}
@@ -100,7 +100,7 @@ export default new Router({
 					path: '/units/consult',
 					component: UnitsList,
 					meta: {
-						requiresAuth: true,
+						requiresAuth: false,
 						title: 'message.units',
 						breadcrumb: 'message.unitManageUnit'
 					}
@@ -111,7 +111,7 @@ export default new Router({
 					path: '/units/create',
 					component: UnitsManage,
 					meta: {
-						requiresAuth: true,
+						requiresAuth: false,
 						title: 'message.addNew',
 						breadcrumb: 'message.unitNewUnit'
 					}
@@ -122,7 +122,7 @@ export default new Router({
 					path: '/units/update/:id',
 					component: UnitsManage,
 					meta: {
-						requiresAuth: true,
+						requiresAuth: false,
 						title: 'message.edit',
 						breadcrumb: 'message.unitUpdateUnit'
 					}
@@ -134,7 +134,7 @@ export default new Router({
 					path: '/users/consult',
 					component: UsersList,
 					meta: {
-						requiresAuth: true,
+						requiresAuth: false,
 						title: 'message.users',
 						breadcrumb: 'message.usersmanageUsers'
 					}
@@ -145,7 +145,7 @@ export default new Router({
 					path: '/users/create',
 					component: UsersManage,
 					meta: {
-						requiresAuth: true,
+						requiresAuth: false,
 						title: 'message.addNew',
 						breadcrumb: 'message.usersNewUsers'
 					}
@@ -156,7 +156,7 @@ export default new Router({
 					path: '/users/update/:id',
 					component: UsersManage,
 					meta: {
-						requiresAuth: true,
+						requiresAuth: false,
 						title: 'message.edit',
 						breadcrumb: 'message.usersUpdateUser'
 					}
@@ -167,7 +167,7 @@ export default new Router({
 					path: '/users/user-profile/:id',
 					component: UserProfile,
 					meta: {
-						requiresAuth: true,
+						requiresAuth: false,
 						title: 'message.userProfile',
 						breadcrumb: 'message.usersUserProfile'
 					}
@@ -180,7 +180,7 @@ export default new Router({
 					path: '/contents/consult/:type',
 					component: ContentsList,
 					meta: {
-						requiresAuth: true,
+						requiresAuth: false,
 						title: 'message.contents',
 						breadcrumb: 'message.contentsmanageContents'
 					}
@@ -191,7 +191,7 @@ export default new Router({
 					path: '/contents/detail/:type/:id',
 					component: ContentsDetail,
 					meta: {
-						requiresAuth: true,
+						requiresAuth: false,
 						title: 'message.contents',
 						breadcrumb: 'message.contentsDetailContents'
 					}
@@ -202,7 +202,7 @@ export default new Router({
 					path: '/contents/create/:type',
 					component: ContentsManage,
 					meta: {
-						requiresAuth: true,
+						requiresAuth: false,
 						title: 'message.addNew',
 						breadcrumb: 'message.contentsNewContents'
 					}
@@ -213,7 +213,7 @@ export default new Router({
 					path: '/contents/update/:type/:id',
 					component: ContentsManage,
 					meta: {
-						requiresAuth: true,
+						requiresAuth: false,
 						title: 'message.edit',
 						breadcrumb: 'message.contentsUpdateContents'
 					}
@@ -226,7 +226,7 @@ export default new Router({
 					path: '/requests/consult',
 					component: RequestsList,
 					meta: {
-						requiresAuth: true,
+						requiresAuth: false,
 						title: 'message.requests',
 						breadcrumb: 'message.requestsManageRequests'
 					}
@@ -237,7 +237,7 @@ export default new Router({
 					path: '/requests/detail/:id',
 					component: RequestsDetail,
 					meta: {
-						requiresAuth: true,
+						requiresAuth: false,
 						title: 'message.requests',
 						breadcrumb: 'message.requestDetailRequest'
 					}
@@ -248,7 +248,7 @@ export default new Router({
 					path: '/requests/create',
 					component: RequestsManage,
 					meta: {
-						requiresAuth: true,
+						requiresAuth: false,
 						title: 'message.addNew',
 						breadcrumb: 'message.requestsNewRequest'
 					}
@@ -259,7 +259,7 @@ export default new Router({
 					path: '/requests/update/:id',
 					component: RequestsManage,
 					meta: {
-						requiresAuth: true,
+						requiresAuth: false,
 						title: 'message.edit',
 						breadcrumb: 'message.requestsUpdateRequest'
 					}
@@ -270,20 +270,20 @@ export default new Router({
 					path: '/observatories/consult',
 					component: ObservatoriesList,
 					meta: {
-						requiresAuth: true,
-						title: 'message.requests',
-						breadcrumb: 'message.requestsManageRequests'
+						requiresAuth: false,
+						title: 'message.observatories',
+						breadcrumb: 'message.obaservatoriesManage'
 					}
                 },
 
                 {
 					name: "Observatory detail",
-					path: '/observatories/detail/:year',
+					path: '/observatories/detail/:year/:crime/:country',
 					component: ObservatoriesDetail,
 					meta: {
-						requiresAuth: true,
+						requiresAuth: false,
 						title: 'message.detail',
-						breadcrumb: 'message.requestsNewRequest'
+						breadcrumb: 'message.obaservatoriesNewObservatory'
 					}
                 },
 
@@ -292,9 +292,9 @@ export default new Router({
 					path: '/observatories/create',
 					component: ObservatoriesManage,
 					meta: {
-						requiresAuth: true,
+						requiresAuth: false,
 						title: 'message.addNew',
-						breadcrumb: 'message.requestsNewRequest'
+						breadcrumb: 'message.obaservatoriesNewObservatory'
 					}
                 },
 
@@ -303,9 +303,9 @@ export default new Router({
 					path: '/observatories/update/:year/:crime/:country',
 					component: ObservatoriesManage,
 					meta: {
-						requiresAuth: true,
+						requiresAuth: false,
 						title: 'message.edit',
-						breadcrumb: 'message.requestsUpdateRequest'
+						breadcrumb: 'message.obaservatoriesUpdateObservatory'
 					}
                 },
 			]

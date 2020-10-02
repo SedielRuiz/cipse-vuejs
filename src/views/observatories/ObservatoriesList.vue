@@ -15,11 +15,11 @@
                                 </b-form-checkbox-group>
                             </b-form-group> -->
 							<div class="d-sm-flex align-items-center">
-								<div class="input-wrap">
+								<div class="col-md-7">
 									<b-form-input type="text" required >
 									</b-form-input>
 								</div>
-								<div class="action-btn-wrap ml-3">
+								<div class="ml-3 text-right">
 									<b-button @click="alertSweet()" variant="primary" class="mr-3 text-capitalize">{{$t('message.search')}}</b-button>
 
 									<b-button @click="redirect(false)" variant="success" class="d-inline-flex align-items-center text-capitalize">
@@ -33,7 +33,13 @@
 			</div>
 		</div>
         <app-card customClasses="grid-b-space" :heading="''">
-            <div class="table-responsive">
+            <b-form-group id="input-group-view" :label="'Vista'" label-for="view">
+                <select class="form-control" id="view" v-model="stadistics" >
+                    <option :value="true">Tabla</option>
+                    <option :value="false">Grafica</option>
+                </select>
+            </b-form-group>
+            <div v-if="stadistics" class="table-responsive">
                 <div class="unseen">
                     <table id="tableReport" class="table table-hover table-bordered table-striped">
                         <thead>
@@ -50,7 +56,7 @@
                                 <td class="text-center">{{report.crime.name}}</td>
                                 <td class="text-center">{{report.year}}</td>
                                 <td class="text-center">
-                                    <b-button @click="redirect(false, report.year)" variant="success" class="d-inline-flex align-items-center text-capitalize m-1">
+                                    <b-button @click="redirect(false, report.year, report.crime_id, report.country_id)" variant="success" class="d-inline-flex align-items-center text-capitalize m-1">
                                         <i class="fas fa-ellipsis-h"></i>
                                     </b-button> 
                                     <b-button @click="redirect(true, report.year, report.crime_id, report.country_id)" variant="success" class="d-inline-flex align-items-center text-capitalize m-1">
@@ -62,6 +68,11 @@
                     </table>
                 </div>
             </div><!-- table responsive closed -->
+            <div v-else>
+                <stadisticts v-if="data.length > 0 && labels.length > 0" 
+                        :data=data :labels=labels :label=label :type="'double'">
+                </stadisticts>
+            </div>
         </app-card>
 	</div>
 </template>
@@ -69,14 +80,51 @@
 <script>
     import {mapActions,mapState} from 'vuex';
     import { dataTable, getMonth } from "Helpers/helpers";
+    import Stadisticts from "Components/Observatories/Stadistics";
 
     export default {
         name: 'report-list',
         components:{
+            Stadisticts
         },
         data () {
             return {
-                
+                data:[],
+                labels:[],
+                label:"",
+                stadistics:true
+            }
+        },
+        watch:{
+            countries(val){
+                if(val){
+                    this.data = [];
+                    this.label ="Grafica internacional";
+                    for (let s = 0; s < val.length; s++) {
+                        this.labels.push(val[s].name);
+                    }
+                    for (let r = 0; r < val[0].crimes.length; r++) {
+                        var dataCrime = [];
+                        for (let s = 0; s < val.length; s++) {
+                            var total = val[s].data.filter(crime => crime.name == val[0].crimes[r].name);
+                            console.log(val[0].crimes[r].name, total);
+                            dataCrime.push( total.length > 0 ? total[0].total : 0 );
+                        }
+                        var crime = {
+                            type: 'bar',
+                            backgroundColor: this.generateColor(),
+                            borderColor: "#fff",
+                            data: dataCrime,
+                            label: val[0].crimes[r].name,
+                        }
+                        this.data.push(crime);
+                    }
+                }
+            },
+            stadistics(val){
+                if(val){
+                    this.buildDataTable();
+                }
             }
         },
         created(){
@@ -84,17 +132,32 @@
         },
         async mounted () {
             await this.getReports();
+            await this.getCountries();
+
             this.buildDataTable();
         },
         methods: {
             ...mapActions({
+                getCountries: 'report/getCountries',
                 getReports: 'report/getReports',
             }),
+            generateColor(){
+                var simbolos, color;
+                simbolos = "0123456789ABCDEF";
+                color = "#";
+
+                for(var i = 0; i < 6; i++){
+                    color = color + simbolos[Math.floor(Math.random() * 16)];
+                }
+
+                return color;
+            },
             getMonth(month){
                 return getMonth(month);
             },
             buildDataTable(){
                 var language = this.language.locale == "sp" ? "Spanish.json" : "English.json";
+                console.log("cambio");
                 dataTable('tableReport', language);
             },
             alertSweet(){
@@ -106,7 +169,7 @@
             redirect(page, id, crime, country){
                 if(!page){
                     if(id){
-                        this.$router.push('/observatories/detail/'+id)
+                        this.$router.push('/observatories/detail/'+id+'/'+crime+'/'+country)
                     }else{
                         this.$router.push('/observatories/create')
                     }
@@ -118,6 +181,7 @@
         computed:{
             ...mapState({
                 reports: state => state.report.reports,
+                countries: state => state.report.countries,
                 language: state => state.settings.selectedLocale,
             }),
         },

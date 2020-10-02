@@ -15,11 +15,11 @@
                                 </b-form-checkbox-group>
                             </b-form-group> -->
 							<div class="d-sm-flex align-items-center">
-								<div class="input-wrap">
+								<div class="col-md-7">
 									<b-form-input type="text" required >
 									</b-form-input>
 								</div>
-								<div class="action-btn-wrap ml-3">
+								<div class="ml-3">
 									<b-button @click="alertSweet()" variant="primary" class="mr-3 text-capitalize">{{$t('message.search')}}</b-button>
 
 									<b-button @click="redirect(false)" variant="success" class="d-inline-flex align-items-center text-capitalize">

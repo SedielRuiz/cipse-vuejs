@@ -2,6 +2,7 @@ import Vue from 'vue';
 
 const state = {
     crimes: [],
+    countries: [],
     reports: [],
     report: "",
     //Paginación
@@ -82,12 +83,13 @@ const actions = {
         });
     },
 
-    delete:({commit},data) => {
+    getCountries:({commit}, data) => {
         commit('startProcessing', null, { root: true });
         return new Promise((resolve, reject) => {
-        Vue.http.delete(state.prefix+'reports', {_id: data}).then(
+        Vue.http.get(state.prefix+'countries/reports', data).then(
             response =>{
                 var data = response.data;
+                commit('setCountries',data);
                 resolve(data)
             }).catch(error=>{
                 commit('setError', error, { root: true });
@@ -104,6 +106,9 @@ const getters = {
 };
 
 const mutations = {
+    setCountries: (state, response) => {
+        state.countries = response.data;
+    },
     setReports: (state, list) => {
         state.reports = list.data;
         state.page_size = list.page_size;
