@@ -59,7 +59,7 @@ export default {
 		}else{
 			var data = this.dataSet;
 		}
-		console.log(data);
+		
 		this.renderChart({
 			labels: this.labels,
 			datasets: data

@@ -18,7 +18,7 @@ export default {
     rating: "Rating",
     comments: "Comments",
     addNewBlogItem: "Add New Blog Item",
-    addNew: "Add New",
+    addNew: "Add",
     globalSalesByTopLocation: "Global Sales By Top Location",
     salesTarget: "Sales Target",
     orders: "Orders",
@@ -374,6 +374,7 @@ export default {
     contentsNewContents: "Manage Contents / New",
     contentsUpdateContents: "Manage Contents / Consult / Update",
     unit: "Unit",
+    units:"Units",
     category: "Category",
     user: "User",
     type: "Type",
@@ -439,4 +440,5 @@ export default {
     month: "Month",
     quantity: "Quantity",
     detail: "Detail",
+    usersByRol: "Users By Rol"
 }

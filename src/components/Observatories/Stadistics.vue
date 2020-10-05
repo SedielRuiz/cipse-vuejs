@@ -1,9 +1,7 @@
 <template>
-    <div>
-        <bar-chart v-if="data.length > 0 && labels.length > 0" class="overflow-hide h-100" 
-                    :width="100" :height="60" :label=label :dataSet=data :labels=labels>
-        </bar-chart>
-    </div>
+    <bar-chart v-if="data.length > 0 && labels.length > 0" class="overflow-hide h-100" 
+                :width="200" :height="100" :label=label :dataSet=data :labels=labels>
+    </bar-chart>
 </template>
 
 <script>

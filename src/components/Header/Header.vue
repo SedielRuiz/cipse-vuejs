@@ -7,12 +7,7 @@
 						<span class="ham-line"></span>
 					</button>
 				</div>
-				<search-form class="v-step-1"></search-form>
-				<div class="mobile-search d-none">
-					<b-btn class="mobile-search-btn" variant="white">
-						<span class="zmdi zmdi-search"></span>
-					</b-btn>
-				</div>
+				<img src="/static/img/foot_logo.jpeg" width="250" alt="Escudos" class="logo-ponal " />
 			</div>
 			<b-navbar-nav class="navbar-right">
 				<b-nav-item class="v-step-2 zoom-out" href="#" @click="toggleScreenFull"><i class="zmdi zmdi-fullscreen"></i>

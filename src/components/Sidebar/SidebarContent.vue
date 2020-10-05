@@ -29,9 +29,7 @@
                 </ul>
             </nav>
         </vue-perfect-scrollbar>
-        <div class="foot-sidebar">
-            <img src="/static/img/foot_logo.jpeg" width="244" alt="Escudos" class="logo-ponal " />
-        </div>
+        <div class="foot-sidebar"></div>
     </div>
 </template>
 

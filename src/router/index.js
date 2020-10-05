@@ -34,6 +34,9 @@ const ObservatoriesList = () => import('Views/observatories/ObservatoriesList')
 const ObservatoriesManage = () => import('Views/observatories/ObservatoriesManage')
 const ObservatoriesDetail = () => import('Views/observatories/ObservatoriesDetail')
 
+// vista de observatorio
+const Dashboard = () => import('Views/dashboard/Dashboard')
+
 // vista de sesiones
 const Login = () => import('Views/session/Login')
 const SignUp = () => import('Views/session/SignUp')
@@ -52,7 +55,7 @@ export default new Router({
 		{
 			path: '/',
 			component: Full,
-			redirect: '/dashboard/dashboard-v1',
+			redirect: '/dashboard',
 			children: [
 				{
 					name: "Dashboard One",
@@ -307,7 +310,18 @@ export default new Router({
 						title: 'message.edit',
 						breadcrumb: 'message.obaservatoriesUpdateObservatory'
 					}
-                },
+				},
+				//Rutas para dashobaored
+				{
+					name: "Dashboard update",
+					path: '/dashboard',
+					component: Dashboard,
+					meta: {
+						requiresAuth: false,
+						title: 'message.edit',
+						breadcrumb: 'message.obaservatoriesUpdateObservatory'
+					}
+				},
 			]
 		},
 		{

@@ -5,7 +5,8 @@
 				:class="{ 'rtl-layout': rtlLayout, 'box-layout': toggleBoxLayout, 'dark-mode': darkModeEvent, 'red': getThemeColor==='red', 'green': getThemeColor==='green', 'orange': getThemeColor==='orange', '': getThemeColor==='default' }">
 				<div class="sidebar-wrapper">
 					<app-sidebar-nav></app-sidebar-nav>
-				</div><!-- Sidebar panel closed -->
+				</div>
+                <!-- Sidebar panel closed -->
                 <div v-if="processing">
                     <BlockUI :message="blockMessage"></BlockUI>
                 </div>
@@ -24,6 +25,7 @@
 					<!-- header closed -->
 					<div class="base-container">
 						<div class="inner-container">
+                            <search-form class=""></search-form>
 							<transition name="router-anim" enter-active-class="animated slideInUpTiny animation-duration-fast">
 								<router-view></router-view>
 							</transition>
@@ -40,7 +42,8 @@
 	import Header from '@/components/Header/Header'
 	import SideNav from '@/components/Sidebar/SideNav'
 	import Customizer from '@/components/Customizer/Customizer'
-	import { mapGetters, mapState } from "vuex";
+    import SearchForm from "@/components/Header/SearchForm.vue";
+    import { mapGetters, mapState } from "vuex";
 
 	export default {
 		data() {
@@ -54,6 +57,7 @@
 		},
 		name: 'Full',
 		components: {
+            SearchForm,
 			appHeader: Header,
 			appSidebarNav: SideNav,
 			appCustomizer: Customizer,

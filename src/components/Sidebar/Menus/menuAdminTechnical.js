@@ -1,20 +1,11 @@
 export default {
 	"routes": [
 		{
-			"menu_title": "message.dashboard",
             "menu_icon": "fas fa-tachometer-alt",
-			"active": false,
-			"child_routes": [
-                {
-					"path": "/dashboard/dashboard-v1",
-					"menu_title": "message.dashboard1"
-				},
-				{
-					"route_name": "dashboard-v2",
-					"path": "/dashboard/dashboard-v2",
-					"menu_title": "message.dashboard2"
-				}
-			]
+            "route_name": "dashboard",
+            "path": "/dashboard",
+            "menu_title": "message.dashboard",
+            "child_routes":null,
         },
         {
 			"menu_title": "message.manageUnits",

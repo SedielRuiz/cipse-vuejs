@@ -3,11 +3,11 @@
 		<div class=" col-xs-12 col-sm-12 col-md-8" >
             <div class="session-wrapper"></div>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-4" style="padding: 3rem 1rem !important;">
-            <div class="session-block d-block container">
+        <div class="col-xs-12 col-sm-12 col-md-4" style="padding: 5rem 2rem !important;">
+            <div class="session-block container">
                 <div class="text-center mb-30">
                     <div class="mb-20">
-                        <img class="img-fluid rounded-circle" width="150" height="150" src="/static/img/LogoCIPSE_800.png" />
+                        <img class="img-fluid rounded-circle" width="250" height="250" src="/static/img/LogoCIPSE_800.png" />
                     </div>
                     <h3 class="mb-20">{{$t('message.login')}}</h3>
                 </div>
@@ -56,7 +56,7 @@
 		methods: {
 			submit() {
                 // evt.preventDefault();
-				this.$router.push('/dashboard/dashboard-v1');
+				this.$router.push('/dashboard');
 				const user = {
 					email: this.form.email,
 					password: this.form.password

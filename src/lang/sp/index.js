@@ -18,7 +18,7 @@ export default {
    rating: "Clasificación",
    comments: "Comentarios",
    addNewBlogItem: "Añadir nuevo artículo de blog",
-   addNew: "Añadir nuevo",
+   addNew: "Añadir",
    globalSalesByTopLocation: "Ventas globales por ubicación superior",
    salesTarget: "Objetivo de ventas",
    orders: "Pedidos",
@@ -434,6 +434,7 @@ export default {
    november: "Noviembre",
    december: "Diciembre",
    manageUnits: "Gestión de unidades",
+   units:"Unidades",
    unitManageUnit: "Gestion de unidades / Consulta",
    unitNewUnit: "Gestion de unidades / Nueba",
    unitUpdateUnit: "Gestion de unidades / Actualizar",
@@ -444,5 +445,6 @@ export default {
    detail: "Detalle",
    obaservatoriesManage: "Gestion de observatorio",
    obaservatoriesUpdateObservatory: "Gestion de observatorio / Consulta / Actulizar",
-   obaservatoriesNewObservatory: "Gestion de observatorio / Nuevo"
+   obaservatoriesNewObservatory: "Gestion de observatorio / Nuevo",
+   usersByRol: "Usuarios por rol"
 }

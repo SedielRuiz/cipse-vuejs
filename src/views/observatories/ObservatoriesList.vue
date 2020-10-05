@@ -1,32 +1,28 @@
 <template>
 	<div class="report-list-wrapper">
-		<page-title-bar></page-title-bar>
+		<!-- <page-title-bar></page-title-bar> -->
         <div class="row align-items-stretch">
 			<div class="col-half-lg-block col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 grid-b-space">
-				<div class="custom-search-wrap px-4 py-30 idb-block">
-					<div class="row align-items-stretch">
-						<div class="col-12 col-sm-12 col-md-12 col-lg-2 col-xl-2">
-							<h2>{{$t('message.search')}}</h2>
+				<div class="custom-search-wrap px-4 py-15 idb-block">
+					<div class="row align-self-center">
+						<div class="col-12 col-sm-12 col-md-12 col-lg-2 col-xl-3">
+							<h2>{{$t('message.observatory')}}</h2>
 						</div>
-						<div class="col-12 col-sm-12 col-md-12 col-lg-10 col-xl-10">
-                            <!-- <b-form-group id="input-group-view">
-                                <b-form-checkbox-group v-model="type" id="type">
-                                    <b-form-checkbox value=true>Tabla</b-form-checkbox>
-                                </b-form-checkbox-group>
-                            </b-form-group> -->
-							<div class="d-sm-flex align-items-center">
-								<div class="col-md-7">
-									<b-form-input type="text" required >
-									</b-form-input>
-								</div>
-								<div class="ml-3 text-right">
-									<b-button @click="alertSweet()" variant="primary" class="mr-3 text-capitalize">{{$t('message.search')}}</b-button>
-
-									<b-button @click="redirect(false)" variant="success" class="d-inline-flex align-items-center text-capitalize">
-                                        {{$t('message.addNew')}}<i class="material-icons btn-icon ml-1">add</i> 
+						<div class="col-12 col-sm-12 col-md-12 col-lg-10 col-xl-9">
+                            <div class="row text-right align-items-center">
+                                <div class="col-xs-12 col-sm-12 col-md-8">
+								    <b-form-input class="form-control" type="text" required > </b-form-input>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4">
+                                    <b-button @click="alertSweet()" variant="primary" class="mr-3 text-capitalize">
+                                        {{$t('message.search')}} <i class="fas fa-search m-1"></i>
                                     </b-button>
-								</div>
-							</div>
+
+                                    <b-button @click="redirect(false)" variant="success" class="text-capitalize">
+                                        {{$t('message.addNew')}} <i class="fas fa-plus m-1"></i>
+                                    </b-button>
+                                </div>
+                            </div>
 						</div>
 					</div>
 				</div>
@@ -69,9 +65,19 @@
                 </div>
             </div><!-- table responsive closed -->
             <div v-else>
-                <stadisticts v-if="data.length > 0 && labels.length > 0" 
-                        :data=data :labels=labels :label=label :type="'double'">
-                </stadisticts>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6">
+                        <stadisticts v-if="data.length > 0 && labels.length > 0" 
+                                :data=dataLocal :labels=labelsLocal :label=label :type="'double'">
+                        </stadisticts>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-6">
+                        <stadisticts v-if="data.length > 0 && labels.length > 0" 
+                                :data=data :labels=labels :label=label :type="'double'">
+                        </stadisticts>
+                    </div>
+                </div>
+
             </div>
         </app-card>
 	</div>
@@ -92,6 +98,8 @@
                 data:[],
                 labels:[],
                 label:"",
+                dataLocal:[],
+                labelsLocal:[],
                 stadistics:true
             }
         },
@@ -102,12 +110,12 @@
                     this.label ="Grafica internacional";
                     for (let s = 0; s < val.length; s++) {
                         this.labels.push(val[s].name);
+                        this.labelsLocal.push(val[s].name);
                     }
                     for (let r = 0; r < val[0].crimes.length; r++) {
                         var dataCrime = [];
                         for (let s = 0; s < val.length; s++) {
                             var total = val[s].data.filter(crime => crime.name == val[0].crimes[r].name);
-                            console.log(val[0].crimes[r].name, total);
                             dataCrime.push( total.length > 0 ? total[0].total : 0 );
                         }
                         var crime = {
@@ -118,6 +126,7 @@
                             label: val[0].crimes[r].name,
                         }
                         this.data.push(crime);
+                        this.dataLocal.push(crime);
                     }
                 }
             },
@@ -157,7 +166,6 @@
             },
             buildDataTable(){
                 var language = this.language.locale == "sp" ? "Spanish.json" : "English.json";
-                console.log("cambio");
                 dataTable('tableReport', language);
             },
             alertSweet(){
