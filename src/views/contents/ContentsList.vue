@@ -21,7 +21,7 @@
                                         {{$t('message.search')}} <i class="fas fa-search m-1"></i>
                                     </b-button>
 
-                                    <b-button @click="redirect(false)" variant="success" class="text-capitalize">
+                                    <b-button v-if="role != 'OBSERVADOR'" @click="redirect(false)" variant="success" class="text-capitalize">
                                         {{$t('message.addNew')}} <i class="fas fa-plus m-1"></i>
                                     </b-button>
                                 </div>
@@ -97,7 +97,7 @@
         <div v-else class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 p-2" v-for="(content, index) in contents" :key="index">
                 <div v-if="type == 'NOTICIA'">
-                    <notice-card :meta=content :notice=getContent(content) :language=language></notice-card>
+                    <notice-card :meta=content :notice=getContent(content) :language=language :photo="index==0?false:true"></notice-card>
                 </div>
                 <div v-if="type == 'DOCTRINAL'">
                     <doctrinal-card :meta=content :doctrinal=getContent(content) :language=language></doctrinal-card>
@@ -111,7 +111,7 @@
 </template>
 
 <script>
-    import {mapActions,mapState} from 'vuex';
+    import { mapGetters, mapActions, mapState } from 'vuex';
     import { dataTable } from "Helpers/helpers";
     import pagination from '@/components/Pagination/Paginate';
     import NoticeCard from "Components/Contents/Cards/NoticeCard";
@@ -144,6 +144,7 @@
             changeType(val){
                 this.search();
             },
+            role(val){}
         },
         methods: {
             ...mapActions({
@@ -166,7 +167,8 @@
                 this.$swal('Hello Vue world!!!');
             },
             capitalizeType(){
-                var text = this.type.toLowerCase();
+                var type = this.type == "NOTICIA" ? "NOTICIAS" : this.type;
+                var text = type.toLowerCase();
                 return text.charAt(0).toUpperCase()+text.slice(1);
             },
             getColumn(contents, column){
@@ -225,6 +227,9 @@
             }
         },
         computed:{
+            ...mapGetters({
+				getRole: 'auth/getRole',
+            }),
             ...mapState({
                 language: state => state.auth.language,
                 notices: state => state.content.notices,
@@ -234,6 +239,9 @@
                 cardContent: state => state.auth.viewContent,
                 languageLocale: state => state.settings.selectedLocale,
             }),
+            role(){
+                return this.getRole;
+            },
             view(){
                 return this.cardContent;
             },

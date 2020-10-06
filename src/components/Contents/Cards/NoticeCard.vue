@@ -1,10 +1,10 @@
 <template>
 	<app-card customClasses="blog-layout one overflow-hide blog-layout-one h-80" :fullBlock="true">
 		<div class="card-thumbnail">
-			<img class="img-fluid" :src="images[getNumber()].path" height="100" alt="blog" />
+			<img v-if="photo" class="img-fluid" :src="images[getNumber()].path" height="100" alt="blog" />
 		</div>
 		<div class="card-body pos-relative">
-			<a href="javascript:;" @click="detailNotice" class="icon-btn top"><i class="fas fa-ellipsis-h"></i></a>
+			<a href="javascript:;" @click="detailNotice" :class="'icon-btn top'+(!photo ? ' top-btn-photo' : '')"><i class="fas fa-ellipsis-h"></i></a>
 			<div class="media mb-15 align-items-center">
 				<div class="img-wrap">
 					<!-- <img src="/static/img/user-1.jpg" class="rounded-circle" width="65" height="65" alt="author" /> -->
@@ -66,7 +66,7 @@
     import { textTruncate, getFlag } from "Helpers/helpers";
     
 	export default {
-        props:["meta", "notice", "language"],
+        props:["meta", "notice", "language" , "photo"],
 		data: function () {
 			return {	
                 images:[

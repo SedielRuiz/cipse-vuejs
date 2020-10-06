@@ -1,7 +1,7 @@
 <template>
 	<app-card customClasses="blog-layout one overflow-hide blog-layout-one h-100" :fullBlock="true">
 		<div class="card-thumbnail">
-			<img class="img-fluid" src="/static/img/post-1.jpg" height="400" alt="blog" />
+			<img class="img-fluid" :src="images[getNumber()].path" height="100" alt="blog" />
 		</div>
 		<div class="card-body pos-relative">
 			<a href="javascript:;" @click="detailDoctrinal" class="icon-btn top"><i class="fas fa-ellipsis-h"></i></a>
@@ -77,9 +77,38 @@
         props:["meta", "doctrinal", "language"],
 		data: function () {
 			return {	
+                images:[
+                    {
+                        path:"/static/img/notices/notice-1.jpg",
+                    },
+                    {
+                        path:"/static/img/notices/notice-2.jpg",
+                    },
+                    {
+                        path:"/static/img/notices/notice-3.jpg",
+                    },
+                    {
+                        path:"/static/img/notices/notice-4.jpg",
+                    },
+                    {
+                        path:"/static/img/notices/notice-5.jpg",
+                    },
+                    {
+                        path:"/static/img/notices/notice-6.jpg",
+                    },
+                    {
+                        path:"/static/img/notices/notice-7.jpg",
+                    },
+                    {
+                        path:"/static/img/notices/notice-8.jpg",
+                    },
+                ]
 			};
         },
         methods:{
+            getNumber(){
+                return Math.floor(Math.random() * (8 - 0)) + 0;
+            },
             getFlag(){
                 return getFlag(this.language);
             },
