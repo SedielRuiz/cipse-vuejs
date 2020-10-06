@@ -3,7 +3,7 @@
 		<div class="top-selling-widget project-gallery-wrap">
 			<slick :options="slickOptions">
 				<div v-for="(img,index) in images" :key="index">
-					<img :src="img" class="img-fluid" />
+					<img :src="img.path" class="img-fluid" />
 				</div>
 			</slick>
 		</div>
@@ -14,16 +14,12 @@
 	import Slick from "vue-slick";
 
 	export default {
+        props:["images"],
 		components: {
 			Slick,
 		},
 		data() {
 			return {
-				images: [
-					"/static/img/gridlist-1.jpg",
-					"/static/img/gridlist-4.jpg",
-					"/static/img/gridlist-5.jpg"
-				],
 				slickOptions: {
 					infinite: true,
 					speed: 300,

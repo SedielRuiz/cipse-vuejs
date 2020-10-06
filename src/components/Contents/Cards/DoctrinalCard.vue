@@ -16,7 +16,7 @@
             <hr>
 			<div class="blog-content">
 				<div class="custom-p-lh">
-					<p class="font-sm">{{doctrinal.title_description}}</p>
+					<p class="font-sm card-description-content">{{doctrinal.title_description}}</p>
 				</div>
 				<ul>
                     <li class="p-2 border-bottom d-flex justify-content-between align-content-center">
@@ -24,6 +24,15 @@
                             <i class="fas fa-code-branch"></i> {{$t('message.version')}} :
                         </span>
                         <span class="fw-semi-bold text-capitalize badge badge-success">{{doctrinal.version}}</span>
+                    </li>
+                    <li class="p-2 border-bottom d-flex justify-content-between align-content-center">
+                        <span class="fw-light text-capitalize pr-10">
+                            <i class="fas fa-users"></i> {{$t('message.unit')}} :
+                        </span>
+                        <span class="fw-semi-bold text-capitalize">
+                            {{meta.unit.name}}
+                            <img class="flag-img" :src="'/static/flag-icons/'+getFlag()+'.png'">
+                        </span>
                     </li>
                     <li class="p-2 border-bottom d-flex justify-content-between align-content-center">
                         <span class="fw-light text-capitalize pr-10">
@@ -62,14 +71,18 @@
 </template>
 
 <script>
+    import { getFlag } from "Helpers/helpers";
 
 	export default {
-        props:["meta", "doctrinal"],
+        props:["meta", "doctrinal", "language"],
 		data: function () {
 			return {	
 			};
         },
         methods:{
+            getFlag(){
+                return getFlag(this.language);
+            },
             detailDoctrinal(){
                 this.$router.push("/contents/detail/DOCTRINAL/"+this.meta.id);
             }

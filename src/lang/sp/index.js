@@ -446,5 +446,7 @@ export default {
    obaservatoriesManage: "Gestion de observatorio",
    obaservatoriesUpdateObservatory: "Gestion de observatorio / Consulta / Actulizar",
    obaservatoriesNewObservatory: "Gestion de observatorio / Nuevo",
-   usersByRol: "Usuarios por rol"
+   usersByRol: "Usuarios por rol",
+   assignCrime:"Asignar crimen",
+   filesAttached: "Archivos anexos",
 }

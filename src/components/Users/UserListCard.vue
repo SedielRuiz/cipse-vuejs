@@ -38,6 +38,7 @@
 
 <script>
     import {mapState} from 'vuex';
+    import { getFlag } from "Helpers/helpers";
 
 	export default {
         props:["user"],
@@ -47,14 +48,7 @@
 		},
 		methods: {
             getFlag(){
-                var flag = "";
-                if(this.user.language.key == "ESPANOL"){
-                    flag = "en";
-                }else{
-                    flag = "es";
-                }
-
-                return flag;
+                return getFlag(this.user.language.key);
             },
 			onDeleteClients(item, tabName) {
 			},

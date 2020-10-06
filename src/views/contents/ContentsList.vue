@@ -95,15 +95,15 @@
             </div><!-- table responsive closed -->
         </app-card>
         <div v-else class="row">
-            <div class="col-xs-12 col-sm-12 col-md-6 p-2" v-for="(content, index) in contents" :key="index">
+            <div class="col-xs-12 col-sm-12 col-md-12 p-2" v-for="(content, index) in contents" :key="index">
                 <div v-if="type == 'NOTICIA'">
-                    <notice-card :meta=content :notice=getContent(content)></notice-card>
+                    <notice-card :meta=content :notice=getContent(content) :language=language></notice-card>
                 </div>
                 <div v-if="type == 'DOCTRINAL'">
-                    <doctrinal-card :meta=content :doctrinal=getContent(content)></doctrinal-card>
+                    <doctrinal-card :meta=content :doctrinal=getContent(content) :language=language></doctrinal-card>
                 </div>
                 <div v-if="type == 'MEMORIAS'">
-                    <memory-card :meta=content :memory=getContent(content)></memory-card>
+                    <memory-card :meta=content :memory=getContent(content) :language=language></memory-card>
                 </div>
             </div>
         </div>
@@ -150,7 +150,7 @@
                 getContents: 'content/getContents',
             }),
             buildDataTable(){
-                var language = this.language.locale == "sp" ? "Spanish.json" : "English.json" ;
+                var language = this.languageLocale.locale == "sp" ? "Spanish.json" : "English.json" ;
                 dataTable('tableContents', language)
             },
             getContent(content){
@@ -232,7 +232,7 @@
                 memories: state => state.content.memories,
                 us: state => state.content.us,
                 cardContent: state => state.auth.viewContent,
-                language: state => state.settings.selectedLocale,
+                languageLocale: state => state.settings.selectedLocale,
             }),
             view(){
                 return this.cardContent;

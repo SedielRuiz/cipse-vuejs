@@ -28,8 +28,15 @@
                     </template>
                 </ul>
             </nav>
+            <div class="idb-server-progress p-30 text-center">
+                <search-form class=""></search-form>
+                <div class="progress-wrap mb-30"></div>
+                <div class="progress-wrap mb-30">
+                    <h5 class="text-white">CIPSE</h5>
+                    <p class="fs-12"><i class="fas fa-envelope"></i> Correo: cipse@example.com</p>
+                </div>
+            </div>
         </vue-perfect-scrollbar>
-        <div class="foot-sidebar"></div>
     </div>
 </template>
 
@@ -39,9 +46,13 @@
     import menuAdminFuntional from "./Menus/menuAdminFuntional.js";
     import menuFuntional from "./Menus/menuFuntional.js";
     import menuObservator from "./Menus/menuObservator.js";
-	import { textTruncate } from "Helpers/helpers";
+    import { textTruncate } from "Helpers/helpers";
+    import SearchForm from "@/components/Header/SearchForm.vue";
 
 	export default {
+        components:{
+            SearchForm,
+        },
 		data() {
 			return {
 				settings: {

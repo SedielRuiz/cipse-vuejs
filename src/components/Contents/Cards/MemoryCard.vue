@@ -16,10 +16,19 @@
 			<div class="blog-content">
 				<div class="custom-p-lh">
 					<p class="font-sm">{{memory.description_title}}</p>
-                    <p class="font-sm">{{textTruncate(memory.memory, 250)}}</p>
+                    <p class="font-sm">{{memory.memory}}</p>
 				</div>
 				<hr>
                     <ul>
+                        <li class="p-2 border-bottom d-flex justify-content-between align-content-center">
+                            <span class="fw-light text-capitalize pr-10">
+                                <i class="fas fa-users"></i> {{$t('message.unit')}} :
+                            </span>
+                            <span class="fw-semi-bold text-capitalize">
+                                {{meta.unit.name}}
+                                <img class="flag-img" :src="'/static/flag-icons/'+getFlag()+'.png'">
+                            </span>
+                        </li>
                         <li class="p-2 border-bottom d-flex justify-content-between align-content-center">
                             <span class="fw-light text-capitalize pr-10">
                                 <i class="fas fa-user-cog"></i> {{$t('message.user')}} :
@@ -51,15 +60,18 @@
 </template>
 
 <script>
-    import { textTruncate } from "Helpers/helpers";
+    import { textTruncate, getFlag } from "Helpers/helpers";
 
 	export default {
-        props:["meta", "memory"],
+        props:["meta", "memory", "language"],
 		data: function () {
 			return {	
 			};
         },
         methods:{
+            getFlag(){
+                return getFlag(this.language);
+            },
             textTruncate(text, limit) {
 				return textTruncate(text, limit);
 			},

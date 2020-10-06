@@ -92,6 +92,10 @@ export default {
 			"active": false,
 			"child_routes": [
                 {
+					"path": "/observatories/assign-crime",
+					"menu_title": "message.assignCrime"
+				},
+                {
 					"path": "/observatories/consult",
 					"menu_title": "message.consult"
 				},

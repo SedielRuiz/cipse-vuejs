@@ -3,11 +3,9 @@
 		<div class="sidebar-panel" :class="sidebarSelectedFilter.extraClass">
 			<div class="sidebar-top">
 				<div class=" d-flex justify-content-center py-20">
-					<app-logo></app-logo>
+			        <user-block :language=language></user-block>
 				</div>
-                <br>
 			</div>
-				<user-block></user-block>
 
 			<sidebar-content></sidebar-content>
 		</div>
@@ -19,7 +17,7 @@
 	import AppLogo from "Components/AppLogo/AppLogo";
 	import SidebarContent from "./SidebarContent";
 	import UserBlock from "./UserBlock";
-	import { mapGetters } from "vuex";
+	import { mapGetters,mapState } from "vuex";
 
 	export default {
 		name: "sidenav",
@@ -33,7 +31,10 @@
 				"selectedSidebarBgImage",
 				"backgroundImage",
 				"sidebarSelectedFilter"
-			]),
+            ]),
+            ...mapState({
+                language: state => state.auth.language,
+            }),
 			styles() {
 				if (this.backgroundImage == false) {
 					return { 'background-image': null };

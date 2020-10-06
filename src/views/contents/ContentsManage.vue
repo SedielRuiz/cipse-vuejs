@@ -39,14 +39,14 @@
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-6">
                             <b-form-group v-if="type=='NOTICIA'" id="input-group-category" :label="$t('message.category')+':'" label-for="category">
-                                <select :disabled="content.disabled" class="form-control" id="category" v-model="content.category_id" required>
+                                <select  class="form-control" id="category" v-model="content.category_id" required>
                                     <option v-for="(category, index) in categories" :key="index" :value="category.id">{{category.name}}</option>
                                 </select>
                             </b-form-group>
 
                             <b-form-group v-if="type=='NOTICIA'" id="input-group-durationDate" :label="$t('message.durationDate')+':'" label-for="durationDate">
                                 <b-form-input
-                                :disabled="content.disabled"
+                                
                                 id="durationDate"
                                 v-model="content.duration_date"
                                 required

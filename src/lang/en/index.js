@@ -440,5 +440,7 @@ export default {
     month: "Month",
     quantity: "Quantity",
     detail: "Detail",
-    usersByRol: "Users By Rol"
+    usersByRol: "Users By Rol",
+    assignCrime:"Assign Crime",
+    filesAttached: "Attached Files",
 }

@@ -33,6 +33,23 @@ export function textTruncate(str, length, ending) {
 	}
 }
 
+export function getFlag(language){
+    var flag = "";
+    switch (language) {
+        case "ESPANOL":
+            flag = "en";
+            break;
+        case "INGLES":
+            flag = "es";
+            break;
+        default:
+            flag = "en";
+            break;
+    }
+
+    return flag;
+}
+
 /**
  * DataTable base
  */
@@ -43,7 +60,8 @@ export function dataTable(id, language) {
         },
         buttons: [
             'copy', 'csv', 'excel', 'pdf', 'print'
-        ]
+        ],
+        search:false
     });
 }
 

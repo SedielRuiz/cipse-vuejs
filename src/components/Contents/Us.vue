@@ -1,6 +1,6 @@
 <template>
 	<div id="dashboard" class="project-detail-wrap">
-		<page-title-bar></page-title-bar>
+		<!-- <page-title-bar></page-title-bar> -->
         <div class="col-half-lg-block col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 grid-b-space">
             <div class="row">
                 <div v-if="viewContent" class="col-xs-12 col-sm-12 col-md-1 align-self-center text-left">
@@ -39,7 +39,7 @@
                             </li>
                             <li class="p-2 border-bottom d-flex justify-content-between align-content-center">
                                 <span class="fw-light text-capitalize pr-10">
-                                    <i class="fas fa-file-upload"></i> {{$t('message.filesUploaded')}} :
+                                    <i class="fas fa-file-upload"></i> {{$t('message.filesAttached')}} :
                                 </span>
                                 <span class="fw-semi-bold text-capitalize">{{meta.files.length}}</span>
                             </li>
@@ -52,7 +52,7 @@
                         </ul>
 					</div>
 				</app-card>
-				<app-card :heading="$t('message.filesUploaded')" customClasses="mb-30 files-uploaded">
+				<app-card :heading="$t('message.filesAttached')" customClasses="mb-30 files-uploaded">
 					<files-uploaded></files-uploaded>
 				</app-card>
 			</div>

@@ -1,6 +1,6 @@
 <template>
     <div id="dashboard" class="project-detail-wrap">
-		<page-title-bar></page-title-bar>
+		<!-- <page-title-bar></page-title-bar> -->
         <div class="col-half-lg-block col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 grid-b-space">
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-1 align-self-center text-left">
@@ -52,7 +52,7 @@
                             </li>
                             <li class="p-2 border-bottom d-flex justify-content-between align-content-center">
                                 <span class="fw-light text-capitalize pr-10">
-                                    <i class="fas fa-file-upload"></i> {{$t('message.filesUploaded')}} :
+                                    <i class="fas fa-file-upload"></i> {{$t('message.filesAttached')}} :
                                 </span>
                                 <span class="fw-semi-bold text-capitalize">{{meta.files.length}}</span>
                             </li>
@@ -66,13 +66,13 @@
 
 					</div>
 				</app-card>
-				<app-card :heading="$t('message.filesUploaded')" customClasses="mb-30 files-uploaded">
+				<app-card :heading="$t('message.filesAttached')" customClasses="mb-30 files-uploaded">
 					<files-uploaded></files-uploaded>
 				</app-card>
 			</div>
 			<div class="col-full-lg-block col-12 col-sm-12 col-md-12 col-lg-5 col-xl-5 grid-b-space">
 				<app-card :heading="$t('message.gallery')" customClasses="mb-30">
-					<content-gallery></content-gallery>
+					<content-gallery :images=images></content-gallery>
 				</app-card>
 			</div>
 		</div>
@@ -91,6 +91,32 @@
 		},
 		data: function () {
 			return {	
+                images:[
+                    {
+                        path:"/static/img/notices/notice-1.jpg",
+                    },
+                    {
+                        path:"/static/img/notices/notice-2.jpg",
+                    },
+                    {
+                        path:"/static/img/notices/notice-3.jpg",
+                    },
+                    {
+                        path:"/static/img/notices/notice-4.jpg",
+                    },
+                    {
+                        path:"/static/img/notices/notice-5.jpg",
+                    },
+                    {
+                        path:"/static/img/notices/notice-6.jpg",
+                    },
+                    {
+                        path:"/static/img/notices/notice-7.jpg",
+                    },
+                    {
+                        path:"/static/img/notices/notice-8.jpg",
+                    },
+                ]
 			};
         },
 	};

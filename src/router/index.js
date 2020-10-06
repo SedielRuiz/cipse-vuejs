@@ -33,6 +33,7 @@ const RequestsDetail = () => import('Views/requests/RequestsDetail')
 const ObservatoriesList = () => import('Views/observatories/ObservatoriesList')
 const ObservatoriesManage = () => import('Views/observatories/ObservatoriesManage')
 const ObservatoriesDetail = () => import('Views/observatories/ObservatoriesDetail')
+const ObservatoriesAssignCrime = () => import('Views/observatories/ObservatoriesAssignCrime')
 
 // vista de observatorio
 const Dashboard = () => import('Views/dashboard/Dashboard')
@@ -268,6 +269,17 @@ export default new Router({
 					}
                 },
                 //Rutas para observatorio
+                {
+					name: "Observatory assign crime",
+					path: '/observatories/assign-crime',
+					component: ObservatoriesAssignCrime,
+					meta: {
+						requiresAuth: false,
+						title: 'message.observatories',
+						breadcrumb: 'message.obaservatoriesManage'
+					}
+                },
+
                 {
 					name: "Observatory list",
 					path: '/observatories/consult',

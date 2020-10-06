@@ -25,7 +25,6 @@
 					<!-- header closed -->
 					<div class="base-container">
 						<div class="inner-container">
-                            <search-form class=""></search-form>
 							<transition name="router-anim" enter-active-class="animated slideInUpTiny animation-duration-fast">
 								<router-view></router-view>
 							</transition>
@@ -42,7 +41,6 @@
 	import Header from '@/components/Header/Header'
 	import SideNav from '@/components/Sidebar/SideNav'
 	import Customizer from '@/components/Customizer/Customizer'
-    import SearchForm from "@/components/Header/SearchForm.vue";
     import { mapGetters, mapState } from "vuex";
 
 	export default {
@@ -57,7 +55,6 @@
 		},
 		name: 'Full',
 		components: {
-            SearchForm,
 			appHeader: Header,
 			appSidebarNav: SideNav,
 			appCustomizer: Customizer,

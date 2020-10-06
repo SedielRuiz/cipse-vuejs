@@ -1,7 +1,7 @@
 <template>
 	<app-card customClasses="blog-layout one overflow-hide blog-layout-one h-80" :fullBlock="true">
 		<div class="card-thumbnail">
-			<img class="img-fluid" src="/static/img/post-1.jpg" height="100" alt="blog" />
+			<img class="img-fluid" :src="images[getNumber()].path" height="100" alt="blog" />
 		</div>
 		<div class="card-body pos-relative">
 			<a href="javascript:;" @click="detailNotice" class="icon-btn top"><i class="fas fa-ellipsis-h"></i></a>
@@ -19,9 +19,18 @@
 					<p class="">
                         {{notice.description_title}}
                     </p>
-                    <p class="font-sm">{{textTruncate(notice.notice, 250)}}</p>
+                    <p class="font-sm">{{notice.notice}}</p>
                     <hr>
                     <ul>
+                        <li class="p-2 border-bottom d-flex justify-content-between align-content-center">
+                            <span class="fw-light text-capitalize pr-10">
+                                <i class="fas fa-users"></i> {{$t('message.unit')}} :
+                            </span>
+                            <span class="fw-semi-bold text-capitalize">
+                                {{meta.unit.name}}
+                                <img class="flag-img" :src="'/static/flag-icons/'+getFlag()+'.png'">
+                            </span>
+                        </li>
                         <li class="p-2 border-bottom d-flex justify-content-between align-content-center">
                             <span class="fw-light text-capitalize pr-10">
                                 <i class="fas fa-user-cog"></i> {{$t('message.user')}} :
@@ -54,15 +63,47 @@
 </template>
 
 <script>
-    import { textTruncate } from "Helpers/helpers";
+    import { textTruncate, getFlag } from "Helpers/helpers";
     
 	export default {
-        props:["meta", "notice"],
+        props:["meta", "notice", "language"],
 		data: function () {
 			return {	
+                images:[
+                    {
+                        path:"/static/img/notices/notice-1.jpg",
+                    },
+                    {
+                        path:"/static/img/notices/notice-2.jpg",
+                    },
+                    {
+                        path:"/static/img/notices/notice-3.jpg",
+                    },
+                    {
+                        path:"/static/img/notices/notice-4.jpg",
+                    },
+                    {
+                        path:"/static/img/notices/notice-5.jpg",
+                    },
+                    {
+                        path:"/static/img/notices/notice-6.jpg",
+                    },
+                    {
+                        path:"/static/img/notices/notice-7.jpg",
+                    },
+                    {
+                        path:"/static/img/notices/notice-8.jpg",
+                    },
+                ]
 			};
         },
         methods:{
+            getFlag(){
+                return getFlag(this.language);
+            },
+            getNumber(){
+                return Math.floor(Math.random() * (8 - 0)) + 0;
+            },
             textTruncate(text, limit) {
 				return textTruncate(text, limit);
 			},

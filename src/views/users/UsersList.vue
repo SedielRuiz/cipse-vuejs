@@ -28,6 +28,12 @@
 				</div>
 			</div>
 		</div>
+        <b-form-group id="input-group-type" :label="'Tipo'" label-for="type">
+            <select class="form-control" id="type" v-model="type" >
+                <option :value="true">Tabla</option>
+                <option :value="false">Contactos</option>
+            </select>
+        </b-form-group>
         <app-card v-if="type" customClasses="grid-b-space" :heading="''">
             <div class="table-responsive">
                 <div class="unseen">
