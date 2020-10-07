@@ -23,31 +23,17 @@
                             </b-form-group>
                         </div>
 
-                        <div class="col-xs-12 col-sm-12 col-md-3">
-                            <b-form-group id="input-group-country" :label="$t('message.country')+':'" label-for="country">
-                                <select :disabled="request.disabled" class="form-control" id="country" v-model="request.country_start_id" required>
-                                    <option v-for="(country, index) in countries" :key="index" :value="country.id">{{country.name}}</option>
-                                </select>
-                            </b-form-group>
-                        </div>
-                        <div class="col-xs-12 col-sm-12 col-md-3">
+                        <div class="col-xs-12 col-sm-12 col-md-6">
                             <b-form-group id="input-group-unit-strat" :label="$t('message.unitFrom')+':'" label-for="unitStart">
                                 <select :disabled="request.disabled" class="form-control" id="unitStart" v-model="request.unit_start_id" required>
-                                    <option v-for="(unit, index) in units" :key="index" :value="unit.id">{{unit.name}}</option>
+                                    <option v-for="(unit, index) in units" :key="index" :value="unit.id">{{unit.country.name}} - {{unit.name}}</option>
                                 </select>
                             </b-form-group>
                         </div>
-                        <div class="col-xs-12 col-sm-12 col-md-3">
-                            <b-form-group id="input-group-country" :label="$t('message.country')+':'" label-for="country">
-                                <select :disabled="request.disabled" class="form-control" id="country" v-model="request.country_end_id" required>
-                                    <option v-for="(country, index) in countries" :key="index" :value="country.id">{{country.name}}</option>
-                                </select>
-                            </b-form-group>
-                        </div>
-                        <div class="col-xs-12 col-sm-12 col-md-3">
+                        <div class="col-xs-12 col-sm-12 col-md-6">
                             <b-form-group id="input-group-unit-end" :label="$t('message.unitTo')+':'" label-for="unitEnd">
                                 <select :disabled="request.disabled" class="form-control" id="unitEnd" v-model="request.unit_end_id" required>
-                                    <option v-for="(unit, index) in units" :key="index" :value="unit.id">{{unit.name}}</option>
+                                    <option v-for="(unit, index) in units" :key="index" :value="unit.id">{{unit.country.name}} - {{unit.name}}</option>
                                 </select>
                             </b-form-group>
                         </div>
