@@ -14,7 +14,8 @@ import {
 
 const state = {
     user: localStorage.getItem('user'),
-    role: "ADMINISTRADOR_TECNICO",
+    role: "FUNCIONAL",
+    unit: "ESPECIALES",
     viewContent: true,
     language: "INGLES",
 	isUserSigninWithAuth0: Boolean(localStorage.getItem('isUserSigninWithAuth0'))

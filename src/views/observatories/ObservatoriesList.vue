@@ -42,7 +42,7 @@
                             <tr class="bg-primary text-center">
                                 <th>{{$t('message.country')}}</th>
                                 <th>{{$t('message.crime')}}</th>
-                                <th>{{$t('message.year')}}</th>
+                                <th>{{$t('message.unit')}}</th>
                                 <th>{{$t('message.actions')}}</th>
                             </tr>
                         </thead>
@@ -50,7 +50,7 @@
                             <tr v-for="report in reports" :key="report.id">
                                 <td class="text-center">{{report.country.name}}</td>
                                 <td class="text-center">{{report.crime.name}}</td>
-                                <td class="text-center">{{report.year}}</td>
+                                <td class="text-center">{{report.unit.name}}</td>
                                 <td class="text-center">
                                     <b-button @click="redirect(false, report.year, report.crime_id, report.country_id)" variant="success" class="d-inline-flex align-items-center text-capitalize m-1">
                                         <i class="fas fa-ellipsis-h"></i>

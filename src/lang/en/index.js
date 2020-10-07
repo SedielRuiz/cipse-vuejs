@@ -443,4 +443,6 @@ export default {
     usersByRol: "Users By Rol",
     assignCrime:"Assign Crime",
     filesAttached: "Attached Files",
+    historical:"Historical",
+    class:"Class"
 }

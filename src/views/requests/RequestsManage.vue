@@ -66,7 +66,16 @@
                             </b-form-group>
                         </div>
                     </div>
-                    
+
+                    <div v-if="edit">
+                        <h3>{{$t('message.historical')}}</h3>
+                        <hr>
+                        <div v-for="(description, index) in descriptions" :key="index">
+                            <p v-html="description"></p>
+                            <hr>
+                        </div>
+                    </div>
+
                     <b-form-group id="input-group-description" :label="$t('message.description')+':'" label-for="description">
                         <quill-editor v-model="request.description" ref="myQuillEditor" :options="editorOption"
                             @blur="onEditorBlur($event)" @focus="onEditorFocus($event)" @ready="onEditorReady($event)">
@@ -99,6 +108,7 @@
                 edit:"",
                 titleText:"request",
                 file:[],
+                descriptions:[],
                 editorOption:{
                     placeholder: "Escriba aquí su contenido",
                 },
@@ -116,6 +126,12 @@
                 if(val){
                     this.request = val;
                     this.request.disabled = true;
+                    var descriptions = this.request.description.split("_@_");
+                    for (let s = 0; s < descriptions.length; s++) {
+                        descriptions[s] = descriptions[s].replace("\n", "<br>").replace("\r", " ");
+                        this.descriptions.push(descriptions[s]);
+                    }
+                    this.request.description = "";
                 }
             },
         },

@@ -1,6 +1,6 @@
 <template>
 	<div>
-        <request @back="back()" :request=request></request>
+        <request @back="back()" :request=request :descriptions=descriptions></request>
 	</div>
 </template>
 
@@ -9,13 +9,23 @@
     import Request from '@/components/Requests/Request';
 
     export default {
-        name: 'user-list',
+        name: 'request-detail',
         components:{
             Request
         },
         data () {
             return {
-                id:""
+                id:"",
+                descriptions:[],
+            }
+        },
+        watch:{
+            request(val){
+                var descriptions = this.request.description.split("_@_");
+                for (let s = 0; s < descriptions.length; s++) {
+                    descriptions[s] = descriptions[s].replace("\n", "<br>").replace("\r", " ");
+                    this.descriptions.push(descriptions[s]);
+                }
             }
         },
         mounted () {

@@ -30,8 +30,8 @@
             </nav>
             <div class="idb-server-progress p-30 text-center">
                 <search-form class=""></search-form>
-                <div class="progress-wrap mb-30"></div>
-                <div class="progress-wrap mb-30">
+                <div class="progress-wrap mb-80"></div>
+                <div class="progress-wrap mb-60">
                     <h5 class="text-white">CIPSE</h5>
                     <p class="fs-12"><i class="fas fa-envelope"></i> Correo: cipse@example.com</p>
                 </div>

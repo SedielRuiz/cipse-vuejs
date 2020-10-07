@@ -449,4 +449,6 @@ export default {
    usersByRol: "Usuarios por rol",
    assignCrime:"Asignar crimen",
    filesAttached: "Archivos anexos",
+   historical:"Historico",
+   class:"Clase"
 }

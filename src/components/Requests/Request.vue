@@ -16,8 +16,12 @@
                         </div>
                     </div><hr>
 					<div class="project-content">
-						<p>{{ request.description }}</p>
+                        <div v-for= "(description, index) in descriptions" :key="index">
+                            <p v-html="description"></p>
+                            <hr>
+                        </div>
                         <hr>
+
                         <ul>
                             <li class="p-2 border-bottom d-flex justify-content-between align-content-center">
                                 <span class="fw-light text-capitalize pr-10">
@@ -29,13 +33,19 @@
                                 <span class="fw-light text-capitalize pr-10">
                                     <i class="fas fa-users"></i> {{$t('message.unitFrom')}} :
                                 </span>
-                                <span class="fw-semi-bold text-capitalize">{{request.unit_start.name}}</span>
+                                <span class="fw-semi-bold text-capitalize">
+                                    {{request.unit_start.name}}
+                                    <img class="flag-img" :src="'/static/flag-icons/'+getFlag()+'.png'">
+                                </span>
                             </li>
                             <li class="p-2 border-bottom d-flex justify-content-between align-content-center">
                                 <span class="fw-light text-capitalize pr-10">
                                     <i class="fas fa-users"></i> {{$t('message.unitTo')}} :
                                 </span>
-                                <span class="fw-semi-bold text-capitalize">{{request.unit_end.name}}</span>
+                                <span class="fw-semi-bold text-capitalize">
+                                    {{request.unit_end.name}}
+                                    <img class="flag-img" :src="'/static/flag-icons/'+getFlag()+'.png'">
+                                </span>
                             </li>
                             <li class="p-2 border-bottom d-flex justify-content-between align-content-center">
                                 <span class="fw-light text-capitalize pr-10">
@@ -59,13 +69,13 @@
 
 					</div>
 				</app-card>
-				<app-card :heading="$t('message.filesUploaded')" customClasses="mb-30 files-uploaded">
+				<app-card :heading="$t('message.filesAttached')" customClasses="mb-30 files-uploaded">
 					<files-uploaded></files-uploaded>
 				</app-card>
 			</div>
 			<div class="col-full-lg-block col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 grid-b-space">
 				<app-card :heading="$t('message.gallery')" customClasses="mb-30">
-					<content-gallery></content-gallery>
+					<content-gallery :images=images></content-gallery>
 				</app-card>
 			</div>
 		</div>
@@ -75,16 +85,48 @@
 <script>
     import FilesUploaded from 'Components/Contents/FilesUploaded'
     import ContentGallery from 'Components/Contents/ContentGallery'
+    import { getFlag } from "Helpers/helpers";
 
 	export default {
-        props:["request"],
+        props:["request", "descriptions"],
         components: {
 			FilesUploaded,
 			ContentGallery
 		},
 		data: function () {
-			return {	
+			return {
+                images:[
+                    {
+                        path:"/static/img/notices/notice-1.jpg",
+                    },
+                    {
+                        path:"/static/img/notices/notice-2.jpg",
+                    },
+                    {
+                        path:"/static/img/notices/notice-3.jpg",
+                    },
+                    {
+                        path:"/static/img/notices/notice-4.jpg",
+                    },
+                    {
+                        path:"/static/img/notices/notice-5.jpg",
+                    },
+                    {
+                        path:"/static/img/notices/notice-6.jpg",
+                    },
+                    {
+                        path:"/static/img/notices/notice-7.jpg",
+                    },
+                    {
+                        path:"/static/img/notices/notice-8.jpg",
+                    },
+                ]
 			};
+        },
+        methods:{
+            getFlag(){
+                return getFlag(this.language);
+            },
         },
 	};
 </script>
