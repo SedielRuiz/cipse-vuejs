@@ -16,7 +16,7 @@
             <hr>
 			<div class="blog-content">
 				<div class="custom-p-lh">
-					<p class="font-sm card-description-content">{{doctrinal.title_description}}</p>
+                    <div class="font-sm ql-editor" v-html="doctrinal.title_description"></div>
 				</div>
 				<ul>
                     <li class="p-2 border-bottom d-flex justify-content-between align-content-center">

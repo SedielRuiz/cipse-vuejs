@@ -35,7 +35,6 @@
                         <thead>
                             <tr class="bg-primary text-center">
                                 <th>{{$t('message.type')}}</th>
-                                <th>{{$t('message.language')}}</th>
                                 <th>{{$t('message.description')}}</th>
                                 <th>{{$t('message.unitFrom')}}</th>
                                 <th>{{$t('message.unitTo')}}</th>
@@ -46,10 +45,19 @@
                         <tbody>
                             <tr v-for="request in requests" :key="request.id">
                                 <td class="text-center">{{request.type.name}}</td>
-                                <td class="text-center">{{request.language.name}}</td>
                                 <td class="text-center">{{textTruncate(request.description)}}</td>
-                                <td class="text-center">{{request.unit_start.name}}</td>
-                                <td class="text-center">{{request.unit_end.name}}</td>
+                                <td class="text-center">
+                                    {{request.country_start.name}} - {{request.unit_start.name}}
+                                    <span v-if="request.unit_start.key == 'ESPECIALES'">
+                                        <img class="flag-img" :src="'/static/flag-icons/'+getFlag()+'.png'">
+                                    </span>
+                                </td>
+                                <td class="text-center">
+                                    {{request.country_end.name}} - {{request.unit_end.name}}
+                                    <span v-if="request.unit_start.key != 'ESPECIALES'">
+                                        <img class="flag-img" :src="'/static/flag-icons/'+getFlag()+'.png'">
+                                    </span>
+                                </td>
                                 <td class="text-center">
                                     <span v-if="request.unit_start.key == unit">
                                         Saliente
@@ -77,7 +85,7 @@
 
 <script>
     import {mapActions,mapState} from 'vuex';
-    import { textTruncate, dataTable } from "Helpers/helpers";
+    import { textTruncate, dataTable, getFlag } from "Helpers/helpers";
     import pagination from '@/components/Pagination/Paginate';
 
     export default {
@@ -98,6 +106,9 @@
             ...mapActions({
                 getRequests: 'request/getRequests',
             }),
+            getFlag(){
+                return getFlag("ESPANOL");
+            },
             buildDataTable(){
                 var language = this.language.locale == "sp" ? "Spanish.json" : "English.json" ;
                 dataTable('tableRequests', language);

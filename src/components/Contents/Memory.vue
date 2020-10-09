@@ -17,7 +17,7 @@
 					<h3 class="mb-4">{{$t('message.description')}}</h3><hr>
 					<div class="project-content">
 						<p>{{ memory.description_title }}</p>
-                        <p>{{ memory.memory }}</p>
+                        <div class="ql-editor" v-html="memory.memory"></div>
 					</div>
                     <hr>
                     <ul>
@@ -65,7 +65,7 @@
 			</div>
 			<div class="col-full-lg-block col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 grid-b-space">
 				<app-card :heading="$t('message.gallery')" customClasses="mb-30">
-					<content-gallery></content-gallery>
+					<content-gallery :images=images></content-gallery>
 				</app-card>
 			</div>
 		</div>

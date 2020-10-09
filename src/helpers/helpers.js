@@ -37,10 +37,10 @@ export function getFlag(language){
     var flag = "";
     switch (language) {
         case "ESPANOL":
-            flag = "en";
+            flag = "es";
             break;
         case "INGLES":
-            flag = "es";
+            flag = "en";
             break;
         default:
             flag = "en";

@@ -57,7 +57,7 @@
 		},
 		methods: {
             getFlag(){
-                return getFlag(this.language);
+                return getFlag("ESPANOL");
             },
 			logoutUser() {
 				this.$store.dispatch("logoutUserFromFirebase");

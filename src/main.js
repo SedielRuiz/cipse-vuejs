@@ -25,6 +25,10 @@ import AppConfig from "Constants/AppConfig";
 import numeral from 'numeral';
 import moment from 'moment';
 
+import 'quill/dist/quill.core.css' // import styles
+import 'quill/dist/quill.snow.css' // for snow theme
+import 'quill/dist/quill.bubble.css' // for bubble theme
+
 Vue.filter('formatDate', function(value) {
     if (value) {
         return moment(String(value)).format('DD/MM/YYYY')

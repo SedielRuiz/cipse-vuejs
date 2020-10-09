@@ -19,7 +19,7 @@
 					<p class="">
                         {{notice.description_title}}
                     </p>
-                    <p class="font-sm">{{notice.notice}}</p>
+                    <div class="font-sm ql-editor" v-html="notice.notice"></div>
                     <hr>
                     <ul>
                         <li class="p-2 border-bottom d-flex justify-content-between align-content-center">

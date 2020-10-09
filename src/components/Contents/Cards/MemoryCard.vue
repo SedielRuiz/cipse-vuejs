@@ -16,7 +16,7 @@
 			<div class="blog-content">
 				<div class="custom-p-lh">
 					<p class="font-sm">{{memory.description_title}}</p>
-                    <p class="font-sm">{{memory.memory}}</p>
+                    <div class="font-sm ql-editor" v-html="memory.memory"></div>
 				</div>
 				<hr>
                     <ul>

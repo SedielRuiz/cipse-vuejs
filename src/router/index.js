@@ -56,7 +56,7 @@ export default new Router({
 		{
 			path: '/',
 			component: Full,
-			redirect: '/dashboard',
+			redirect: '/contents/consult/NOTICIA',
 			children: [
 				{
 					name: "Dashboard One",

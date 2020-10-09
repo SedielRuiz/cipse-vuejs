@@ -1,13 +1,11 @@
 <template>
-	<div>
-		<div class="top-selling-widget project-gallery-wrap">
-			<slick :options="slickOptions">
-				<div v-for="(img,index) in images" :key="index">
-					<img :src="img.path" class="img-fluid" />
-				</div>
-			</slick>
-		</div>
-	</div>
+    <div class="top-selling-widget project-gallery-wrap">
+        <slick :options="slickOptions">
+            <div v-for="(img,index) in images" :key="index">
+                <img :src="img.path" class="img-fluid" />
+            </div>
+        </slick>
+    </div>
 </template>
 
 <script>

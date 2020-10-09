@@ -7,7 +7,9 @@
 						<span class="ham-line"></span>
 					</button>
 				</div>
-				<img src="/static/img/foot_logo.jpeg" width="250" alt="Escudos" class="logo-ponal " />
+                <a href="#!" @click="redirectHome">
+				    <img src="/static/img/foot_logo.jpeg" width="250" alt="Escudos" class="logo-ponal " />
+                </a>
 			</div>
 			<b-navbar-nav class="navbar-right">
 				<b-nav-item class="v-step-2 zoom-out" href="#" @click="toggleScreenFull"><i class="zmdi zmdi-fullscreen"></i>
@@ -28,7 +30,7 @@
 					<template slot="button-content">
 						<span class="zmdi infinite wobble zmdi-hc-fw">
 							<i class="zmdi zmdi-notifications-active"></i>
-							<b-badge pill variant="success" class="badge-sm badge-top-right">4</b-badge>
+							<b-badge pill variant="success" class="badge-sm badge-top-right">{{notifications.length}}</b-badge>
 						</span>
 					</template>
 					<b-dropdown-header class="gradient-primary text-white">{{$t('message.notifications')}}
@@ -92,47 +94,14 @@
 						path: "/session/lock-screen",
 						icon: "ti-lock"
 					},
-					{
-						title: "Gallery",
-						path: "/pages/gallery",
-						icon: "ti-gallery"
-					},
-					{
-						title: "Editor",
-						path: "/editor/quill-editor",
-						icon: "ti-pencil-alt"
-					},
-					{
-						title: "Themify Icon",
-						path: "/icons/themify",
-						icon: "ti-flag-alt"
-					}
 				],
 				notifications: [
 					{
-						name: "John Doe",
-						message: "Hey, We have a meeting planned at the end of the day.",
-						img: "/static/img/user-1.jpg",
-						badgeColor: "badge-danger"
-					},
-					{
-						name: "John Doe",
-						message: "Can we schedule a call this afternoon?",
-						img: "/static/img/user-2.jpg",
+						name: "Nueva Noticia",
+						message: "LOS SOCIOS.",
+						img: "/static/img/notices/notice-1.jpg",
 						badgeColor: "badge-success"
 					},
-					{
-						name: "John Doe",
-						message: "Great presentation the other day. Keep up the good work!",
-						img: "/static/img/user-3.jpg",
-						badgeColor: "badge-warning"
-					},
-					{
-						name: "John Doe",
-						message: "Need the updates of the project at the end of the week.",
-						img: "/static/img/user-4.jpg",
-						badgeColor: "badge-success"
-					}
 				],
 				// tourData: {
 				// 	steps: [
@@ -183,6 +152,9 @@
 			MobileSearchForm
 		},
 		methods: {
+            redirectHome(){
+                this.$router.push('/contents/consult/NOTICIA');
+            },
 			// method to right Sidebar event
 			toggleRightSidebar() {
 				this.$store.dispatch('toggleRightSidebar');

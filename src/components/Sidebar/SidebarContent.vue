@@ -32,8 +32,8 @@
                 <search-form class=""></search-form>
                 <div class="progress-wrap mb-80"></div>
                 <div class="progress-wrap mb-60">
-                    <h5 class="text-white">CIPSE</h5>
                     <p class="fs-12"><i class="fas fa-envelope"></i> Correo: cipse@example.com</p>
+                    <h5 class="text-white">2020</h5>
                 </div>
             </div>
         </vue-perfect-scrollbar>

@@ -56,7 +56,7 @@
 		methods: {
 			submit() {
                 // evt.preventDefault();
-				this.$router.push('/dashboard');
+				this.$router.push('/contents/consult/NOTICIA');
 				const user = {
 					email: this.form.email,
 					password: this.form.password
