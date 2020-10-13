@@ -42,6 +42,13 @@ export default {
             "menu_title": "message.us",
             "child_routes":null,
         },
+        {
+            "menu_icon": "fas fa-users",
+            "route_name": "contact",
+            "path": "/users/consult",
+            "menu_title": "message.contact",
+            "child_routes":null,
+        },
 
 		{
 			"menu_title": "message.session",

@@ -444,5 +444,7 @@ export default {
     assignCrime:"Assign Crime",
     filesAttached: "Attached Files",
     historical:"Historical",
-    class:"Class"
+    class:"Class",
+    contact:"Contact",
+    contacts:"Contacts",
 }

@@ -3,7 +3,7 @@
         <b-list-group-item class="d-sm-flex py-15 px-20 list-item-wrap">
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-2 avatar-wrap mb-sm-0 mb-3">
-                    <img :src="'/static/img/blog-1.jpg'" alt="blog gallery" class="img-fluid" width="220" height="170">
+                    <img :src="'/static/img/notices/notice-1.jpg'" alt="blog gallery" class="img-fluid" width="220" height="170">
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-7">
                     

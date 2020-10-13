@@ -97,7 +97,7 @@
 				],
 				notifications: [
 					{
-						name: "Nueva Noticia",
+						name: "Nueva solicitud",
 						message: "LOS SOCIOS.",
 						img: "/static/img/notices/notice-1.jpg",
 						badgeColor: "badge-success"

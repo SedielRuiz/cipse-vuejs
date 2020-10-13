@@ -28,13 +28,7 @@
 				</div>
 			</div>
 		</div>
-        <b-form-group id="input-group-type" :label="'Tipo'" label-for="type">
-            <select class="form-control" id="type" v-model="type" >
-                <option :value="true">Tabla</option>
-                <option :value="false">Contactos</option>
-            </select>
-        </b-form-group>
-        <app-card v-if="type" customClasses="grid-b-space" :heading="''">
+        <app-card v-if="view" customClasses="grid-b-space" :heading="''">
             <div class="table-responsive">
                 <div class="unseen">
                     <table id="tableUser" class="table table-hover table-bordered table-striped">
@@ -95,7 +89,6 @@
         },
         data () {
             return {
-                type: true,
             }
         },
         created(){
@@ -135,7 +128,11 @@
             ...mapState({
                 users: state => state.user.users,
                 language: state => state.settings.selectedLocale,
+                cardContent: state => state.auth.viewContent,
             }),
+            view(){
+                return this.cardContent;
+            },
         },
     }
 </script>

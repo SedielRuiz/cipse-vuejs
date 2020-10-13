@@ -1,6 +1,6 @@
 <template>
 	<div class="user-profile-wrapper">
-		<page-title-bar></page-title-bar>
+		<!-- <page-title-bar></page-title-bar> -->
 		<div class="row">
 			<div class="col-full-lg-block col-sm-12 col-md-12 col-lg-4 col-xl-4">
 				<user-profile-block :user=user></user-profile-block>
